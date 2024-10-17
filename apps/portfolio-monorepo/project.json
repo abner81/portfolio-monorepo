@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-monorepo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/portfolio-monorepo/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "portfolio-monorepo:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "portfolio-monorepo:build:development"
+        },
+        "production": {
+          "buildTarget": "portfolio-monorepo:build:production"
+        }
+      }
+    }
+  }
+}
