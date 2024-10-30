@@ -1,0 +1,19 @@
+{
+  "name": "shared-util-arch-domain",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared/util/arch/domain/src",
+  "projectType": "library",
+  "tags": ["arch"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shared/util/arch/domain",
+        "main": "apps/shared/util/arch/domain/src/index.ts",
+        "tsConfig": "apps/shared/util/arch/domain/tsconfig.lib.json",
+        "assets": ["apps/shared/util/arch/domain/*.md"]
+      }
+    }
+  }
+}
