@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@monorepo/arch/domain": ["apps/shared/util/arch/domain/src/index.ts"],
-      "@monorepo/exceptions": ["apps/shared/util/exceptions/src/index.ts"]
+      "@monorepo/exceptions": ["apps/shared/util/exceptions/src/index.ts"],
+      "@monorepo/helpers": ["apps/shared/util/helpers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

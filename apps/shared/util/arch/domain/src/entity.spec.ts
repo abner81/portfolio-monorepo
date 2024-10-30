@@ -1,4 +1,3 @@
-import { DomainEvent } from './domain-event';
 import { Entity } from './entity';
 
 describe('Entity', () => {

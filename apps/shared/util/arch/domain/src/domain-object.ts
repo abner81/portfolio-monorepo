@@ -1,4 +1,4 @@
-import { isObject } from 'core/util/object';
+import { isObject } from '@monorepo/helpers';
 import { DomainException } from './domain.exception';
 import {
   ImplementationException,
@@ -8,9 +8,9 @@ import {
 export abstract class DomainObject<
   TProps extends object,
   TState = Required<TProps>,
-  TExport extends TProps = Required<TProps>
+  TExport extends TProps = Required<TProps>,
 > {
-  private _state: TState;
+  private _state!: TState;
   protected get state(): TState {
     return this._state;
   }
@@ -45,7 +45,7 @@ export abstract class DomainObject<
     } catch (error) {
       if (error instanceof DomainException) throw error;
       else if (error instanceof InternalException) throw error;
-      else throw new DomainException(error?.message);
+      else throw new DomainException((error as Error)?.message);
     }
 
     if (isObject(state) && (state as unknown) === props)
