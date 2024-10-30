@@ -1,0 +1,19 @@
+{
+  "name": "shared-util-guards",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared/util/guards/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shared/util/guards",
+        "main": "apps/shared/util/guards/src/index.ts",
+        "tsConfig": "apps/shared/util/guards/tsconfig.lib.json",
+        "assets": ["apps/shared/util/guards/*.md"]
+      }
+    }
+  }
+}

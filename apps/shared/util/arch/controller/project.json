@@ -1,0 +1,19 @@
+{
+  "name": "shared-util-arch-controller",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared/util/arch/controller/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shared/util/arch/controller",
+        "main": "apps/shared/util/arch/controller/src/index.ts",
+        "tsConfig": "apps/shared/util/arch/controller/tsconfig.lib.json",
+        "assets": ["apps/shared/util/arch/controller/*.md"]
+      }
+    }
+  }
+}

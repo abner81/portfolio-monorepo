@@ -15,8 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@monorepo/arch/controller": [
+        "apps/shared/util/arch/controller/src/index.ts"
+      ],
       "@monorepo/arch/domain": ["apps/shared/util/arch/domain/src/index.ts"],
+      "@monorepo/events": ["apps/shared/util/events/src/index.ts"],
       "@monorepo/exceptions": ["apps/shared/util/exceptions/src/index.ts"],
+      "@monorepo/guards": ["apps/shared/util/guards/src/index.ts"],
       "@monorepo/helpers": ["apps/shared/util/helpers/src/index.ts"]
     }
   },
