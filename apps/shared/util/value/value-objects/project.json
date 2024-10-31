@@ -1,0 +1,19 @@
+{
+  "name": "shared-util-value-value-objects",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared/util/value/value-objects/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shared/util/value/value-objects",
+        "main": "apps/shared/util/value/value-objects/src/index.ts",
+        "tsConfig": "apps/shared/util/value/value-objects/tsconfig.lib.json",
+        "assets": ["apps/shared/util/value/value-objects/*.md"]
+      }
+    }
+  }
+}
