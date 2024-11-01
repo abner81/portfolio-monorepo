@@ -1,9 +1,8 @@
-name: Main CI - On push to origin/main or origin/develop
+name: Main CI - On push to origin/main
 on:
   push:
     brances:
       - 'main'
-      - 'develop'
 
 # ...
 jobs:
@@ -40,16 +39,18 @@ jobs:
 
       - name: Installing Dependencies...
         run: pnpm install --frozen-lockfile --offline
-      - uses: nrwl/nx-set-shas@v4
+
+      - name: Derive appropriate SHAs for base and head for 'nx affected'
+        uses: nrwl/nx-set-shas@v4
 
       - name: Running Lint...
-      - run: pnpm exec nx affected:lint --parallel
+        run: pnpm exec nx affected:lint --parallel
 
       - name: Running Tests...
-      - run: pnpm exec nx affected:test --parallel
+        run: pnpm exec nx affected:test --parallel
 
       - name: Building Application...
-      - run: pnpm exec nx affected:build
+        run: pnpm exec nx affected:build
 
       - name: Get affected apps
         id: get-affected-apps
