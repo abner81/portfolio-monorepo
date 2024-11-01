@@ -1,7 +1,7 @@
 name: Main CI - On push to origin/main
 on:
   push:
-    brances:
+    branches:
       - 'main'
 
 # ...
