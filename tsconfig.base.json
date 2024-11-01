@@ -8,9 +8,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2021",
+    "strict": false,
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2021", "dom"],
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -25,6 +27,9 @@
       "@monorepo/helpers": ["apps/shared/util/helpers/src/index.ts"],
       "@monorepo/value-objects": [
         "apps/shared/util/value/value-objects/src/index.ts"
+      ],
+      "authentication/domain/user": [
+        "apps/authentication/domain/user/src/index.ts"
       ]
     }
   },

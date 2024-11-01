@@ -1,0 +1,19 @@
+{
+  "name": "authentication-domain-user",
+  "version": "0.0.1",
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "@monorepo/arch/domain": "0.0.1",
+    "@monorepo/exceptions": "0.0.1",
+    "@monorepo/value-objects": "0.0.1",
+    "bcrypt": "^5.1.1",
+    "@monorepo/guards": "0.0.1"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts",
+  "private": true,
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2"
+  }
+}

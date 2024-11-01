@@ -1,0 +1,19 @@
+{
+  "name": "authentication-domain-user",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/authentication/domain/user/src",
+  "projectType": "library",
+  "tags": ["authentication-domain"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/authentication/domain/user",
+        "main": "apps/authentication/domain/user/src/index.ts",
+        "tsConfig": "apps/authentication/domain/user/tsconfig.lib.json",
+        "assets": ["apps/authentication/domain/user/*.md"]
+      }
+    }
+  }
+}
