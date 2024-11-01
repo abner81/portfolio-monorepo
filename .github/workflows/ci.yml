@@ -1,8 +1,17 @@
-name: CI
+name: Main CI - On push to origin/main or origin/develop
+on:
+  push:
+    brances:
+      - 'main'
+      - 'develop'
+
 # ...
 jobs:
-  main:
+  ci:
+    name: Testing application and creating build artifact
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -12,21 +21,37 @@ jobs:
         with:
           version: 9
 
-      # This enables task distribution via Nx Cloud
-      # Run this command as early as possible, before dependencies are installed
-      # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
-      # Connect your workspace by running "nx connect" and uncomment this line to enable task distribution
-      # - run: pnpm dlx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
-
       - uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - name: Getting pnpm cache directory path
+        id: pnpm-cache-dir-path
+        run: echo "::set-output name=dir::$(pnpm store path)"
+
+      - uses: actions/cache@v2
+        id: pnpm-cache
+        with:
+          path: ${{ steps.pnpm-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Installing Dependencies...
+        run: pnpm install --frozen-lockfile --offline
       - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: pnpm exec nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      - run: pnpm exec nx affected -t lint test build e2e-ci
+      - name: Running Lint...
+      - run: pnpm exec nx affected:lint --parallel
+
+      - name: Running Tests...
+      - run: pnpm exec nx affected:test --parallel
+
+      - name: Building Application...
+      - run: pnpm exec nx affected:build
+
+      - name: Get affected apps
+        id: get-affected-apps
+        run: |
+          echo "::set-output name=affected_apps::$(./node_modules/.bin/pnpm exec nx show projects --affected)"
