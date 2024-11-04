@@ -1,0 +1,15 @@
+import { EntityId } from '@monorepo/value-objects';
+import { Vehicle, VehicleProps } from './vehicle';
+import { DomainException } from '@monorepo/arch/domain';
+
+describe('<%= convertToCamelCase(name) %> Entity', () => {
+  const props: <%= convertToCamelCase(name) %>Props = {
+    id: EntityId.create().value,
+  };
+
+  it('should render <%= convertToCamelCase(name) %> with correct values and validations', () => {
+    const valid = new <%= convertToCamelCase(name) %>(props);
+
+    expect(valid).toBeDefined();
+  });
+});
