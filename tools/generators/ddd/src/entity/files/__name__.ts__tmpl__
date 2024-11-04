@@ -1,0 +1,29 @@
+import { Entity } from '@monorepo/arch/domain';
+import { EntityId, EntityIdProps } from '@monorepo/value-objects';
+
+export type <%= convertToCamelCase(name) %>Props = {
+
+} & EntityIdProps;
+
+export type <%= convertToCamelCase(name) %>State = {
+  id: EntityId;
+
+};
+
+export class <%= convertToCamelCase(name) %> extends Entity<<%= convertToCamelCase(name) %>Props, <%= convertToCamelCase(name) %>State> {
+  public get id() {
+    return this.state.id;
+  }
+
+  protected parse(props: <%= convertToCamelCase(name) %>Props): <%= convertToCamelCase(name) %>State {
+    const id = new EntityId(props);
+
+    return { id };
+  }
+
+  export(): Required<<%= convertToCamelCase(name) %>Props> {
+    return {
+      id: this.id.value,
+    };
+  }
+}
