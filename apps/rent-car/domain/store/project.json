@@ -1,0 +1,19 @@
+{
+  "name": "rent-car-domain-store",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rent-car/domain/store/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/rent-car/domain/store",
+        "main": "apps/rent-car/domain/store/src/index.ts",
+        "tsConfig": "apps/rent-car/domain/store/tsconfig.lib.json",
+        "assets": ["apps/rent-car/domain/store/*.md"]
+      }
+    }
+  }
+}

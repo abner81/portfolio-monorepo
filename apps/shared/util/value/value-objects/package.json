@@ -2,7 +2,14 @@
   "name": "@monorepo/value-objects",
   "version": "0.0.1",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@monorepo/arch/domain": "0.0.1",
+    "@monorepo/exceptions": "0.0.1",
+    "@monorepo/guards": "0.0.1",
+    "dotenv": "^16.4.5",
+    "validator": "^13.12.0",
+    "uuid": "^11.0.2",
+    "@monorepo/helpers": "0.0.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",

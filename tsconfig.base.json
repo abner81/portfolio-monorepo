@@ -28,9 +28,12 @@
       "@monorepo/value-objects": [
         "apps/shared/util/value/value-objects/src/index.ts"
       ],
+      "@portfolio-monorepo/ddd": ["tools/generators/ddd/src/index.ts"],
       "authentication/domain/user": [
         "apps/authentication/domain/user/src/index.ts"
-      ]
+      ],
+      "rent-car/domain/rent": ["apps/rent-car/domain/rent/src/index.ts"],
+      "rent-car/domain/store": ["apps/rent-car/domain/store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
