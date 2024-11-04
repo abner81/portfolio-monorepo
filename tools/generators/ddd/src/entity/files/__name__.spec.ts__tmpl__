@@ -1,6 +1,5 @@
 import { EntityId } from '@monorepo/value-objects';
-import { Vehicle, VehicleProps } from './vehicle';
-import { DomainException } from '@monorepo/arch/domain';
+import { <%= convertToCamelCase(name) %>, <%= convertToCamelCase(name) %>Props } from './<%= name %>';
 
 describe('<%= convertToCamelCase(name) %> Entity', () => {
   const props: <%= convertToCamelCase(name) %>Props = {
