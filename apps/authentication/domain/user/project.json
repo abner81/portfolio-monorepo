@@ -1,5 +1,5 @@
 {
-  "name": "authentication-domain-user",
+  "name": "authentication/domain/user",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/authentication/domain/user/src",
   "projectType": "library",

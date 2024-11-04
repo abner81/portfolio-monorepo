@@ -1,5 +1,5 @@
 {
-  "name": "shared-util-events",
+  "name": "shared/util/events",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/shared/util/events/src",
   "projectType": "library",

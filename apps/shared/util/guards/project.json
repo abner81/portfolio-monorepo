@@ -1,5 +1,5 @@
 {
-  "name": "shared-util-guards",
+  "name": "shared/util/guards",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/shared/util/guards/src",
   "projectType": "library",

@@ -1,5 +1,5 @@
 {
-  "name": "tools-generators-ddd",
+  "name": "tools/generators/ddd",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "tools/generators/ddd/src",
   "projectType": "library",

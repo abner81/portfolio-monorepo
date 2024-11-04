@@ -1,5 +1,5 @@
 {
-  "name": "shared-util-arch-domain",
+  "name": "shared/util/arch/domain",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/shared/util/arch/domain/src",
   "projectType": "library",

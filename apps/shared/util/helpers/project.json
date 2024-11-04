@@ -1,5 +1,5 @@
 {
-  "name": "shared-util-helpers",
+  "name": "shared/util/helpers",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/shared/util/helpers/src",
   "projectType": "library",

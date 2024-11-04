@@ -1,5 +1,5 @@
 {
-  "name": "rent-car-domain-store",
+  "name": "rent-car/domain/store",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/rent-car/domain/store/src",
   "projectType": "library",

@@ -11,14 +11,17 @@ export async function entityGeneratorGenerator(
   tree: Tree,
   options: EntityGeneratorSchema
 ) {
+  const rawName = convertToKebabCase(options.name.replace(' ', ''));
+  const entityName = rawName.startsWith('-') ? rawName.slice(1) : rawName;
+
   const entitiesPath = `apps/${convertToKebabCase(
     options.project
-  )}/domain/${convertToKebabCase(options.context)}/src/entities`;
+  )}/src/entities`;
 
-  const targetPath = `${entitiesPath}/${convertToKebabCase(options.name)}`;
+  const targetPath = `${entitiesPath}/${convertToKebabCase(entityName)}`;
 
   generateFiles(tree, path.join(__dirname, 'files'), targetPath, {
-    name: convertToKebabCase(options.name),
+    name: convertToKebabCase(entityName),
     tmpl: '',
     convertToCamelCase,
   });
@@ -26,13 +29,13 @@ export async function entityGeneratorGenerator(
   appendContent(
     tree,
     `${entitiesPath}/index.ts`,
-    `export * from "./${convertToKebabCase(options.name)}"`
+    `export * from "./${convertToKebabCase(entityName)}"`
   );
 
   appendContent(
     tree,
     `${targetPath}/index.ts`,
-    `export * from "./${convertToKebabCase(options.name)}"`
+    `export * from "./${convertToKebabCase(entityName)}"`
   );
 
   await formatFiles(tree);

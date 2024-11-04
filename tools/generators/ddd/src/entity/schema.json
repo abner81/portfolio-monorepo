@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/schema",
   "$id": "EntityGenerator",
   "title": "",
+  "cli": "nx",
   "type": "object",
   "properties": {
     "name": {
@@ -12,25 +13,17 @@
         "index": 0
       },
       "x-prompt": "What name would you like to use?"
+    },
+
+    "project": {
+      "type": "string",
+      "description": "NX project name to insert entity",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What NX project?"
     }
   },
-  "project": {
-    "type": "string",
-    "description": "NX project name to insert entity",
-    "$default": {
-      "$source": "argv",
-      "index": 1
-    },
-    "x-prompt": "What NX project?"
-  },
-  "context": {
-    "type": "string",
-    "description": "DDD Context",
-    "$default": {
-      "$source": "argv",
-      "index": 2
-    },
-    "x-prompt": "What DDD context?"
-  },
-  "required": ["name", "project", "context"]
+  "required": ["name", "project"]
 }

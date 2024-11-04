@@ -1,5 +1,5 @@
 {
-  "name": "shared-util-exceptions",
+  "name": "shared/util/exceptions",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/shared/util/exceptions/src",
   "projectType": "library",
