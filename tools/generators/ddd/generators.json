@@ -1,11 +1,11 @@
 {
   "generators": {
-    "entity-generator": {
+    "entity": {
       "factory": "./src/entity/generator",
       "schema": "./src/entity/schema.json",
       "description": "Gera Entidade DDD"
     },
-    "value-object-generator": {
+    "value-object": {
       "factory": "./src/value-object/generator",
       "schema": "./src/value-object/schema.json",
       "description": "Gera Value-Object DDD"
