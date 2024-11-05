@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/schema",
   "$id": "ValueObjectGenerator",
-  "title": "",
+  "title": "Value Object Generator",
   "type": "object",
   "properties": {
     "name": {

@@ -12,7 +12,7 @@ const parseName = (name: string) => {
   return rawName.startsWith('-') ? rawName.slice(1) : rawName;
 };
 
-export async function entityGeneratorGenerator(
+export async function valueObjectGenerator(
   tree: Tree,
   options: ValueObjectGeneratorSchema
 ) {
@@ -45,4 +45,4 @@ export async function entityGeneratorGenerator(
   await formatFiles(tree);
 }
 
-export default entityGeneratorGenerator;
+export default valueObjectGenerator;

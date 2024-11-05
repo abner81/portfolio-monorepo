@@ -7,7 +7,7 @@ import {
   convertToKebabCase,
 } from '@monorepo/helpers';
 
-export async function entityGeneratorGenerator(
+export async function entityGenerator(
   tree: Tree,
   options: EntityGeneratorSchema
 ) {
@@ -41,4 +41,4 @@ export async function entityGeneratorGenerator(
   await formatFiles(tree);
 }
 
-export default entityGeneratorGenerator;
+export default entityGenerator;
