@@ -1,0 +1,21 @@
+import { ValueObject } from '@monorepo/arch/domain';
+
+export type <%= convertToCamelCase(name) %>Props = {};
+
+export type <%= convertToCamelCase(name) %>State = {};
+
+export class <%= convertToCamelCase(name) %> extends ValueObject<<%= convertToCamelCase(name) %>Props, <%= convertToCamelCase(name) %>State> {
+  public get value() {
+    return this.state;
+  }
+
+  protected parse(props: <%= convertToCamelCase(name) %>Props): <%= convertToCamelCase(name) %>State {
+    return { };
+  }
+
+  export(): Required<<%= convertToCamelCase(name) %>Props> {
+    return {
+      
+    };
+  }
+}

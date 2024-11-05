@@ -1,0 +1,11 @@
+import { <%= convertToCamelCase(name) %>, <%= convertToCamelCase(name) %>Props } from './<%= name %>';
+
+describe('<%= convertToCamelCase(name) %> Value Object', () => {
+  const props: <%= convertToCamelCase(name) %>Props = {};
+
+  it('should render <%= convertToCamelCase(name) %> with correct values and validations', () => {
+    const valid = new <%= convertToCamelCase(name) %>(props);
+
+    expect(valid).toBeDefined();
+  });
+});
