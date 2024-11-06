@@ -9,7 +9,8 @@ import { ValueObjectGeneratorSchema } from './schema';
 
 const parseName = (name: string) => {
   const _name = name ?? '';
-  const rawName = convertToKebabCase(_name.replace(' ', ''));
+  // const rawName = convertToKebabCase(_name.replace(' ', ''));
+  const rawName = convertToKebabCase(_name);
   return rawName.startsWith('-') ? rawName.slice(1) : rawName;
 };
 

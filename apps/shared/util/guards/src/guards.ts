@@ -82,4 +82,13 @@ export class Guards implements IGuards {
     if (typeof argument !== 'boolean')
       throw new DomainException(`:${argumentName} is not valid boolean value.`);
   }
+
+  static ensureIsInEnum(
+    argument: string,
+    enumObj: object,
+    argumentName: string
+  ): GuardResponse {
+    if (!Object.keys(enumObj).some((possibility) => possibility === argument))
+      throw new DomainException(`:${argumentName} is not compatible value.`);
+  }
 }

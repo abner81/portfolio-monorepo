@@ -4,7 +4,9 @@
   "dependencies": {
     "tslib": "^2.3.0",
     "@monorepo/arch/domain": "0.0.1",
-    "@monorepo/guards": "0.0.1"
+    "@monorepo/guards": "0.0.1",
+    "@monorepo/value-objects": "0.0.1",
+    "@monorepo/util": "0.0.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",
