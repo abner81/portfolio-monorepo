@@ -25,6 +25,7 @@
       "@monorepo/exceptions": ["apps/shared/util/exceptions/src/index.ts"],
       "@monorepo/guards": ["apps/shared/util/guards/src/index.ts"],
       "@monorepo/helpers": ["apps/shared/util/helpers/src/index.ts"],
+      "@monorepo/util": ["apps/shared/util/util/src/index.ts"],
       "@monorepo/value-objects": [
         "apps/shared/util/value/value-objects/src/index.ts"
       ],
