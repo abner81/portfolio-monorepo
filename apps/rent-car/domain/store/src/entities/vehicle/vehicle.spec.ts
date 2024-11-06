@@ -9,6 +9,7 @@ describe('RentCar - Vehicle Entity', () => {
     id: EntityId.create().value,
     vehicleGroupId: EntityId.create().value,
     storeId: EntityId.create().value,
+    licensePlate: 'aaa-2323',
   };
 
   it('should render Vehicle with correct values and validations', () => {
