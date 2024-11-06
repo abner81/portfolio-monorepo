@@ -1,5 +1,5 @@
 import { DomainException } from '@monorepo/arch/domain';
-import { LicensePlate, LicensePlateProps } from './license-plate';
+import { LicensePlate } from './license-plate';
 
 describe('LicensePlate Value Object', () => {
   it('should render LicensePlate with correct values', () => {
