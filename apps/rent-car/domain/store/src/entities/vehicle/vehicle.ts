@@ -1,13 +1,15 @@
 import { Entity } from '@monorepo/arch/domain';
 import { Guards } from '@monorepo/guards';
 import { EntityId, EntityIdProps } from '@monorepo/value-objects';
+import { LicensePlate, LicensePlateProps } from './value-objects';
 
 export type VehicleProps = {
   name: string;
   year: number;
   storeId: string;
   vehicleGroupId: string;
-} & EntityIdProps;
+} & EntityIdProps &
+  LicensePlateProps;
 
 export type VehicleState = {
   id: EntityId;
@@ -15,6 +17,7 @@ export type VehicleState = {
   year: number;
   storeId: EntityId;
   vehicleGroupId: EntityId;
+  licensePlate: LicensePlate;
 };
 
 export class Vehicle extends Entity<VehicleProps, VehicleState> {
@@ -42,6 +45,10 @@ export class Vehicle extends Entity<VehicleProps, VehicleState> {
     return this.state.year;
   }
 
+  public get licensePlate() {
+    return this.state.licensePlate;
+  }
+
   protected parse(props: VehicleProps): VehicleState {
     const { name, year } = props;
 
@@ -55,8 +62,9 @@ export class Vehicle extends Entity<VehicleProps, VehicleState> {
     const id = new EntityId({ id: props.id });
     const storeId = new EntityId({ id: props.storeId });
     const vehicleGroupId = new EntityId({ id: props.id });
+    const licensePlate = new LicensePlate(props);
 
-    return { id, name, year, storeId, vehicleGroupId };
+    return { id, name, year, storeId, vehicleGroupId, licensePlate };
   }
 
   export(): Required<VehicleProps> {
@@ -66,6 +74,7 @@ export class Vehicle extends Entity<VehicleProps, VehicleState> {
       id: this.state.id.value,
       storeId: this.state.storeId.value,
       vehicleGroupId: this.state.vehicleGroupId.value,
+      licensePlate: this.licensePlate.value,
     };
   }
 }

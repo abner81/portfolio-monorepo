@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0",
-    "@monorepo/arch/domain": "0.0.1"
+    "@monorepo/arch/domain": "0.0.1",
+    "@monorepo/guards": "0.0.1"
   },
   "type": "commonjs",
   "main": "./src/index.js",
