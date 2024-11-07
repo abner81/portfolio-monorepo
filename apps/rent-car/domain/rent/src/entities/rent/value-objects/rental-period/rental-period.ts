@@ -1,4 +1,4 @@
-import { ValueObject } from '@monorepo/arch/domain';
+import { DomainException, ValueObject } from '@monorepo/arch/domain';
 import { Guards } from '@monorepo/guards';
 import { DateValueObject } from '@monorepo/value-objects';
 
@@ -14,12 +14,21 @@ export type RentalPeriodState = {
   numberOfDays: number;
 };
 
+export class ReturnDataIncompatibleException extends DomainException {
+  constructor() {
+    super(
+      'A data de devolução não pode ser anterior a data de retirada do veículo.'
+    );
+  }
+}
+
 export class RentalPeriod extends ValueObject<
   RentalPeriodProps,
   RentalPeriodState
 > {
   static RULES = {
     minOfDays: 1,
+    returnToleranceInHours: 3,
   };
 
   public get start() {
@@ -36,6 +45,8 @@ export class RentalPeriod extends ValueObject<
     const { numberOfDays } = props;
     const start = new DateValueObject({ date: props.start });
     const end = new DateValueObject({ date: props.end });
+
+    if (start.value >= end.value) throw new ReturnDataIncompatibleException();
 
     Guards.againstNullOrUndefined(numberOfDays, 'numberOfDays');
     Guards.ensureIsInteger(numberOfDays, 'numberOfDays', {
