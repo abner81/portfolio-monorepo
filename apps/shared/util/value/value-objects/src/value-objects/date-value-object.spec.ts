@@ -23,4 +23,13 @@ describe('Date Value Object', () => {
     expect(sutUndefined).toThrow(DomainException);
     expect(sutEmpty).toThrow(DomainException);
   });
+
+  it('should return correct values on getDaysBetween()', () => {
+    const start = new DateValueObject({ date: new Date('2024-10-01') });
+    const end = new DateValueObject({ date: new Date('2024-10-03') });
+    const end2 = new DateValueObject({ date: new Date('2024-10-06') });
+
+    expect(start.getDaysBetween(end)).toBe(2);
+    expect(start.getDaysBetween(end2)).toBe(5);
+  });
 });

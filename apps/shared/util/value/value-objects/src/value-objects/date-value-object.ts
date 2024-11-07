@@ -11,6 +11,14 @@ export class DateValueObject extends ValueObject<DateValueObjectProps, Date> {
     return this.state;
   }
 
+  getDaysBetween(dateToCompare: DateValueObject) {
+    const oneDayInMs = 24 * 60 * 60 * 1000;
+    const differenceInMs = Math.abs(
+      this.value.getTime() - dateToCompare.value.getTime()
+    );
+    return Math.round(differenceInMs / oneDayInMs);
+  }
+
   static create() {
     return new DateValueObject({ date: new Date() });
   }
