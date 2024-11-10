@@ -6,7 +6,8 @@
     "@monorepo/arch/domain": "0.0.1",
     "@monorepo/exceptions": "0.0.1",
     "@nestjs/common": "^10.0.2",
-    "express": "4.21.1"
+    "express": "4.21.1",
+    "rxjs": "^7.8.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",

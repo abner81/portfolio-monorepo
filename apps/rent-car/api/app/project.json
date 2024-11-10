@@ -1,0 +1,31 @@
+{
+  "name": "rent-car/api/app",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rent-car/api/app/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "rent-car/api/app:build",
+        "watch": true,
+        "runBuildTargetDependencies": false,
+        "inspect": true
+      },
+
+      "configurations": {
+        "development": {
+          "buildTarget": "rent-car/api/app:build:development",
+          "inspect": true
+        },
+        "production": {
+          "buildTarget": "rent-car/api/app:build:production",
+          "inspect": true
+        }
+      }
+    }
+  }
+}
