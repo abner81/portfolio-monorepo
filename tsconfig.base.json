@@ -31,6 +31,7 @@
         "apps/shared/util/value/value-objects/src/index.ts"
       ],
       "@portfolio-monorepo/ddd": ["tools/generators/ddd/src/index.ts"],
+      "@portfolio-monorepo/nest": ["tools/generators/nest/src/index.ts"],
       "authentication/domain/user": [
         "apps/authentication/domain/user/src/index.ts"
       ],

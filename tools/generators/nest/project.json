@@ -1,0 +1,41 @@
+{
+  "name": "nest",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/generators/nest/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/tools/generators/nest",
+        "main": "tools/generators/nest/src/index.ts",
+        "tsConfig": "tools/generators/nest/tsconfig.lib.json",
+        "assets": [
+          "tools/generators/nest/*.md",
+          {
+            "input": "./tools/generators/nest/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./tools/generators/nest/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./tools/generators/nest",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./tools/generators/nest",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
+}
