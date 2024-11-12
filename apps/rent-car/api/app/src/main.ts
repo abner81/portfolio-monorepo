@@ -7,11 +7,11 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import 'reflect-metadata';
 
-import { AppModule } from './app/app.module';
+import { RentCarAppModule } from './app.module';
 import { ControllerInterceptor } from '@monorepo/arch/controller';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(RentCarAppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalInterceptors(new ControllerInterceptor());

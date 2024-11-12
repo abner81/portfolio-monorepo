@@ -1,17 +1,18 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DiscoveryService } from '@nestjs/core';
 import { BaseController } from '@monorepo/arch/controller';
 import { ImplementationException } from '@monorepo/exceptions';
+import { RentCarApplicationModule } from 'rent-car/api/application';
+import { RentModule } from './rent/rent.module';
+import { StoreModule } from './store/store.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService, DiscoveryService],
+  imports: [RentCarApplicationModule, RentModule, StoreModule],
+  controllers: [],
+  providers: [DiscoveryService],
 })
-export class AppModule implements OnModuleInit {
+export class RentCarAppModule implements OnModuleInit {
   constructor(private readonly discoveryService: DiscoveryService) {}
 
   onModuleInit() {
