@@ -1,0 +1,36 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { <%= classify(name) %>Service } from './<%= dasherize(name) %>.service';
+import { I<%= classify(name) %>Repository } from './<%= dasherize(name) %>.repository';
+import { <%= convertToUpperCase(name) %>_REPOSITORY } from './constants';
+
+describe('<%= classify(name) %>Service', () => {
+  let service: <%= classify(name) %>Service;
+  let repository: I<%= classify(name) %>Repository;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        <%= classify(name) %>Service,
+        {
+          provide: <%= convertToUpperCase(name) %>_REPOSITORY,
+          useValue: {
+            execute: jest.fn(), // Mock do método execute do repositório
+          },
+        },
+      ],
+    }).compile();
+
+    service = module.get<<%= classify(name) %>Service>(<%= classify(name) %>Service);
+    repository = module.get<I<%= classify(name) %>Repository>(<%= convertToUpperCase(name) %>_REPOSITORY);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+
+  it('should call repository execute method', async () => {
+    const params = {}; // Parâmetros de teste
+    await service.execute(params);
+    expect(repository.execute).toHaveBeenCalledWith(params); // Verifica se o repositório foi chamado com os parâmetros corretos
+  });
+});

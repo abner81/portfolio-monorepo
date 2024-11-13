@@ -1,0 +1,40 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { <%= convertToCamelCase(name) %>Controller } from './<%= convertToCamelCase(name) %>.controller';
+import { <%= convertToCamelCase(name) %>Service, I<%= convertToCamelCase(name) %>Service } from '<%= project %>/api/application';
+import { <%= convertToUpperCase(name) %>_SERVICE } from '<%= project %>/api/app/config/constants';
+import { Response } from 'express';
+
+describe('<%= convertToCamelCase(name) %>Controller', () => {
+  let controller: <%= convertToCamelCase(name) %>Controller;
+  let service: I<%= convertToCamelCase(name) %>Service;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [<%= convertToCamelCase(name) %>Controller],
+      providers: [
+        {
+          provide: <%= convertToUpperCase(name) %>_SERVICE,
+          useValue: {
+            execute: jest.fn(), // Mock da função execute para o serviço
+          },
+        },
+      ],
+    }).compile();
+
+    controller = module.get<<%= convertToCamelCase(name) %>Controller>(<%= convertToCamelCase(name) %>Controller);
+    service = module.get<I<%= convertToCamelCase(name) %>Service>(<%= convertToUpperCase(name) %>_SERVICE);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+
+  it('should call service execute method', async () => {
+    const req = {} as any; // Mock de request
+    const res = { send: jest.fn() } as unknown as Response; // Mock de response com função send
+
+    await controller.handle(req, res);
+
+    expect(service.execute).toHaveBeenCalled(); // Verifica se o método execute foi chamado
+  });
+});

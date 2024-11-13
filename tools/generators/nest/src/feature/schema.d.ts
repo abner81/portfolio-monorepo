@@ -5,4 +5,6 @@ export interface CreateNestFeatureGeneratorSchema {
   repositoryName: string;
   httpMethod: IHttpMethod;
   project: string;
+  context: string;
+  folder?: string;
 }

@@ -1,15 +1,33 @@
 {
   "$schema": "https://json-schema.org/schema",
-  "$id": "CreateNestFeature",
-  "title": "",
+  "$id": "createNestFeatureGenerator",
+  "title": "Create Nest Feature",
   "type": "object",
   "properties": {
+    "project": {
+      "type": "string",
+      "description": "Adicione o nome do projeto que a feature pertencerá",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Qual o nome do projeto que a feature pertencerá?"
+    },
+    "context": {
+      "type": "string",
+      "description": "Adicione o contexto (DDD)",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Qual o contexto (DDD)?"
+    },
     "name": {
       "type": "string",
       "description": "Adicione o nome da feature SEM O SUFIXO (Controller, Service, Repository)",
       "$default": {
         "$source": "argv",
-        "index": 0
+        "index": 2
       },
       "x-prompt": "Qual o nome da feature? SEM O SUFIXO (Controller, Service, Repository)"
     },
@@ -18,7 +36,7 @@
       "description": "Adicione o nome do repositório SEM O SUFIXO (Repository)",
       "$default": {
         "$source": "argv",
-        "index": 1
+        "index": 3
       },
       "x-prompt": "Qual o nome do repositório SEM O SUFIXO (Repository)"
     },
@@ -27,7 +45,7 @@
       "description": "Escolha um método Http ('Get' | 'Post' | 'Put' | 'Patch' | 'Delete')",
       "$default": {
         "$source": "argv",
-        "index": 2
+        "index": 4
       },
       "x-prompt": {
         "message": "Qual o método Http?",
@@ -41,15 +59,15 @@
         ]
       }
     },
-    "project": {
+    "folder": {
       "type": "string",
-      "description": "Adicione o nome do projeto que a feature pertencerá",
+      "description": "Adicione o nome da pasta que ficará os arquivos",
       "$default": {
         "$source": "argv",
-        "index": 3
+        "index": 5
       },
-      "x-prompt": "Qual o nome do projeto que a feature pertencerá?"
+      "x-prompt": "Qual o nome da pasta que ficará os arquivos?"
     }
   },
-  "required": ["name", "repositoryName", "httpMethod", "project"]
+  "required": ["name", "repositoryName", "httpMethod", "project", "context"]
 }

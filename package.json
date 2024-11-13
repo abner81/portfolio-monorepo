@@ -7,6 +7,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/schematics": "^18.2.11",
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@nestjs/common": "^10.0.2",

@@ -1,6 +1,6 @@
 {
   "generators": {
-    "Create Nest Feature": {
+    "feature": {
       "factory": "./src/feature/generator",
       "schema": "./src/feature/schema.json",
       "description": "Create Nest Feature generator"
