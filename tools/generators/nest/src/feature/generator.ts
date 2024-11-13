@@ -58,6 +58,9 @@ class FeatureGenerator {
   private generateService() {
     this.makeGenerateFile('service');
   }
+  private generateRepository() {
+    this.makeGenerateFile('repository');
+  }
 
   static execute(tree: Tree, params: CreateNestFeatureGeneratorSchema) {
     const instance = new FeatureGenerator(tree, params);
