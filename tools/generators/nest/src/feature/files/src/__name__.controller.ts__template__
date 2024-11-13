@@ -1,0 +1,20 @@
+import { Controller, Get, Inject, Req, Res } from '@nestjs/common';
+import { Request, Response } from 'express';
+import { BaseController } from '@monorepo/arch/controller';
+import { <%= convertToCamelCase(name) %>Service, I<%= convertToCamelCase(name) %>Service} from '<%= project %>/api/application';
+import { <%= convertToUpperCase(name) %>_SERVICE } from '<%= project %>/api/app/config/constants';
+
+@Controller('')
+export class <%= convertToCamelCase(name) %>Controller extends BaseController {
+  constructor(
+    @Inject(<%= convertToUpperCase(name) %>_SERVICE)
+    private readonly service: I<%= convertToCamelCase(name) %>Service
+  ) {
+    super();
+  }
+
+  @<%= convertToCamelCase(httpMethod) %>('')
+  async handle(@Req() req: Request, @Res() res: Response): Promise<void> {
+    return await this.service.execute();
+  }
+}

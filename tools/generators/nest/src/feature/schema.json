@@ -6,13 +6,50 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "",
+      "description": "Adicione o nome da feature SEM O SUFIXO (Controller, Service, Repository)",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "Qual o nome da feature? SEM O SUFIXO (Controller, Service, Repository)"
+    },
+    "repositoryName": {
+      "type": "string",
+      "description": "Adicione o nome do repositório SEM O SUFIXO (Repository)",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Qual o nome do repositório SEM O SUFIXO (Repository)"
+    },
+    "httpMethod": {
+      "type": "string",
+      "description": "Escolha um método Http ('Get' | 'Post' | 'Put' | 'Patch' | 'Delete')",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": {
+        "message": "Qual o método Http?",
+        "type": "select",
+        "items": [
+          { "value": "Get", "label": "GET" },
+          { "value": "Post", "label": "POST" },
+          { "value": "Put", "label": "PUT" },
+          { "value": "Patch", "label": "PATCH" },
+          { "value": "Delete", "label": "DELETE" }
+        ]
+      }
+    },
+    "project": {
+      "type": "string",
+      "description": "Adicione o nome do projeto que a feature pertencerá",
+      "$default": {
+        "$source": "argv",
+        "index": 3
+      },
+      "x-prompt": "Qual o nome do projeto que a feature pertencerá?"
     }
   },
-  "required": ["name"]
+  "required": ["name", "repositoryName", "httpMethod", "project"]
 }

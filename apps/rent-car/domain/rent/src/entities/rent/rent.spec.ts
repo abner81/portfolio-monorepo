@@ -4,8 +4,8 @@ import { Rent, RentProps } from './rent';
 describe('Rent Entity', () => {
   const props: RentProps = {
     rentalPeriod: {
-      end: new Date('2024-10-04'),
-      start: new Date('2024-10-06'),
+      end: new Date('2024-10-06'),
+      start: new Date('2024-10-04'),
       numberOfDays: 2,
     },
     userId: EntityId.create().value,
