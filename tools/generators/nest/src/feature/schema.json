@@ -33,11 +33,11 @@
         "message": "Qual o método Http?",
         "type": "select",
         "items": [
-          { "value": "Get", "label": "GET" },
-          { "value": "Post", "label": "POST" },
-          { "value": "Put", "label": "PUT" },
-          { "value": "Patch", "label": "PATCH" },
-          { "value": "Delete", "label": "DELETE" }
+          { "value": "Get", "label": "Get" },
+          { "value": "Post", "label": "Post" },
+          { "value": "Put", "label": "Put" },
+          { "value": "Patch", "label": "Patch" },
+          { "value": "Delete", "label": "Delete" }
         ]
       }
     },

@@ -1,5 +1,5 @@
 {
-  "name": "nest",
+  "name": "tools/generators/nest/feature",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "tools/generators/nest/src",
   "projectType": "library",
