@@ -40,6 +40,7 @@
       "rent-car/api/application": [
         "apps/rent-car/api/application/src/index.ts"
       ],
+      "rent-car/api/infra": ["apps/rent-car/api/infra/src/index.ts"],
       "rent-car/domain/rent": ["apps/rent-car/domain/rent/src/index.ts"],
       "rent-car/domain/store": ["apps/rent-car/domain/store/src/index.ts"]
     }

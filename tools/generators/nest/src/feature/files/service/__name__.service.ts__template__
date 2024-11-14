@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { IApplicationService } from '@monorepo/arch/service';
 
 @Injectable()
-export class <%= classify(name) %>Service implements IApplicationService {
+export class <%= convertToCamelCase(name) %>Service implements IApplicationService {
   constructor(
     @Inject(<%= convertToUpperCase(name) %>_REPOSITORY)
-    private readonly repo: I<%= classify(name) %>Repository
+    private readonly repo: I<%= convertToCamelCase(repositoryName) %>Repository
   ) {}
 
   async execute(params: unknown): Promise<void> {

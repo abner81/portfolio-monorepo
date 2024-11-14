@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0",
-    "@nestjs/common": "^10.0.2",
-    "@monorepo/arch/service": "0.0.1"
+    "@nestjs/common": "^10.0.2"
   },
   "type": "commonjs",
   "main": "./src/index.js",

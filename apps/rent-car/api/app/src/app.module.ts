@@ -3,12 +3,11 @@ import { Module, OnModuleInit } from '@nestjs/common';
 import { DiscoveryService } from '@nestjs/core';
 import { BaseController } from '@monorepo/arch/controller';
 import { ImplementationException } from '@monorepo/exceptions';
-import { RentCarApplicationModule } from 'rent-car/api/application';
 import { RentModule } from './rent/rent.module';
 import { StoreModule } from './store/store.module';
 
 @Module({
-  imports: [RentCarApplicationModule, RentModule, StoreModule],
+  imports: [RentCarAppModule, RentModule, StoreModule],
   controllers: [],
   providers: [DiscoveryService],
 })

@@ -1,6 +1,10 @@
 import { generateFiles, names, Tree } from '@nx/devkit';
 import { CreateNestFeatureGeneratorSchema } from './schema';
-import { convertToCamelCase, removePrefixTo } from '@monorepo/helpers';
+import {
+  appendContent,
+  convertToCamelCase,
+  removePrefixTo,
+} from '@monorepo/helpers';
 import * as path from 'path';
 
 class FeatureGenerator {
@@ -29,8 +33,11 @@ class FeatureGenerator {
       this.params?.folder ?? removePrefixTo(this.targetName.fileName);
     return names(_rawFolder).fileName;
   }
+  private get controllersPath() {
+    return `apps/${this.projectPath}/src/${this.context}/controllers`;
+  }
   private get targetPath() {
-    return `apps/${this.projectPath}/src/${this.context}/controllers/${this.folder}/${this.targetName.fileName}`;
+    return `${this.controllersPath}/${this.folder}/${this.targetName.fileName}`;
   }
 
   private makeGenerateFile(fileType: string) {
@@ -52,12 +59,33 @@ class FeatureGenerator {
     );
   }
 
+  private mergeControllersIndex() {
+    appendContent(
+      this.tree,
+      `${this.controllersPath}/index.ts`,
+      `export * from "./${this.folder}"`
+    );
+  }
+
+  private mergeTargetFolderIndex() {
+    const folderIndexPath = `${this.controllersPath}/${this.folder}`;
+    appendContent(
+      this.tree,
+      `${folderIndexPath}/index.ts`,
+      `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.controller"`
+    );
+  }
+
   private generateController() {
     this.makeGenerateFile('controller');
+    this.mergeControllersIndex();
+    this.mergeTargetFolderIndex();
   }
+
   private generateService() {
     this.makeGenerateFile('service');
   }
+
   private generateRepository() {
     this.makeGenerateFile('repository');
   }
