@@ -54,7 +54,8 @@ class FeatureGenerator {
         repositoryName: this.params.repositoryName,
         name: this.targetName.fileName,
         convertToCamelCase,
-        convertToUpperCase: (name: string) => name.toUpperCase(),
+        convertToConstant: (name: string) =>
+          name.toUpperCase().replace('-', '_'),
       }
     );
   }
