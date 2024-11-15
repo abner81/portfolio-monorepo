@@ -4,7 +4,9 @@
   "dependencies": {
     "@nx/devkit": "20.0.8",
     "tslib": "^2.3.0",
-    "@monorepo/helpers": "0.0.1"
+    "@monorepo/helpers": "0.0.1",
+    "typescript": "~5.5.2",
+    "@schematics/angular": "^18.2.12"
   },
   "type": "commonjs",
   "main": "./src/index.js",
