@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Req, Res } from '@nestjs/common';
+import { Controller,<%= convertToCamelCase(httpMethod) %>, Inject, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { BaseController } from '@monorepo/arch/controller';
 import { <%= convertToCamelCase(name) %>Service, I<%= convertToCamelCase(name) %>Service} from '<%= project %>/api/application';
