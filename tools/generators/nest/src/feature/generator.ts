@@ -90,17 +90,17 @@ class FeatureGenerator {
   }
 
   private mergeTargetFolderIndex(type: FileType, folderPath: string) {
-    const folderIndexPath = `${this.controllersPath}/${this.folder}`;
     appendContent(
       this.tree,
-      `${folderIndexPath}/index.ts`,
+      `${folderPath}/index.ts`,
       `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.${type}"`
     );
   }
 
-  private addServiceInConstants() {
-    const constantName = `${this.targetName.constantName}_SERVICE`;
-    const interfaceName = `I${this.targetName.className}Service`;
+  private addInConstants(fileType: FileType) {
+    const type = names(fileType);
+    const constantName = `${this.targetName.constantName}_${type.constantName}`;
+    const interfaceName = `I${this.targetName.className}${type.className}`;
 
     appendContent(
       this.tree,
@@ -166,7 +166,7 @@ class FeatureGenerator {
   }
 
   private generateController() {
-    this.addServiceInConstants();
+    this.addInConstants('controller');
     this.makeGenerateFile('controller', this.controllerTargetPath);
 
     this.mergeIndex(this.controllersPath);
@@ -179,6 +179,7 @@ class FeatureGenerator {
   }
 
   private generateService() {
+    this.addInConstants('service');
     this.makeGenerateFile('service', this.serviceTargetPath);
     this.mergeIndex(this.servicesPath);
     this.mergeTargetFolderIndex(

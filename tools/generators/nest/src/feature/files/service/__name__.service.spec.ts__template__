@@ -1,27 +1,28 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { <%= convertToCamelCase(name) %>Service } from './<%= dasherize(name) %>.service';
-import { I<%= convertToCamelCase(name) %>Repository } from './<%= dasherize(name) %>.repository';
-import { <%= convertToUpperCase(name) %>_REPOSITORY } from './constants';
+import { <%= convertToCamelCase(name) %>Service } from './<%= convertToKebabCase(name) %>.service';
+import { I<%= convertToCamelCase(name) %>Repository } from './<%= convertToKebabCase(name) %>.repository';
+import { <%= convertToConstant(name) %>_REPOSITORY } from './constants';
 
 describe('<%= convertToCamelCase(name) %>Service', () => {
   let service: <%= convertToCamelCase(name) %>Service;
   let repository: I<%= convertToCamelCase(name) %>Repository;
+  const params = {}; 
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         <%= convertToCamelCase(name) %>Service,
         {
-          provide: <%= convertToUpperCase(name) %>_REPOSITORY,
+          provide: <%= convertToConstant(name) %>_REPOSITORY,
           useValue: {
-            execute: jest.fn(), // Mock do método execute do repositório
+            execute: jest.fn(),
           },
         },
       ],
     }).compile();
 
     service = module.get<<%= convertToCamelCase(name) %>Service>(<%= convertToCamelCase(name) %>Service);
-    repository = module.get<I<%= convertToCamelCase(name) %>Repository>(<%= convertToUpperCase(name) %>_REPOSITORY);
+    repository = module.get<I<%= convertToCamelCase(name) %>Repository>(<%= convertToConstant(name) %>_REPOSITORY);
   });
 
   it('should be defined', () => {
@@ -29,8 +30,7 @@ describe('<%= convertToCamelCase(name) %>Service', () => {
   });
 
   it('should call repository execute method', async () => {
-    const params = {}; // Parâmetros de teste
     await service.execute(params);
-    expect(repository.execute).toHaveBeenCalledWith(params); // Verifica se o repositório foi chamado com os parâmetros corretos
+    expect(repository.execute).toHaveBeenCalledWith(params); 
   });
 });

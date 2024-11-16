@@ -4,8 +4,8 @@ import { IApplicationService } from '@monorepo/arch/service';
 @Injectable()
 export class <%= convertToCamelCase(name) %>Service implements IApplicationService {
   constructor(
-    @Inject(<%= convertToUpperCase(name) %>_REPOSITORY)
-    private readonly repo: I<%= convertToCamelCase(repositoryName) %>Repository
+    @Inject(<%= convertToConstant(name) %>_REPOSITORY)
+    private readonly repository: I<%= convertToCamelCase(repositoryName) %>Repository
   ) {}
 
   async execute(params: unknown): Promise<void> {
