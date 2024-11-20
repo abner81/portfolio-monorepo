@@ -8,7 +8,22 @@ import {
 } from '@monorepo/helpers';
 import * as path from 'path';
 
-export type FileType = 'controller' | 'service' | 'repository';
+export type FileType =
+  | 'controller'
+  | 'service'
+  | 'repository'
+  | 'i-repository'
+  | 'interfaces'
+  | 'repositories';
+
+export type ToModuleOptions = {
+  modulePath: string;
+  provider: {
+    token: string;
+    className: string;
+    importPath: string;
+  };
+};
 
 class FeatureGenerator {
   public tree: Tree;
@@ -47,6 +62,9 @@ class FeatureGenerator {
   private get servicesPath() {
     return `${this.applicationContextPath}/services`;
   }
+  private get infraSrcPath() {
+    return `apps/${this.projectName}/api/infra/src`;
+  }
   private get serviceTargetPath() {
     return `${this.servicesPath}/${this.folder}/${this.targetName.fileName}`;
   }
@@ -57,11 +75,11 @@ class FeatureGenerator {
     return `apps/${this.projectName}/api/application/src/${this.context}`;
   }
 
-  private makeGenerateFile(fileType: string, _path: string) {
+  private makeGenerateFile(fileType: FileType, targetPath: string) {
     return generateFiles(
       this.tree,
       path.join(__dirname, 'files', fileType),
-      _path,
+      targetPath,
       {
         folder: this.folder,
         context: this.context,
@@ -162,7 +180,25 @@ class FeatureGenerator {
     this.tree.write(modulePath, moduleSource);
   }
 
-  private addServiceToModule() {
+  private makeServiceToModuleOptions(): ToModuleOptions {
+    const modulePath = `${this.applicationSrcPath}/application.module.ts`;
+    const token = `${this.targetName.constantName}_SERVICE`;
+    const className = `${this.targetName.className}Service`;
+    const importPath = `./${this.context}/services`;
+
+    return { modulePath, provider: { token, className, importPath } };
+  }
+
+  private makeRepositoryToModuleOptions(): ToModuleOptions {
+    const modulePath = `${this.infraSrcPath}/infra.module.ts`;
+    const token = `${this.targetName.constantName}_REPOSITORY`;
+    const className = `${this.targetName.className}Repository`;
+    const importPath = `./shared/repositories`;
+
+    return { modulePath, provider: { token, className, importPath } };
+  }
+
+  private addProviderToModule(options: ToModuleOptions) {
     const modulePath = `${this.applicationSrcPath}/application.module.ts`;
     const providerToken = `${this.targetName.constantName}_SERVICE`;
     const providerClassName = `${this.targetName.className}Service`;
@@ -287,17 +323,40 @@ class FeatureGenerator {
       'service',
       `${this.servicesPath}/${this.folder}`
     );
-    this.addServiceToModule();
+    const options = this.makeServiceToModuleOptions();
+    this.addProviderToModule(options);
+  }
+
+  private makeRepoInterface() {
+    const interfacePath = `${this.infraSrcPath}/shared/interface`;
+    this.makeGenerateFile('i-repository', interfacePath);
+    this.mergeIndex(interfacePath);
+    this.mergeTargetFolderIndex(
+      'interfaces',
+      `${interfacePath}/${this.folder}`
+    );
+  }
+
+  private makeRepository() {
+    const repoPath = `${this.infraSrcPath}/shared/repositories`;
+    this.addInConstants('repository');
+    this.makeGenerateFile('repository', repoPath);
+    this.mergeIndex(repoPath);
+    this.mergeTargetFolderIndex('repositories', `${repoPath}/${this.folder}`);
+    const options = this.makeRepositoryToModuleOptions();
+    this.addProviderToModule(options);
   }
 
   private generateRepository() {
-    this.makeGenerateFile('repository', '');
+    this.makeRepoInterface();
+    this.makeRepository();
   }
 
   static execute(tree: Tree, params: CreateNestFeatureGeneratorSchema) {
     const instance = new FeatureGenerator(tree, params);
     // instance.generateController();
-    instance.generateService();
+    // instance.generateService();
+    instance.generateRepository();
   }
 }
 
