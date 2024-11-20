@@ -199,10 +199,10 @@ class FeatureGenerator {
   }
 
   private addProviderToModule(options: ToModuleOptions) {
-    const modulePath = `${this.applicationSrcPath}/application.module.ts`;
-    const providerToken = `${this.targetName.constantName}_SERVICE`;
-    const providerClassName = `${this.targetName.className}Service`;
-    const providerPath = `./${this.context}/services`;
+    const {
+      modulePath,
+      provider: { className, importPath, token },
+    } = options;
     const tokenPath = `${this.projectName}/api/app/config/constants`;
 
     if (!this.tree.exists(modulePath)) {
@@ -213,7 +213,7 @@ class FeatureGenerator {
 
     // Step 1: Add the import statement for the provider class if not present
     const providerImportRegex = new RegExp(
-      `import\\s*{([^}]*)}\\s*from\\s*'${providerPath}';`
+      `import\\s*{([^}]*)}\\s*from\\s*'${importPath}';`
     );
     if (providerImportRegex.test(moduleSource)) {
       moduleSource = moduleSource.replace(
@@ -223,19 +223,18 @@ class FeatureGenerator {
             .split(',')
             .map((imp) => imp.trim())
             .filter((imp) => imp);
-          if (!updatedImports.includes(providerClassName)) {
-            updatedImports.push(providerClassName);
+          if (!updatedImports.includes(className)) {
+            updatedImports.push(className);
           }
           return `import { ${updatedImports.join(
             ', '
-          )} } from '${providerPath}';`;
+          )} } from '${importPath}';`;
         }
       );
     } else {
       // Add new import statement if it doesn't exist
       moduleSource =
-        `import { ${providerClassName} } from '${providerPath}';\n` +
-        moduleSource;
+        `import { ${className} } from '${importPath}';\n` + moduleSource;
     }
 
     // Step 2: Add the import statement for the token if not present
@@ -250,21 +249,21 @@ class FeatureGenerator {
             .split(',')
             .map((imp) => imp.trim())
             .filter((imp) => imp);
-          if (!updatedImports.includes(providerToken)) {
-            updatedImports.push(providerToken);
+          if (!updatedImports.includes(token)) {
+            updatedImports.push(token);
           }
           return `import { ${updatedImports.join(', ')} } from '${tokenPath}';`;
         }
       );
     } else {
       moduleSource =
-        `import { ${providerToken} } from '${tokenPath}';\n` + moduleSource;
+        `import { ${token} } from '${tokenPath}';\n` + moduleSource;
     }
 
     // Step 3: Add the provider configuration to the @Module 'providers' array
     const providerConfig = `{
-      provide: ${providerToken},
-      useClass: ${providerClassName},
+      provide: ${token},
+      useClass: ${className},
     }`;
 
     if (moduleSource.includes('providers: [')) {
@@ -287,14 +286,12 @@ class FeatureGenerator {
       moduleSource = moduleSource.replace(
         /exports: \[([^\]]*)\]/,
         (match, exports) =>
-          `exports: [${exports.trim()}${
-            exports.trim() ? ',' : ''
-          } ${providerToken}]`
+          `exports: [${exports.trim()}${exports.trim() ? ',' : ''} ${token}]`
       );
     } else {
       moduleSource = moduleSource.replace(
         '@Module({',
-        `@Module({\n  exports: [${providerToken}],`
+        `@Module({\n  exports: [${token}],`
       );
     }
 
