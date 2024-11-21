@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+
 import { Injectable } from '@nestjs/common';
 import { I<%= convertToCamelCase(repositoryName) %>Repository } from '../../interfaces'
 

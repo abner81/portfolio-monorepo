@@ -89,7 +89,7 @@ class FeatureGenerator {
         template: '',
         project: this.projectName,
         httpMethod: this.params.httpMethod,
-        repositoryName: this.params.repositoryName,
+        repositoryName: this.repositoryName.fileName,
         name: this.targetName.fileName,
         convertToCamelCase,
         convertToKebabCase,
@@ -100,33 +100,28 @@ class FeatureGenerator {
   }
 
   private mergeIndex(indexPath: string, fileType?: FileType) {
-    const folderName =
-      fileType === 'repository' ? this.repositoryName.fileName : this.folder;
-
     appendContent(
       this.tree,
       `${indexPath}/index.ts`,
-      `export * from "./${folderName}"`
+      `export * from "./${this.folder}"`
     );
   }
 
   private mergeTargetFolderIndex(type: FileType, folderPath: string) {
-    const fileName =
-      type === 'repository'
-        ? this.repositoryName.fileName
-        : this.targetName.fileName;
-
     appendContent(
       this.tree,
       `${folderPath}/index.ts`,
-      `export * from "./${fileName}/${fileName}.${type}"`
+      `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.${type}"`
     );
   }
 
   private addInConstants(fileType: FileType) {
+    const targetName =
+      fileType === 'repository' ? this.repositoryName : this.targetName;
     const type = names(fileType);
-    const constantName = `${this.targetName.constantName}_${type.constantName}`;
-    const interfaceName = `I${this.targetName.className}${type.className}`;
+
+    const constantName = `${targetName.constantName}_${type.constantName}`;
+    const interfaceName = `I${targetName.className}${type.className}`;
 
     appendContent(
       this.tree,
@@ -202,8 +197,8 @@ class FeatureGenerator {
 
   private makeRepositoryToModuleOptions(): ToModuleOptions {
     const modulePath = `${this.infraSrcPath}/infra.module.ts`;
-    const token = `${this.targetName.constantName}_REPOSITORY`;
-    const className = `${this.targetName.className}Repository`;
+    const token = `${this.repositoryName.constantName}_REPOSITORY`;
+    const className = `${this.repositoryName.className}Repository`;
     const importPath = `./shared/repositories`;
 
     return { modulePath, provider: { token, className, importPath } };
@@ -337,22 +332,39 @@ class FeatureGenerator {
 
   private makeRepoInterface() {
     const interfacePath = `${this.infraSrcPath}/shared/interfaces`;
-    this.makeGenerateFile('i-repository', interfacePath);
-    this.mergeIndex(interfacePath, 'repository');
-    this.mergeTargetFolderIndex(
-      'repository',
+    this.makeGenerateFile(
+      'i-repository',
       `${interfacePath}/${this.repositoryName.fileName}`
+    );
+
+    appendContent(
+      this.tree,
+      `${interfacePath}/index.ts`,
+      `export * from "./${this.repositoryName.fileName}"`
+    );
+    appendContent(
+      this.tree,
+      `${interfacePath}/${this.repositoryName.fileName}/index.ts`,
+      `export * from "./i-${this.repositoryName.fileName}.repository"`
     );
   }
 
   private makeRepository() {
     const repoPath = `${this.infraSrcPath}/shared/repositories`;
     this.addInConstants('repository');
-    this.makeGenerateFile('repository', repoPath);
-    this.mergeIndex(repoPath, 'repository');
-    this.mergeTargetFolderIndex(
+    this.makeGenerateFile(
       'repository',
       `${repoPath}/${this.repositoryName.fileName}`
+    );
+    appendContent(
+      this.tree,
+      `${repoPath}/index.ts`,
+      `export * from "./${this.repositoryName.fileName}"`
+    );
+    appendContent(
+      this.tree,
+      `${repoPath}/${this.repositoryName.fileName}/index.ts`,
+      `export * from "./${this.repositoryName.fileName}.repository"`
     );
     const options = this.makeRepositoryToModuleOptions();
     this.addProviderToModule(options);
