@@ -44,6 +44,9 @@ class FeatureGenerator {
   private get targetName() {
     return names(this.params.name);
   }
+  private get repositoryName() {
+    return names(this.params.repositoryName);
+  }
   private get folder() {
     const _rawFolder =
       this.params?.folder ?? removePrefixTo(this.targetName.fileName);
@@ -96,19 +99,27 @@ class FeatureGenerator {
     );
   }
 
-  private mergeIndex(path: string) {
+  private mergeIndex(indexPath: string, fileType?: FileType) {
+    const folderName =
+      fileType === 'repository' ? this.repositoryName.fileName : this.folder;
+
     appendContent(
       this.tree,
-      `${path}/index.ts`,
-      `export * from "./${this.folder}"`
+      `${indexPath}/index.ts`,
+      `export * from "./${folderName}"`
     );
   }
 
   private mergeTargetFolderIndex(type: FileType, folderPath: string) {
+    const fileName =
+      type === 'repository'
+        ? this.repositoryName.fileName
+        : this.targetName.fileName;
+
     appendContent(
       this.tree,
       `${folderPath}/index.ts`,
-      `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.${type}"`
+      `export * from "./${fileName}/${fileName}.${type}"`
     );
   }
 
@@ -325,12 +336,12 @@ class FeatureGenerator {
   }
 
   private makeRepoInterface() {
-    const interfacePath = `${this.infraSrcPath}/shared/interface`;
+    const interfacePath = `${this.infraSrcPath}/shared/interfaces`;
     this.makeGenerateFile('i-repository', interfacePath);
-    this.mergeIndex(interfacePath);
+    this.mergeIndex(interfacePath, 'repository');
     this.mergeTargetFolderIndex(
-      'interfaces',
-      `${interfacePath}/${this.folder}`
+      'repository',
+      `${interfacePath}/${this.repositoryName.fileName}`
     );
   }
 
@@ -338,8 +349,11 @@ class FeatureGenerator {
     const repoPath = `${this.infraSrcPath}/shared/repositories`;
     this.addInConstants('repository');
     this.makeGenerateFile('repository', repoPath);
-    this.mergeIndex(repoPath);
-    this.mergeTargetFolderIndex('repositories', `${repoPath}/${this.folder}`);
+    this.mergeIndex(repoPath, 'repository');
+    this.mergeTargetFolderIndex(
+      'repository',
+      `${repoPath}/${this.repositoryName.fileName}`
+    );
     const options = this.makeRepositoryToModuleOptions();
     this.addProviderToModule(options);
   }
@@ -353,6 +367,7 @@ class FeatureGenerator {
     const instance = new FeatureGenerator(tree, params);
     // instance.generateController();
     // instance.generateService();
+    // const repoAlreadyExists = false;
     instance.generateRepository();
   }
 }

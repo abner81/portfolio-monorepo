@@ -1,1 +1,8 @@
-const variable = "<%= name %>";
+import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
+import { I<%= convertToCamelCase(repositoryName) %>Repository } from '../../interfaces'
+
+@Injectable()
+export class <%= convertToCamelCase(repositoryName) %>Repository implements I<%= convertToCamelCase(repositoryName) %>Repository {
+  constructor() {}
+}
