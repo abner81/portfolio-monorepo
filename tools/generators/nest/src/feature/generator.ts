@@ -371,15 +371,19 @@ class FeatureGenerator {
   }
 
   private generateRepository() {
-    this.makeRepoInterface();
-    this.makeRepository();
+    const repoPath = `${this.infraSrcPath}/shared/repositories/${this.repositoryName}`;
+    const repoAlreadyExists = this.tree.exists(repoPath);
+
+    if (!repoAlreadyExists) {
+      this.makeRepoInterface();
+      this.makeRepository();
+    }
   }
 
   static execute(tree: Tree, params: CreateNestFeatureGeneratorSchema) {
     const instance = new FeatureGenerator(tree, params);
-    // instance.generateController();
-    // instance.generateService();
-    // const repoAlreadyExists = false;
+    instance.generateController();
+    instance.generateService();
     instance.generateRepository();
   }
 }
