@@ -378,7 +378,7 @@ class FeatureGenerator {
   }
 
   private generateRepository() {
-    const repoPath = `${this.infraSrcPath}/shared/repositories/${this.repositoryName}`;
+    const repoPath = `${this.infraSrcPath}/shared/repositories/${this.repositoryName.fileName}/${this.repositoryName.fileName}.repository.ts`;
     const repoAlreadyExists = this.tree.exists(repoPath);
 
     if (!repoAlreadyExists) {
@@ -389,8 +389,8 @@ class FeatureGenerator {
 
   static execute(tree: Tree, params: CreateNestFeatureGeneratorSchema) {
     const instance = new FeatureGenerator(tree, params);
-    instance.generateController();
-    instance.generateService();
+    // instance.generateController();
+    // instance.generateService();
     instance.generateRepository();
   }
 }
