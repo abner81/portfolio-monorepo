@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { <%= convertToCamelCase(name) %>Service } from './<%= convertToKebabCase(name) %>.service';
-import { I<%= convertToCamelCase(name) %>Repository } from './<%= convertToKebabCase(name) %>.repository';
-import { <%= convertToConstant(name) %>_REPOSITORY } from './constants';
+import { I<%= convertToCamelCase(repositoryName) %>Repository } from 'rent-car/api/infra';
+import { <%= convertToConstant(repositoryName) %>_REPOSITORY } from 'rent-car/api/app/config/constants';
 
 describe('<%= convertToCamelCase(name) %>Service', () => {
   let service: <%= convertToCamelCase(name) %>Service;
-  let repository: I<%= convertToCamelCase(name) %>Repository;
+  let repository: I<%= convertToCamelCase(repositoryName) %>Repository;
   const params = {}; 
 
   beforeEach(async () => {
@@ -13,7 +13,7 @@ describe('<%= convertToCamelCase(name) %>Service', () => {
       providers: [
         <%= convertToCamelCase(name) %>Service,
         {
-          provide: <%= convertToConstant(name) %>_REPOSITORY,
+          provide: <%= convertToConstant(repositoryName) %>_REPOSITORY,
           useValue: {
             execute: jest.fn(),
           },
@@ -22,7 +22,7 @@ describe('<%= convertToCamelCase(name) %>Service', () => {
     }).compile();
 
     service = module.get<<%= convertToCamelCase(name) %>Service>(<%= convertToCamelCase(name) %>Service);
-    repository = module.get<I<%= convertToCamelCase(name) %>Repository>(<%= convertToConstant(name) %>_REPOSITORY);
+    repository = module.get<I<%= convertToCamelCase(repositoryName) %>Repository>(<%= convertToConstant(repositoryName) %>_REPOSITORY);
   });
 
   it('should be defined', () => {

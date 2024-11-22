@@ -326,6 +326,13 @@ class FeatureGenerator {
       'service',
       `${this.servicesPath}/${this.folder}`
     );
+
+    appendContent(
+      this.tree,
+      `${this.servicesPath}/${this.folder}/index.ts`,
+      `export * from "./${this.targetName.fileName}/i-${this.targetName.fileName}.service"`
+    );
+
     const options = this.makeServiceToModuleOptions();
     this.addProviderToModule(options);
   }

@@ -1,7 +1,7 @@
 import { Controller,<%= convertToCamelCase(httpMethod) %>, Inject, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { BaseController } from '@monorepo/arch/controller';
-import { <%= convertToCamelCase(name) %>Service, I<%= convertToCamelCase(name) %>Service} from '<%= project %>/api/application';
+import { I<%= convertToCamelCase(name) %>Service} from '<%= project %>/api/application';
 import { <%= convertToConstant(name) %>_SERVICE } from '<%= project %>/api/app/config/constants';
 
 @Controller('')
@@ -15,6 +15,6 @@ export class <%= convertToCamelCase(name) %>Controller extends BaseController {
 
   @<%= convertToCamelCase(httpMethod) %>('')
   async handle(@Req() req: Request, @Res() res: Response): Promise<void> {
-    return await this.service.execute();
+    return await this.service.execute({});
   }
 }

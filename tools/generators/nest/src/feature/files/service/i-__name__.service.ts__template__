@@ -2,4 +2,4 @@ import { IApplicationService } from '@monorepo/arch/service';
 
 export type I<%= convertToCamelCase(name) %>ServiceParams = {}
 
-export interface I<%= convertToCamelCase(name) %>Service extends IApplicationService<I<%= convertToCamelCase(name) %>ServiceParams>
+export interface I<%= convertToCamelCase(name) %>Service extends IApplicationService<I<%= convertToCamelCase(name) %>ServiceParams> {}
