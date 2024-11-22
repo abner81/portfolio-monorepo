@@ -5,9 +5,17 @@ import { BaseController } from '@monorepo/arch/controller';
 import { ImplementationException } from '@monorepo/exceptions';
 import { RentModule } from './rent/rent.module';
 import { StoreModule } from './store/store.module';
+import { RentCarApplicationModule } from 'rent-car/api/application';
+import { RentCarInfraModule } from 'rent-car/api/infra';
 
 @Module({
-  imports: [RentCarAppModule, RentModule, StoreModule],
+  imports: [
+    RentCarAppModule,
+    RentModule,
+    StoreModule,
+    RentCarApplicationModule,
+    RentCarInfraModule,
+  ],
   controllers: [],
   providers: [DiscoveryService],
 })

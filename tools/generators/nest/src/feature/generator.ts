@@ -103,7 +103,7 @@ class FeatureGenerator {
     appendContent(
       this.tree,
       `${indexPath}/index.ts`,
-      `export * from "./${this.folder}"`
+      `export * from "./${this.folder}";`
     );
   }
 
@@ -111,7 +111,7 @@ class FeatureGenerator {
     appendContent(
       this.tree,
       `${folderPath}/index.ts`,
-      `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.${type}"`
+      `export * from "./${this.targetName.fileName}/${this.targetName.fileName}.${type}";`
     );
   }
 
@@ -330,7 +330,7 @@ class FeatureGenerator {
     appendContent(
       this.tree,
       `${this.servicesPath}/${this.folder}/index.ts`,
-      `export * from "./${this.targetName.fileName}/i-${this.targetName.fileName}.service"`
+      `export * from "./${this.targetName.fileName}/i-${this.targetName.fileName}.service";`
     );
 
     const options = this.makeServiceToModuleOptions();
@@ -347,12 +347,12 @@ class FeatureGenerator {
     appendContent(
       this.tree,
       `${interfacePath}/index.ts`,
-      `export * from "./${this.repositoryName.fileName}"`
+      `export * from "./${this.repositoryName.fileName}";`
     );
     appendContent(
       this.tree,
       `${interfacePath}/${this.repositoryName.fileName}/index.ts`,
-      `export * from "./i-${this.repositoryName.fileName}.repository"`
+      `export * from "./i-${this.repositoryName.fileName}.repository";`
     );
   }
 
@@ -366,12 +366,12 @@ class FeatureGenerator {
     appendContent(
       this.tree,
       `${repoPath}/index.ts`,
-      `export * from "./${this.repositoryName.fileName}"`
+      `export * from "./${this.repositoryName.fileName}";`
     );
     appendContent(
       this.tree,
       `${repoPath}/${this.repositoryName.fileName}/index.ts`,
-      `export * from "./${this.repositoryName.fileName}.repository"`
+      `export * from "./${this.repositoryName.fileName}.repository";`
     );
     const options = this.makeRepositoryToModuleOptions();
     this.addProviderToModule(options);

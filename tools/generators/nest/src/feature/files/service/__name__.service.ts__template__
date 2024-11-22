@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IApplicationService } from '@monorepo/arch/service';
-import { I<%= convertToCamelCase(repositoryName) %>Repository } from '<%= context %>/api/infra';
-import { <%= convertToConstant(repositoryName) %>_REPOSITORY } from '<%= context %>/api/app/config/constants';
+import { I<%= convertToCamelCase(repositoryName) %>Repository } from '<%= project %>/api/infra';
+import { <%= convertToConstant(repositoryName) %>_REPOSITORY } from '<%= project %>/api/app/config/constants';
 
 @Injectable()
 export class <%= convertToCamelCase(name) %>Service implements IApplicationService {
