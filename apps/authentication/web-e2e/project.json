@@ -1,0 +1,9 @@
+{
+  "name": "authentication/web-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/authentication/web-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["authentication/web"],
+  "// targets": "to see all targets run: nx show project authentication/web-e2e --web",
+  "targets": {}
+}
