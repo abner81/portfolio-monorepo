@@ -25,14 +25,15 @@ export default {
   colors: {
     primary: '#F231A5',
     secondary: '#3CD3C1',
-    mainBg: '#06092B',
+    mainBg: '#F2F2F2',
     lightBg: '#F2F2F2',
     white: '#FAFAFA',
-    black: '#030517',
-    lightGray: '#EAEAEA',
+    black: '#111111',
+    lightGray: '#e3e1e1',
     gray: '#8F8F8F',
     darkGray: '#2E2F42',
     red: '#FF6347',
+    green: '#10b099',
   },
   spacings: {
     xxsmall: '0.8rem',
