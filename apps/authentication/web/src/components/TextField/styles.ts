@@ -15,7 +15,8 @@ export const Wrapper = styled.div<{ hasIcon: boolean }>`
     ${hasIcon && wrapperModifiers.withIcon(theme)};
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    width: 100%;
+    margin-bottom: 3rem;
   `}
 `;
 

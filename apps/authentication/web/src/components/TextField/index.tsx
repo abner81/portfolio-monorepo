@@ -16,6 +16,7 @@ export type Props = {
   onChange?: (value: string) => void;
   placeholder?: string;
   name: string;
+  required?: boolean;
   id: string;
   pattern?: string;
   error?: string;
@@ -27,6 +28,7 @@ export function TextField({
   onChange,
   pattern,
   name,
+  required,
   id,
   error,
   ...props
@@ -45,6 +47,7 @@ export function TextField({
           name={name}
           ref={ref}
           pattern={pattern}
+          required={required}
           {...props}
           onChange={(e) => !!onChange && onChange(e.target.value)}
           // onMouseLeave={() => onMouseLeave(ref.current.value)}
