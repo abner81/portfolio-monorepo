@@ -12,20 +12,22 @@ const nextConfig = {
     svgr: false,
   },
 
+  output: 'export',
+
   compiler: {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
     styledComponents: true,
   },
 
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/login', // Nova URL
-        permanent: true,
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/login', // Nova URL
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 };
 
 const plugins = [

@@ -66,14 +66,14 @@ export class User extends Entity<UserProps, UserState> {
   public async hashPassword(): Promise<void> {
     // const hash = await bcrypt.hash(this.password.value, 10);
     // this.password = new Password({ password: hash });
-    return;
+    return Promise.resolve();
   }
 
   public async comparePassword(toCompare: Password): Promise<boolean> {
     // if (this.password.isHashed)
     //   return await bcrypt.compare(toCompare.value, this.password.value);
     // else return this.password.equals(toCompare);
-    return;
+    return Promise.resolve(true);
   }
 
   public hidePassword() {

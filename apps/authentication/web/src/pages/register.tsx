@@ -8,7 +8,7 @@ import {
 } from 'react-icons/io5';
 import { Email, Password } from 'authentication/domain/user';
 import { Name } from '@monorepo/value-objects';
-import * as S from './style';
+import * as S from '../components/styles';
 import Logo from '../components/Logo';
 import InfoPanel from '../components/InfoPanel';
 import toast, { Toaster } from 'react-hot-toast';
