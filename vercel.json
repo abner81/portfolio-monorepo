@@ -1,9 +1,0 @@
-{
-  "builds": [
-    {
-      "src": "apps/authentication/web/next.config.js",
-      "use": "@vercel/next"
-    }
-  ],
-  "outputDirectory": "dist/apps/authentication/web"
-}
