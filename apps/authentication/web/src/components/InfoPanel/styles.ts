@@ -10,6 +10,17 @@ export const Background = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
+
+  @media (max-width: 850px) {
+    width: 50%;
+    strong {
+      word-wrap: break-word;
+    }
+  }
+
+  @media (max-width: 615px) {
+    display: none;
+  }
 `;
 
 export const Content = styled.div`

@@ -22,8 +22,12 @@ export const FormWrapper = styled.div`
   align-items: center;
   flex: 1;
   justify-content: center;
-  padding: 7% 3%;
+  padding: 10% 3%;
   flex-direction: column;
+
+  @media (max-width: 615px) {
+    padding: 20% 3%;
+  }
 `;
 
 export const Actions = styled.div`
