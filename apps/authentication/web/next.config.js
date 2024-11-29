@@ -13,7 +13,7 @@ const nextConfig = {
   },
 
   output: 'export',
-  distDir: "dist/apps/authentication/web/.next",
+  // distDir: "dist/apps/authentication/web/.next",
 
   compiler: {
     // For other options, see https://styled-components.com/docs/tooling#babel-plugin
