@@ -1,47 +1,11 @@
+import _link from 'next/link';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-`;
-
-export const Background = styled.div`
-  width: 70%;
-  background-image: url('https://affixtheme.com/html/xmee/demo/img/figure/bg5-l.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-`;
-
-export const Content = styled.div`
-  ${({ theme }) => css`
-    max-width: 500px;
-    width: 100%;
-    padding: 30px;
-    color: ${theme.colors.white};
-
-    h1 {
-      font-weight: 300;
-      font-size: 40px;
-      color: #fff;
-      line-height: 1.5;
-    }
-
-    p {
-      margin-top: 25px;
-      line-height: 1.5;
-    }
-
-    strong {
-      font-size: 88px;
-      font-weight: 700;
-      line-height: 1;
-    }
-  `}
+  background-color: #ffffff;
 `;
 
 export const Form = styled.form`
@@ -50,6 +14,7 @@ export const Form = styled.form`
   display: flex;
   align-items: start;
   justify-content: center;
+  width: 95%;
 `;
 
 export const FormWrapper = styled.div`
@@ -57,5 +22,25 @@ export const FormWrapper = styled.div`
   align-items: center;
   flex: 1;
   justify-content: center;
-  padding: 0 3%;
+  padding: 7% 3%;
+  flex-direction: column;
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 100%;
+`;
+
+export const Link = styled(_link)`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray};
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: ${theme.colors.darkGray};
+    }
+  `}
 `;

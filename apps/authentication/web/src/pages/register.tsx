@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { FormEvent, useState } from 'react';
 import Button from '../components/Button';
 import TextField from '../components/TextField';
 import {
@@ -16,11 +9,9 @@ import {
 import { Email, Password } from 'authentication/domain/user';
 import { Name } from '@monorepo/value-objects';
 import * as S from './style';
-import Link from 'next/link';
 import Logo from '../components/Logo';
 import InfoPanel from '../components/InfoPanel';
 import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/router';
 
 type IValueObjects = {
   email?: Email;
@@ -29,8 +20,6 @@ type IValueObjects = {
 };
 
 export default function Login() {
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -39,6 +28,7 @@ export default function Login() {
 
     const event = e as any;
     const data = {
+      name: event.target.name.value,
       email: event.target.email.value,
       password: event.target.password.value,
     };
@@ -52,17 +42,12 @@ export default function Login() {
     };
 
     try {
-      const raw = await fetch('http://localhost:3007/login', options);
-      const response = await raw.json();
+      const raw = await fetch('http://localhost:3007/users', options);
       setIsLoading(false);
-      if (!raw.ok) toast.error(response.error);
-      else {
-        toast.success('Usuário logado com sucesso!');
-        localStorage.setItem('accessToken', response.accessToken);
-        setTimeout(() => {
-          router.push('/logged');
-        }, 1000);
-      }
+      if (raw.status >= 400) {
+        const response = await raw.json();
+        toast.error(response.error);
+      } else toast.success('Usuário registrado com sucesso!');
     } catch (error) {
       setIsLoading(false);
       toast.error((error as any).message);
@@ -76,6 +61,18 @@ export default function Login() {
       <S.FormWrapper>
         <Logo />
         <S.Form onSubmit={handleSubmit}>
+          <TextField
+            id="name"
+            name="name"
+            placeholder="Nome Completo"
+            type="text"
+            icon={<IoPersonOutline />}
+            aria-autocomplete="none"
+            required
+            pattern="^\s*\S+(\s+\S+)+\s*$"
+            title="Digite o seu nome completo."
+          />
+
           <TextField
             id="email"
             name="email"
@@ -102,9 +99,8 @@ export default function Login() {
 
           <S.Actions>
             <Button id="button" type="submit">
-              {isLoading ? 'Carregando...' : 'Entrar'}
+              {isLoading ? 'Carregando...' : 'Registrar'}
             </Button>
-            <S.Link href="/register">Criar conta</S.Link>
           </S.Actions>
         </S.Form>
       </S.FormWrapper>

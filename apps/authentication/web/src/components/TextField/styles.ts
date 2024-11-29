@@ -34,7 +34,7 @@ export const Input = styled.input`
     padding: 1rem 1rem 1rem 1.5rem;
     color: ${theme.colors.black};
     ${inputModifiers.fontSize()}
-
+    width: 100%;
     &:focus-visible {
       outline: none;
     }

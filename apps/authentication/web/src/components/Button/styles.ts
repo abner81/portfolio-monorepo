@@ -12,12 +12,5 @@ export const Button = styled.button`
     outline: none;
     border: none;
     cursor: pointer;
-
-    margin-top: 2rem;
-
-    img {
-      width: "10px",
-      height: "10px",
-    }
   `}
 `;
