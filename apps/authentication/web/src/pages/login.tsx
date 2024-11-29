@@ -52,7 +52,7 @@ export default function Login() {
     };
 
     try {
-      const raw = await fetch('http://localhost:3007/login', options);
+      const raw = await fetch(process.env['API_URL'] + '/login', options);
       const response = await raw.json();
       setIsLoading(false);
       if (!raw.ok) toast.error(response.error);

@@ -42,7 +42,7 @@ export default function Login() {
     };
 
     try {
-      const raw = await fetch('http://localhost:3007/users', options);
+      const raw = await fetch(process.env['API_URL'] + '/users', options);
       setIsLoading(false);
       if (raw.status >= 400) {
         const response = await raw.json();
