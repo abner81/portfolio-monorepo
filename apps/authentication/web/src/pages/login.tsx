@@ -35,7 +35,7 @@ export default function Login() {
     e.preventDefault();
     const event = e as any;
     const data = {
-      name: event.target.name.value,
+      // name: event.target.name.value,
       email: event.target.email.value,
       password: event.target.password.value,
     };
@@ -50,7 +50,7 @@ export default function Login() {
     };
 
     const response = await fetch('http://localhost:3007/login', options);
-    console.log(response);
+    console.log(response.body);
   };
 
   return (
