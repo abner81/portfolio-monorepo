@@ -17,15 +17,15 @@ const nextConfig = {
     styledComponents: true,
   },
 
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/login', // Nova URL
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/login', // Nova URL
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const plugins = [

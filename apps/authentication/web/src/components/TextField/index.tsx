@@ -1,4 +1,9 @@
-import { AnchorHTMLAttributes, InputHTMLAttributes } from 'react';
+import {
+  AnchorHTMLAttributes,
+  createRef,
+  InputHTMLAttributes,
+  useRef,
+} from 'react';
 import * as S from './styles';
 
 type InputTypes =
@@ -10,18 +15,39 @@ export type Props = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  name: string;
+  id: string;
+  pattern?: string;
   error?: string;
-} & Omit<InputTypes, 'onChange'>;
+} & Omit<InputTypes, 'onChange' | 'onMouseLeave'>;
 
-export function TextField({ icon, value, onChange, error, ...props }: Props) {
+export function TextField({
+  icon,
+  value,
+  onChange,
+  pattern,
+  name,
+  id,
+  error,
+  ...props
+}: Props) {
+  const ref = useRef<HTMLInputElement>();
+
   return (
     <>
-      <S.Wrapper hasIcon={!!icon} id={props.placeholder + onChange}>
+      <S.Wrapper
+        hasIcon={!!icon}
+        id={(props.placeholder + onChange).toString()}
+      >
         {!!icon && icon}
         <S.Input
+          id={id}
+          name={name}
+          ref={ref}
+          pattern={pattern}
           {...props}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => !!onChange && onChange(e.target.value)}
+          // onMouseLeave={() => onMouseLeave(ref.current.value)}
         />
       </S.Wrapper>
 
