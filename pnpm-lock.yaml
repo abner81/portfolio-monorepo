@@ -79,7 +79,10 @@ dependencies:
     version: 16.2.3
   next:
     specifier: 15.5.4
-    version: 15.5.4(@babel/core@7.28.4)(react-dom@19.2.0)(react@19.2.0)
+    version: 15.5.4(@babel/core@7.28.4)(@playwright/test@1.58.2)(react-dom@19.2.0)(react@19.2.0)
+  playwright:
+    specifier: ^1.58.2
+    version: 1.58.2
   react:
     specifier: 19.2.0
     version: 19.2.0
@@ -160,6 +163,9 @@ devDependencies:
   '@nx/workspace':
     specifier: 21.6.3
     version: 21.6.3(@swc-node/register@1.11.1)(@swc/core@1.13.5)
+  '@playwright/test':
+    specifier: ^1.58.2
+    version: 1.58.2
   '@swc-node/register':
     specifier: ~1.11.1
     version: 1.11.1(@swc/core@1.13.5)(@swc/types@0.1.25)(typescript@5.9.3)
@@ -1867,6 +1873,7 @@ packages:
 
   /@emnapi/wasi-threads@1.1.0:
     resolution: {integrity: sha512-WI0DdZ8xFSbgMjR1sFsKABJ/C5OnRrjT06JXbZKexJGrDuPTzZdDYfFlsgcCXCyf+suG5QU2e/y1Wo2V/OapLQ==}
+    requiresBuild: true
     dependencies:
       tslib: 2.8.1
 
@@ -3379,7 +3386,7 @@ packages:
       '@module-federation/sdk': 0.19.1
       btoa: 1.2.1
       encoding: 0.1.13
-      next: 15.5.4(@babel/core@7.28.4)(react-dom@19.2.0)(react@19.2.0)
+      next: 15.5.4(@babel/core@7.28.4)(@playwright/test@1.58.2)(react-dom@19.2.0)(react@19.2.0)
       node-fetch: 2.7.0(encoding@0.1.13)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
@@ -4257,7 +4264,7 @@ packages:
       copy-webpack-plugin: 10.2.4(webpack@5.102.0)
       file-loader: 6.2.0(webpack@5.102.0)
       ignore: 5.3.2
-      next: 15.5.4(@babel/core@7.28.4)(react-dom@19.2.0)(react@19.2.0)
+      next: 15.5.4(@babel/core@7.28.4)(@playwright/test@1.58.2)(react-dom@19.2.0)(react@19.2.0)
       semver: 7.7.2
       tslib: 2.8.1
       webpack-merge: 5.10.0
@@ -4928,6 +4935,13 @@ packages:
   /@pkgr/core@0.2.9:
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  /@playwright/test@1.58.2:
+    resolution: {integrity: sha512-akea+6bHYBBfA9uQqSYmlJXn61cTa+jbO87xVLCWbTqbWadRVmhxlXATaOjOgcBaWU4ePo0wB41KMFv3o35IXA==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dependencies:
+      playwright: 1.58.2
 
   /@rollup/plugin-babel@6.0.4(@babel/core@7.28.4)(rollup@4.52.4):
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
@@ -10201,6 +10215,13 @@ packages:
     resolution: {integrity: sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w==}
     dev: false
 
+  /fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+    requiresBuild: true
+    optional: true
+
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -10797,6 +10818,7 @@ packages:
     resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
+    dev: false
 
   /hyperdyperid@1.2.0:
     resolution: {integrity: sha512-Y93lCzHYgGWdrJ66yIktxiaGULYc6oGiABxhcO5AufBeOyoIdZF7bIfLaOrbM0iGIOXQQgxxRrFEnb+Y6w1n4A==}
@@ -12719,7 +12741,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
-  /next@15.5.4(@babel/core@7.28.4)(react-dom@19.2.0)(react@19.2.0):
+  /next@15.5.4(@babel/core@7.28.4)(@playwright/test@1.58.2)(react-dom@19.2.0)(react@19.2.0):
     resolution: {integrity: sha512-xH4Yjhb82sFYQfY3vbkJfgSDgXvBB6a8xPs9i35k6oZJRoQRihZH+4s9Yo2qsWpzBmZ3lPXaJ2KPXLfkvW4LnA==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
@@ -12741,6 +12763,7 @@ packages:
         optional: true
     dependencies:
       '@next/env': 15.5.4
+      '@playwright/test': 1.58.2
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001747
       postcss: 8.4.31
@@ -13384,6 +13407,20 @@ packages:
     dependencies:
       find-up: 6.3.0
     dev: true
+
+  /playwright-core@1.58.2:
+    resolution: {integrity: sha512-yZkEtftgwS8CsfYo7nm0KE8jsvm6i/PTgVtB8DL726wNf6H2IMsDuxCpJj59KDaxCtSnrWan2AeDqM7JBaultg==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  /playwright@1.58.2:
+    resolution: {integrity: sha512-vA30H8Nvkq/cPBnNw4Q8TWz1EJyqgpuinBcHET0YVJVFldr8JDNiU9LaWAE1KqSkRYazuaBhTpB5ZzShOezQ6A==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dependencies:
+      playwright-core: 1.58.2
+    optionalDependencies:
+      fsevents: 2.3.2
 
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}

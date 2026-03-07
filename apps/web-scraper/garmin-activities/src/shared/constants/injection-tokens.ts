@@ -1,0 +1,8 @@
+export const INJECTION_TOKENS = {
+  SCRAPE_ACTIVITIES_USE_CASE: Symbol.for('SCRAPE_ACTIVITIES_USE_CASE'),
+  ACTIVITY_REPOSITORY_PORT: Symbol.for('ACTIVITY_REPOSITORY_PORT'),
+  BROWSER_SCRAPER_PORT: Symbol.for('BROWSER_SCRAPER_PORT'),
+} as const;
+
+export type InjectionToken =
+  (typeof INJECTION_TOKENS)[keyof typeof INJECTION_TOKENS];

@@ -1,0 +1,76 @@
+{
+  "name": "garmin-activities",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web-scraper/garmin-activities/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/web-scraper/garmin-activities",
+        "outputFileName": "main.js",
+        "webpackConfig": "apps/web-scraper/garmin-activities/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "serve": {
+          "watch": true
+        },
+        "production": {}
+      }
+    },
+    "prune-lockfile": {
+      "dependsOn": ["build"],
+      "cache": true,
+      "executor": "@nx/js:prune-lockfile",
+      "outputs": [
+        "{workspaceRoot}/dist/apps/web-scraper/garmin-activities/package.json",
+        "{workspaceRoot}/dist/apps/web-scraper/garmin-activities/pnpm-lock.yaml"
+      ],
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "copy-workspace-modules": {
+      "dependsOn": ["build"],
+      "cache": true,
+      "outputs": [
+        "{workspaceRoot}/dist/apps/web-scraper/garmin-activities/workspace_modules"
+      ],
+      "executor": "@nx/js:copy-workspace-modules",
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "prune": {
+      "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
+      "executor": "nx:noop"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "garmin-activities:build",
+        "inspect": false,
+        "watch": true,
+        "debounce": 300,
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "garmin-activities:build:serve"
+        },
+        "production": {
+          "buildTarget": "garmin-activities:build:production"
+        }
+      }
+    }
+  }
+}
