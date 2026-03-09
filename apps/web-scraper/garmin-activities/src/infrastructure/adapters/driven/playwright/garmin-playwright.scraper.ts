@@ -26,11 +26,12 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       });
       const page = await context.newPage();
 
-      const { isLoggedIn } = await this.garminWebpage.makeLogin(page);
-      if (!isLoggedIn) throw new LoginFailedException();
-      await page.context().storageState({ path: this.storageStatePath });
+      // const { isLoggedIn } = await this.garminWebpage.makeLogin(page);
+      // if (!isLoggedIn) throw new LoginFailedException();
+      // await page.context().storageState({ path: this.storageStatePath });
 
-      await this.garminWebpage.scrapeSleepInfo(page);
+      const sleepInfo = await this.garminWebpage.scrapeSleepInfo(page);
+      console.log(sleepInfo, 'sleepInfo');
 
       await page.pause();
       return [];
