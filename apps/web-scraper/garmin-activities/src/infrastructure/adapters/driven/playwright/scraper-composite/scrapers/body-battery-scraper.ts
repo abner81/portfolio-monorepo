@@ -36,7 +36,6 @@ export class BodyBatteryScraper
     const isPastDays = page.locator(
       'h2[class*="BodyBatteryGaugePastDays_value"]',
     );
-
     if (await isPastDays.isVisible({ timeout: 2000 })) return 'PAST_DAYS';
 
     return 'MOST_RECENT';
