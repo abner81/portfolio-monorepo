@@ -1,37 +1,33 @@
 import type { Page } from 'playwright';
 import { Activity } from '@domain/entities/activity.entity';
+import { Inject, Injectable } from '@nestjs/common';
 import {
-  BodyBatteryInfoNotFoundException,
-  SleepInfoNotFoundException,
-} from '@domain/exceptions';
-import { Injectable, Scope } from '@nestjs/common';
+  IBodyBatteryScraper,
+  ISleepScraper,
+} from '@application/ports/scrapers';
+import { SleepScraper } from './scrapers/sleep-scraper';
+import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
 };
 
-export type ISleepInfoOutput = {
-  totalSleepTime: string;
-  sleepStartTime: string;
-  wakeUpTime: string;
-};
-
-// # TODO: refatorar essa classe com composite e facade, como gemini tbm mostrou
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export class GarminScraperComposite {
-  private isInicialized: boolean = false
-
+  constructor(
+    @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
+    public readonly bodyBattery: IBodyBatteryScraper,
+    @Inject(INJECTION_TOKENS.SLEEP_SCRAPER)
+    public readonly sleep: ISleepScraper,
+  ) {}
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
-
-  private readonly BODY_BATTERY_URL = process.env.GARMIN_BODY_BATTERY_URL!;
 
   private alreadyLoggedIn = (page: Page) =>
     !page.url().includes(this.LOGIN_URL);
 
   async makeLogin(page: Page): Promise<ILoginOutput> {
-    await page.goto(this.LOGIN_URL);
-    await page.waitForLoadState('networkidle');
+    await page.goto(this.LOGIN_URL, { waitUntil: 'networkidle' });
 
     if (this.alreadyLoggedIn(page)) return { isLoggedIn: true };
 
@@ -48,53 +44,12 @@ export class GarminScraperComposite {
     });
     await submitButton.click({ force: true });
 
-    await page.waitForURL(process.env.GARMIN_HOME_URL!, {
-      waitUntil: 'networkidle',
-    });
+    await page.waitForURL(process.env.GARMIN_HOME_URL!);
 
     return { isLoggedIn: this.alreadyLoggedIn(page) };
   }
 
   async scrapeActivities(page: Page): Promise<Activity[]> {
     return [];
-  }
-
-  private async ensureSleepDataExistsIn(page: Page): Promise<void> {
-    await page.waitForSelector('[class*="sleepScoreTabContainer"]');
-    const noDataHeading = page.getByRole('heading', {
-      name: /nenhum dado de sono/i,
-    });
-
-    if (await noDataHeading.isVisible({ timeout: 3000 }))
-      throw new SleepInfoNotFoundException();
-  }
-
-  async scrapeSleepInfo(page: Page): Promise<void> {
-   
-  }
-
-  private async ensureBodyBatteryInfoExistsIn(page: Page): Promise<void> {
-    await page.waitForSelector('[role="tablist"]');
-    const noDataHeading = page.getByRole('heading', {
-      name: /sem body battery/i,
-    });
-
-    // # TODO: ver se o .isVisible funciona
-    if (await noDataHeading.isVisible({ timeout: 3000 }))
-      throw new BodyBatteryInfoNotFoundException();
-  }
-
-  async scrapeBodyBatteryInfo(page: Page): Promise<void> {
-   
-  }
-
- init(page: Page) {
-    this.isInicialized = true
-  }
-
-  private ensureInitialized() {
-    // if (!this.page) {
-    //   throw new Error('🔥 ERRO DE USO: Deves chamar garmin.init(page) antes de extrair dados!');
-    // }
   }
 }

@@ -11,7 +11,7 @@ chromium.use(stealthPlugin());
 
 @Injectable()
 export class GarminPlaywrightScraper implements BrowserScraperPort {
-  constructor(private readonly garminScraper: GarminScraperComposite) {}
+  constructor(private readonly garmin: GarminScraperComposite) {}
   private readonly storageStatePath =
     'apps/web-scraper/garmin-activities/playwright-state.json';
 
@@ -26,10 +26,10 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       });
       const page = await context.newPage();
 
-
-      // const { isLoggedIn } = await this.garminScraper.makeLogin(page);
+      // const { isLoggedIn } = await this.garmin.makeLogin(page);
       // if (!isLoggedIn) throw new LoginFailedException();
-      // await page.context().storageState({ path: this.storageStatePath });
+
+      await this.garmin.bodyBattery.scrape(page);
 
       // const sleepInfo = await this.garminScraper.scrapeSleepInfo(page);
       // console.log(sleepInfo, 'sleepInfo');
@@ -39,6 +39,7 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       // console.log(getBodyBatteryInfo, 'bodyBattery');
 
       await page.pause();
+      await page.context().storageState({ path: this.storageStatePath });
       return [];
     } finally {
       // await browser.close();
