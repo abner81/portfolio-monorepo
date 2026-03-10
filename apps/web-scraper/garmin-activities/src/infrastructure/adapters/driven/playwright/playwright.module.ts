@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
-import { GarminPageObject } from '@infrastructure/adapters/driven/playwright/garmin.page-object';
+import { GarminScraper } from '@infrastructure/adapters/driven/playwright/scraper-composite/garmin-scraper-composite';
 import { GarminPlaywrightScraper } from '@infrastructure/adapters/driven/playwright/garmin-playwright.scraper';
 
 @Module({
   providers: [
-    GarminPageObject,
+    GarminScraper,
     GarminPlaywrightScraper,
     {
       provide: INJECTION_TOKENS.BROWSER_SCRAPER_PORT,

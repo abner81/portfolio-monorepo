@@ -4,6 +4,7 @@ import {
   BodyBatteryInfoNotFoundException,
   SleepInfoNotFoundException,
 } from '@domain/exceptions';
+import { Injectable, Scope } from '@nestjs/common';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
@@ -16,9 +17,13 @@ export type ISleepInfoOutput = {
 };
 
 // # TODO: refatorar essa classe com composite e facade, como gemini tbm mostrou
-export class GarminPageObject {
+@Injectable({ scope: Scope.TRANSIENT })
+export class GarminScraperComposite {
+  private isInicialized: boolean = false
+
+
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
-  private readonly SLEEP_URL = process.env.GARMIN_SLEEP_URL!;
+
   private readonly BODY_BATTERY_URL = process.env.GARMIN_BODY_BATTERY_URL!;
 
   private alreadyLoggedIn = (page: Page) =>
@@ -31,14 +36,16 @@ export class GarminPageObject {
     if (this.alreadyLoggedIn(page)) return { isLoggedIn: true };
 
     const emailInput = page.getByLabel(/email address\*/i);
+    await emailInput.fill(process.env.GARMIN_EMAIL!);
+
     const passwordInput = page.getByLabel(/password\*/i);
+    await passwordInput.fill(process.env.GARMIN_PASSWORD!);
+
+    await page.check('input[type="checkbox"]', { force: true });
+
     const submitButton = page.getByRole('button', {
       name: /sign in/i,
     });
-
-    await emailInput.fill(process.env.GARMIN_EMAIL!);
-    await passwordInput.fill(process.env.GARMIN_PASSWORD!);
-    await page.check('input[type="checkbox"]', { force: true });
     await submitButton.click({ force: true });
 
     await page.waitForURL(process.env.GARMIN_HOME_URL!, {
@@ -62,29 +69,8 @@ export class GarminPageObject {
       throw new SleepInfoNotFoundException();
   }
 
-  async scrapeSleepInfo(page: Page): Promise<ISleepInfoOutput> {
-    await page.goto(this.SLEEP_URL);
-    await this.ensureSleepDataExistsIn(page);
-
-    const totalSleepTime = (await page
-      .locator('[class^="SleepGauge_mainText"]')
-      .first()
-      .textContent())!;
-
-    const sleepStartTime = (await page
-      .locator('[class*="sleepTimeEditor"] span:first-child')
-      .textContent())!;
-
-    const wakeUpTime = (await page
-      .locator('[class*="wakeTimeEditor"] span:first-child')
-      .textContent())!;
-
-    const formatTime = () => ({
-      sleepStartTime: `${sleepStartTime.padStart(5, '0')}h`,
-      wakeUpTime: `${wakeUpTime.padStart(5, '0')}h`,
-    });
-
-    return { totalSleepTime, ...formatTime() };
+  async scrapeSleepInfo(page: Page): Promise<void> {
+   
   }
 
   private async ensureBodyBatteryInfoExistsIn(page: Page): Promise<void> {
@@ -99,40 +85,16 @@ export class GarminPageObject {
   }
 
   async scrapeBodyBatteryInfo(page: Page): Promise<void> {
-    // # TODO: refatorar esse metodo como o gemini mostrou
-    await page.goto(this.BODY_BATTERY_URL);
-    await this.ensureBodyBatteryInfoExistsIn(page);
+   
+  }
 
-    // # Quando tem Alta e baixa no score
-    const highLevel = await page
-      .locator('h2[class*="BodyBatteryGaugePastDays_value"]')
-      .textContent();
-    const lowLevel = await page
-      .locator('h4[class*="BodyBatteryGaugePastDays_value"]')
-      .textContent();
+ init(page: Page) {
+    this.isInicialized = true
+  }
 
-    // # Quando tem o total e most recent
-    const mostRecentValue = await page
-      .locator('[class*="BodyBatteryGauge_mostRecentValue"]')
-      .textContent();
-    const maxValue = await page
-      .locator('[class*="BodyBatteryGauge_maxValue"]')
-      .textContent();
-    const summaries = await page
-      .locator('[class*="BodyBatterySummary_bodyBatteryValue"]')
-      .allTextContents();
-    const summaryStats = {
-      charged: summaries[0],
-      drained: summaries[1],
-    };
-
-    const rawMessage = await page
-      .locator('p[class*="BodyBatteryScoreMessage_message"]')
-      .innerText();
-    const scoreMessage = rawMessage.replace(/\s+Mais$/, '');
-
-    await page.pause();
-
-    return;
+  private ensureInitialized() {
+    // if (!this.page) {
+    //   throw new Error('🔥 ERRO DE USO: Deves chamar garmin.init(page) antes de extrair dados!');
+    // }
   }
 }
