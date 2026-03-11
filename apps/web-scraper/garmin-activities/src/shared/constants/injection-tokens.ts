@@ -4,6 +4,8 @@ export const INJECTION_TOKENS = {
   BROWSER_SCRAPER_PORT: Symbol.for('BROWSER_SCRAPER_PORT'),
   BODY_BATTERY_SCRAPER: Symbol.for('BODY_BATTERY_SCRAPER'),
   SLEEP_SCRAPER: Symbol.for('SLEEP_SCRAPER'),
+  HOME_SCRAPER: Symbol.for('HOME_SCRAPER'),
+  STRESS_SCRAPER: Symbol.for('STRESS_SCRAPER'),
 } as const;
 
 export type InjectionToken =

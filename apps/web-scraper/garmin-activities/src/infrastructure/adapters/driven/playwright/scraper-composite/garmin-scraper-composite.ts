@@ -3,9 +3,10 @@ import { Activity } from '@domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IBodyBatteryScraper,
+  IHomeScraper,
   ISleepScraper,
+  IStressScraper,
 } from '@application/ports/scrapers';
-import { SleepScraper } from './scrapers/sleep-scraper';
 import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
 
 export type ILoginOutput = {
@@ -19,6 +20,10 @@ export class GarminScraperComposite {
     public readonly bodyBattery: IBodyBatteryScraper,
     @Inject(INJECTION_TOKENS.SLEEP_SCRAPER)
     public readonly sleep: ISleepScraper,
+    @Inject(INJECTION_TOKENS.HOME_SCRAPER)
+    public readonly home: IHomeScraper,
+    @Inject(INJECTION_TOKENS.STRESS_SCRAPER)
+    public readonly stress: IStressScraper,
   ) {}
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;

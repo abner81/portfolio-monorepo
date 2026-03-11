@@ -3,7 +3,11 @@ import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
 import { GarminPlaywrightScraper } from '@infrastructure/adapters/driven/playwright/garmin-playwright.scraper';
 import { GarminScraperComposite } from './scraper-composite/garmin-scraper-composite';
 import { SleepScraper } from './scraper-composite/scrapers/sleep-scraper';
-import { BodyBatteryScraper } from './scraper-composite/scrapers';
+import {
+  BodyBatteryScraper,
+  HomeScraper,
+  StressScraper,
+} from './scraper-composite/scrapers';
 
 @Module({
   providers: [
@@ -22,6 +26,14 @@ import { BodyBatteryScraper } from './scraper-composite/scrapers';
     {
       provide: INJECTION_TOKENS.SLEEP_SCRAPER,
       useClass: SleepScraper,
+    },
+    {
+      provide: INJECTION_TOKENS.HOME_SCRAPER,
+      useClass: HomeScraper,
+    },
+    {
+      provide: INJECTION_TOKENS.STRESS_SCRAPER,
+      useClass: StressScraper,
     },
   ],
   exports: [INJECTION_TOKENS.BROWSER_SCRAPER_PORT, GarminScraperComposite],

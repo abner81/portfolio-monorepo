@@ -1,91 +1,67 @@
 import {
-  HomeOutput,
+  IHomeScraperOutput,
   DisplayMode,
   IHomeScraper,
 } from '@application/ports/scrapers';
 import { Page } from 'playwright';
 import { BaseScraper } from './base-scraper';
-import { HomeInfoNotFoundException } from '@domain/exceptions';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class HomeScraper extends BaseScraper implements IHomeScraper {
-  private readonly BODY_BATTERY_URL = process.env.GARMIN_BODY_BATTERY_URL!;
+  private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
+  private readonly LABELS_DESEJADAS = [
+    /sono/i,
+    /passos/i,
+    /frequência cardíaca/i,
+    /estresse/i,
+    /calorias queimadas/i,
+    /body battery/i,
+    /minutos de intensidade/i,
+  ];
 
-  async scrape(page: Page): Promise<HomeOutput> {
-    console.log('Scraping body battery...');
-    await page.goto(this.BODY_BATTERY_URL);
-    await page.waitForSelector('[role="tablist"]', { timeout: 3000 });
+  async scrape(page: Page): Promise<IHomeScraperOutput> {
+    // #TODO: feat - transformar response em classes (SleepClass, bodyBatteryClass)
+    // https://gemini.google.com/share/4a419f81e090
+    // https://claude.ai/share/eade0c66-b929-4356-b23e-b4b8ad4d55aa
+    const alreadyHomeUrl = page.url() === this.HOME_URL;
+    if (!alreadyHomeUrl) await page.goto(this.HOME_URL);
 
-    const displayMode = await this.detectDisplayMode(page);
-    console.log(`Detected display mode: ${displayMode}`);
-    const response = await this.scrapingStrategiesPer[displayMode](page);
-    console.log(response, 'reponse');
+    await page.waitForTimeout(3000);
 
-    await page.pause();
-    return await this.scrapingStrategiesPer[displayMode](page);
+    const yesterday = await this.getGrid(
+      page,
+      '[class*="DayView_yesterdayGridContainer"]',
+    );
+    console.log(yesterday, 'yesterday');
+
+    const last7Days = await this.getGrid(
+      page,
+      '[class*="DayView_sevenDayGridContainer"]',
+    );
+    console.log('last7Days', last7Days);
+
+    return {
+      last7Days,
+      yesterday: { bodyBattery: { charged: 2, drained: 1 }, sleep: 3 },
+    };
   }
 
-  private async detectDisplayMode(page: Page): Promise<DisplayMode> {
-    const isNoData = page.getByRole('heading', { name: /sem body battery/i });
-    if (await isNoData.isVisible({ timeout: 2000 })) return 'NO_DATA';
-
-    const isPastDays = page.locator('h2[class*="HomeGaugePastDays_value"]');
-    if (await isPastDays.isVisible({ timeout: 2000 })) return 'PAST_DAYS';
-
-    return 'MOST_RECENT';
+  private async getGrid(page: Page, locatorQuery: string) {
+    return (await page.locator(locatorQuery).evaluateAll(this.getRows)).filter(
+      ({ label }) =>
+        this.LABELS_DESEJADAS.some((pattern) => pattern.test(label)),
+    );
   }
 
-  private readonly scrapingStrategiesPer: Record<
-    DisplayMode,
-    (page: Page) => Promise<HomeOutput>
-  > = {
-    NO_DATA: async (page) => {
-      throw new HomeInfoNotFoundException();
-    },
-    MOST_RECENT: async (page) => {
-      const mostRecentValue = await page
-        .locator('[class*="HomeGauge_mostRecentValue"]')
-        .textContent();
-      const maxValue = await page
-        .locator('[class*="HomeGauge_maxValue"]')
-        .textContent();
-      const summaries = await page
-        .locator('[class*="HomeSummary_HomeValue"]')
-        .allTextContents();
-      const summaryStats = {
-        charged: Number(summaries[0]),
-        drained: Number(summaries[1]),
-      };
-
-      return {
-        displayMode: 'MOST_RECENT',
-        mostRecentValue: Number(mostRecentValue),
-        maxValue: Number(maxValue),
-        stats: summaryStats,
-        message: await this.getCleanMessage(page),
-      };
-    },
-    PAST_DAYS: async (page) => {
-      const highLevel = await page
-        .locator('h2[class*="HomeGaugePastDays_value"]')
-        .textContent();
-      const lowLevel = await page
-        .locator('h4[class*="HomeGaugePastDays_value"]')
-        .textContent();
-      return {
-        displayMode: 'PAST_DAYS',
-        highLevel: Number(highLevel),
-        lowLevel: Number(lowLevel),
-        message: await this.getCleanMessage(page),
-      };
-    },
-  };
-
-  private async getCleanMessage(page: Page) {
-    const rawMessage = await page
-      .locator('p[class*="HomeScoreMessage_message"]')
-      .innerText();
-    return rawMessage.replace(/\s+Mais$/, '');
+  private getRows(rows: HTMLElement[]) {
+    return rows.map((row) => ({
+      label: row
+        .querySelector('[class*="DayView_dayViewLabel"]')!
+        .textContent?.trim(),
+      value: row
+        .querySelector('[class*="DayView_dayViewMetric"]')!
+        .textContent?.trim(),
+    }));
   }
 }

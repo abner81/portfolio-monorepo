@@ -26,21 +26,26 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       });
       const page = await context.newPage();
 
-      const { isLoggedIn } = await this.garmin.makeLogin(page);
-      if (!isLoggedIn) throw new LoginFailedException();
+      // const { isLoggedIn } = await this.garmin.makeLogin(page);
+      // if (!isLoggedIn) throw new LoginFailedException();
 
-      await page.waitForTimeout(1500);
+      // await page.waitForTimeout(1500);
 
-      console.log('bodyBattery entrou');
-      const bodyBaterry = await this.garmin.bodyBattery.scrape(page);
+      // console.log('bodyBattery entrou');
+      // const bodyBaterry = await this.garmin.bodyBattery.scrape(page);
 
-      await page.waitForTimeout(1500);
+      // await page.waitForTimeout(1500);
 
-      console.log('sleep entrou');
-      const sleep = await this.garmin.sleep.scrape(page);
-      console.log(sleep, 'sleep');
+      // console.log('sleep entrou');
+      // const sleep = await this.garmin.sleep.scrape(page);
+      // console.log(sleep, 'sleep');
 
+      console.log('entrou na home');
+      await page.waitForTimeout(1000);
+
+      const home = await this.garmin.home.scrape(page);
       await page.context().storageState({ path: this.storageStatePath });
+
       return [];
     } finally {
       await browser.close();
