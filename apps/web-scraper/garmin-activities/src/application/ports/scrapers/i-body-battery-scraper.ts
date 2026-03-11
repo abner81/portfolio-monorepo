@@ -5,11 +5,11 @@ export type PastDaysDisplay = {
   highLevel: number;
   lowLevel: number;
 };
+
+export type BatteryDayVariation = { charged: number; drained: number };
+
 export type MostRecentDisplay = {
-  stats: {
-    charged: number;
-    drained: number;
-  };
+  stats: BatteryDayVariation;
   mostRecentValue: number;
   maxValue: number;
 };
