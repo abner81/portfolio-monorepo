@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
@@ -16,33 +16,32 @@
     "strictNullChecks": false,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
       "@monorepo/arch/controller": [
-        "apps/shared/util/arch/controller/src/index.ts"
+        "./apps/shared/util/arch/controller/src/index.ts"
       ],
-      "@monorepo/arch/domain": ["apps/shared/util/arch/domain/src/index.ts"],
-      "@monorepo/arch/service": ["apps/shared/util/arch/service/src/index.ts"],
-      "@monorepo/events": ["apps/shared/util/events/src/index.ts"],
-      "@monorepo/exceptions": ["apps/shared/util/exceptions/src/index.ts"],
-      "@monorepo/guards": ["apps/shared/util/guards/src/index.ts"],
-      "@monorepo/helpers": ["apps/shared/util/helpers/src/index.ts"],
-      "@monorepo/util": ["apps/shared/util/util/src/index.ts"],
+      "@monorepo/arch/domain": ["./apps/shared/util/arch/domain/src/index.ts"],
+      "@monorepo/arch/service": ["./apps/shared/util/arch/service/src/index.ts"],
+      "@monorepo/events": ["./apps/shared/util/events/src/index.ts"],
+      "@monorepo/exceptions": ["./apps/shared/util/exceptions/src/index.ts"],
+      "@monorepo/guards": ["./apps/shared/util/guards/src/index.ts"],
+      "@monorepo/helpers": ["./apps/shared/util/helpers/src/index.ts"],
+      "@monorepo/util": ["./apps/shared/util/util/src/index.ts"],
       "@monorepo/value-objects": [
-        "apps/shared/util/value/value-objects/src/index.ts"
+        "./apps/shared/util/value/value-objects/src/index.ts"
       ],
-      "@portfolio-monorepo/ddd": ["tools/generators/ddd/src/index.ts"],
-      "@portfolio-monorepo/nest": ["tools/generators/nest/src/index.ts"],
+      "@portfolio-monorepo/ddd": ["./tools/generators/ddd/src/index.ts"],
+      "@portfolio-monorepo/nest": ["./tools/generators/nest/src/index.ts"],
       "authentication/domain/user": [
-        "apps/authentication/domain/user/src/index.ts"
+        "./apps/authentication/domain/user/src/index.ts"
       ],
-      "rent-car/api/app/*": ["apps/rent-car/api/app/src/*"],
+      "rent-car/api/app/*": ["./apps/rent-car/api/app/src/*"],
       "rent-car/api/application": [
-        "apps/rent-car/api/application/src/index.ts"
+        "./apps/rent-car/api/application/src/index.ts"
       ],
-      "rent-car/api/infra": ["apps/rent-car/api/infra/src/index.ts"],
-      "rent-car/domain/rent": ["apps/rent-car/domain/rent/src/index.ts"],
-      "rent-car/domain/store": ["apps/rent-car/domain/store/src/index.ts"]
+      "rent-car/api/infra": ["./apps/rent-car/api/infra/src/index.ts"],
+      "rent-car/domain/rent": ["./apps/rent-car/domain/rent/src/index.ts"],
+      "rent-car/domain/store": ["./apps/rent-car/domain/store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

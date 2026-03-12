@@ -1,7 +1,7 @@
 import { Page } from 'playwright';
 
 export type ISleepInfoOutput = {
-  totalSleepHours: string;
+  sleepDurationInHours: number;
   sleepStartAt: string;
   wakeUpAt: string;
 };

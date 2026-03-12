@@ -22,6 +22,7 @@ export class HomeScraper extends BaseScraper implements IHomeScraper {
 
   async scrape(page: Page): Promise<IHomeScraperOutput> {
     // #TODO: feat - transformar response em classes (SleepClass, bodyBatteryClass)
+    // ver se vale a pena, ou deixando so em obj ja resolve
     // https://gemini.google.com/share/4a419f81e090
     // https://claude.ai/share/eade0c66-b929-4356-b23e-b4b8ad4d55aa
     const alreadyHomeUrl = page.url() === this.HOME_URL;
