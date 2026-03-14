@@ -5,6 +5,20 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "docker:up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose -f apps/web-scraper/garmin-activities/docker-compose.yml up -d",
+        "cwd": "{workspaceRoot}"
+      }
+    },
+    "docker:down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose -f apps/web-scraper/garmin-activities/docker-compose.yml down",
+        "cwd": "{workspaceRoot}"
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],

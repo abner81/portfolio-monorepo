@@ -6,6 +6,7 @@ export const INJECTION_TOKENS = {
   SLEEP_SCRAPER: Symbol.for('SLEEP_SCRAPER'),
   HOME_SCRAPER: Symbol.for('HOME_SCRAPER'),
   STRESS_SCRAPER: Symbol.for('STRESS_SCRAPER'),
+  ACTIVITIES_SCRAPER: Symbol.for('ACTIVITIES_SCRAPER'),
 } as const;
 
 export type InjectionToken =

@@ -7,6 +7,7 @@ import {
   BodyBatteryScraper,
   HomeScraper,
   StressScraper,
+  ActivitiesScraper,
 } from './scraper-composite/scrapers';
 
 @Module({
@@ -34,6 +35,10 @@ import {
     {
       provide: INJECTION_TOKENS.STRESS_SCRAPER,
       useClass: StressScraper,
+    },
+    {
+      provide: INJECTION_TOKENS.ACTIVITIES_SCRAPER,
+      useClass: ActivitiesScraper,
     },
   ],
   exports: [INJECTION_TOKENS.BROWSER_SCRAPER_PORT, GarminScraperComposite],

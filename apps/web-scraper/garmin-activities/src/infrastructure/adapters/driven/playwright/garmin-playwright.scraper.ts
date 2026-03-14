@@ -35,9 +35,14 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       // const bodyBaterry = await this.garmin.bodyBattery.scrape(page);
 
       await page.waitForTimeout(1500);
-      console.log('sleep entrou');
-      const sleep = await this.garmin.sleep.scrape(page);
-      console.log(sleep, 'sleep');
+      console.log('entrando no activities...');
+      await this.garmin.activities.scrape(page);
+      console.log('entrando no activities...');
+
+      // await page.waitForTimeout(1500);
+      // console.log('sleep entrou');
+      // const sleep = await this.garmin.sleep.scrape(page);
+      // console.log(sleep, 'sleep');
 
       // console.log('entrou na home');
       // await page.waitForTimeout(1000);

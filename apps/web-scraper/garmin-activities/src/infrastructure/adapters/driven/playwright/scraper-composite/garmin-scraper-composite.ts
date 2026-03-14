@@ -2,6 +2,7 @@ import type { Page } from 'playwright';
 import { Activity } from '@domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
+  IActivitiesScraper,
   IBodyBatteryScraper,
   IHomeScraper,
   ISleepScraper,
@@ -24,6 +25,8 @@ export class GarminScraperComposite {
     public readonly home: IHomeScraper,
     @Inject(INJECTION_TOKENS.STRESS_SCRAPER)
     public readonly stress: IStressScraper,
+    @Inject(INJECTION_TOKENS.ACTIVITIES_SCRAPER)
+    public readonly activities: IActivitiesScraper,
   ) {}
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;

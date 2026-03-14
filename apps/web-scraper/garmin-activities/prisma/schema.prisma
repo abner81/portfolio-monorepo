@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model DailyMetrics {
+  id              Int      @id @default(autoincrement())
+  date            DateTime @unique
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  sleepDuration   Float?
+  bodyBattery     Int?
+  stressLevel     Int?
+  activitiesCount Int?
+}

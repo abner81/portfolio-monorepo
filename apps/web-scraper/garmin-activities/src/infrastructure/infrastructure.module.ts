@@ -5,9 +5,10 @@ import { ScrapeActivitiesHandler } from '@application/use-cases/scrape-activitie
 import { GarminController } from '@infrastructure/adapters/driving/http/garmin.controller';
 import { PlaywrightModule } from '@infrastructure/adapters/driven/playwright/playwright.module';
 import { InMemoryActivityRepository } from '@infrastructure/adapters/driven/persistence/in-memory-activity.repository';
+import { PrismaModule } from '@infrastructure/adapters/prisma/prisma.module';
 
 @Module({
-  imports: [ApplicationModule, PlaywrightModule],
+  imports: [ApplicationModule, PlaywrightModule, PrismaModule],
   controllers: [GarminController],
   providers: [
     ScrapeActivitiesHandler,
