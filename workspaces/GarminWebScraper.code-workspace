@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "name": "🌏 Monorepo",
+      "path": "..",
+    },
+    {
+      "name": "🌏 Shared",
+      "path": "../apps/shared",
+    },
+    {
+      "name": "🧱 GarminWebScraper - Domain",
+      "path": "../apps/web-scraper/garmin-activities/src/domain",
+    },
+    {
+      "name": "🏠 GarminWebScraper - Application",
+      "path": "../apps/web-scraper/garmin-activities/src/application",
+    },
+    {
+      "name": "🌏 GarminWebScraper - Shared",
+      "path": "../apps/web-scraper/garmin-activities/src/shared",
+    },
+    {
+      "name": "🧱 GarminWebScraper - Infra",
+      "path": "../apps/web-scraper/garmin-activities/src/infrastructure",
+    },
+  ],
+}
