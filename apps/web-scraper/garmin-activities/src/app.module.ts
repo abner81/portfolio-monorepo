@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { InfrastructureModule } from '@infrastructure/infrastructure.module';
+import { InfrastructureModule } from 'garmin-activities/infra/infrastructure.module';
 
 @Module({
   imports: [InfrastructureModule],

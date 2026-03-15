@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ActivityRepositoryPort } from '@application/ports/output/activity-repository.port';
-import { Activity } from '@domain/entities/activity.entity';
+import { ActivityRepositoryPort } from 'garmin-activities/application/ports/output/activity-repository.port';
+import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 
 @Injectable()
 export class InMemoryActivityRepository implements ActivityRepositoryPort {

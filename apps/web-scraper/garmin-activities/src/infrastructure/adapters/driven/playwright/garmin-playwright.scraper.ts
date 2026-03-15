@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { chromium } from 'playwright-extra';
 import stealthPlugin from 'puppeteer-extra-plugin-stealth';
-import { BrowserScraperPort } from '@application/ports/output/browser-scraper.port';
-import { ScrapeActivitiesCommand } from '@application/use-cases/scrape-activities/scrape-activities.command';
-import { Activity } from '@domain/entities/activity.entity';
-import { LoginFailedException } from '@domain/exceptions';
+import { BrowserScraperPort } from 'garmin-activities/application/ports/output/browser-scraper.port';
+import { ScrapeActivitiesCommand } from 'garmin-activities/application/use-cases/scrape-activities/scrape-activities.command';
+import { Activity } from 'garmin-activities/domain/entities/activity.entity';
+import { LoginFailedException } from 'garmin-activities/domain/exceptions';
 import { GarminScraperComposite } from './scraper-composite/garmin-scraper-composite';
 
 chromium.use(stealthPlugin());

@@ -1,0 +1,9 @@
+{
+  "name": "garmin-activities",
+  "version": "0.0.1",
+  "dependencies": {
+    "@monorepo/arch/domain": "0.0.1"
+  },
+  "type": "commonjs",
+  "private": true
+}

@@ -1,7 +1,7 @@
-import { Activity } from '@domain/entities/activity.entity';
-import { ActivityId } from '@domain/value-objects/activity-id.vo';
-import { ActivityType } from '@domain/value-objects/activity-type.vo';
-import { Duration } from '@domain/value-objects/duration.vo';
+import { Activity } from 'garmin-activities/domain/entities/activity.entity';
+import { ActivityId } from 'garmin-activities/domain/value-objects/activity-id.vo';
+import { ActivityType } from 'garmin-activities/domain/value-objects/activity-type.vo';
+import { Duration } from 'garmin-activities/domain/value-objects/duration.vo';
 
 describe('Activity Entity', () => {
   it('should create an activity with correct id', () => {

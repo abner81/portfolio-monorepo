@@ -1,5 +1,5 @@
-import { Activity } from '@domain/entities/activity.entity';
-import { ActivityResponseDto } from '@infrastructure/adapters/driving/http/dtos/activity-response.dto';
+import { Activity } from 'garmin-activities/domain/entities/activity.entity';
+import { ActivityResponseDto } from 'garmin-activities/infra/adapters/driving/http/dtos/activity-response.dto';
 
 export class ActivityHttpMapper {
   static toResponseDto(activity: Activity): ActivityResponseDto {

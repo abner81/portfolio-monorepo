@@ -1,10 +1,13 @@
-import { IStressInfoOutput, IStressScraper } from '@application/ports/scrapers';
+import {
+  IStressInfoOutput,
+  IStressScraper,
+} from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from './base-scraper';
 import { Page } from 'playwright';
 import {
   StressInfoNotFoundException,
   StressInsufficientRecordsException,
-} from '@domain/exceptions';
+} from 'garmin-activities/domain/exceptions';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

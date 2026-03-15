@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { BrowserScraperPort } from '@application/ports/output/browser-scraper.port';
-import { ActivityRepositoryPort } from '@application/ports/output/activity-repository.port';
-import { ScrapeActivitiesUseCase } from '@application/ports/input/scrape-activities.use-case';
-import { ScrapeActivitiesCommand } from '@application/use-cases/scrape-activities/scrape-activities.command';
-import { ScrapeActivitiesResult } from '@application/use-cases/scrape-activities/scrape-activities.result';
-import { ScrapingFailedException } from '@domain/exceptions/scraping-failed.exception';
-import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
-import { err, ok, Result } from '@shared/types/result.type';
+import { BrowserScraperPort } from 'garmin-activities/application/ports/output/browser-scraper.port';
+import { ActivityRepositoryPort } from 'garmin-activities/application/ports/output/activity-repository.port';
+import { ScrapeActivitiesUseCase } from 'garmin-activities/application/ports/input/scrape-activities.use-case';
+import { ScrapeActivitiesCommand } from 'garmin-activities/application/use-cases/scrape-activities/scrape-activities.command';
+import { ScrapeActivitiesResult } from 'garmin-activities/application/use-cases/scrape-activities/scrape-activities.result';
+import { ScrapingFailedException } from 'garmin-activities/domain/exceptions/scraping-failed.exception';
+import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
+import { err, ok, Result } from 'garmin-activities/shared/types/result.type';
 
 @Injectable()
 export class ScrapeActivitiesHandler implements ScrapeActivitiesUseCase {

@@ -1,5 +1,5 @@
 import type { Page } from 'playwright';
-import { Activity } from '@domain/entities/activity.entity';
+import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IActivitiesScraper,
@@ -7,8 +7,8 @@ import {
   IHomeScraper,
   ISleepScraper,
   IStressScraper,
-} from '@application/ports/scrapers';
-import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
+} from 'garmin-activities/application/ports/scrapers';
+import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;

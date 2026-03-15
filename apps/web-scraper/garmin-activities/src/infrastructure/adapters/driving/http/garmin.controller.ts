@@ -5,11 +5,11 @@ import {
   Post,
 } from '@nestjs/common';
 import { Inject } from '@nestjs/common';
-import { ScrapeActivitiesUseCase } from '@application/ports/input/scrape-activities.use-case';
-import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
-import { ScrapeRequestDto } from '@infrastructure/adapters/driving/http/dtos/scrape-request.dto';
-import { ActivityResponseDto } from '@infrastructure/adapters/driving/http/dtos/activity-response.dto';
-import { ActivityHttpMapper } from '@infrastructure/adapters/driving/http/mappers/activity-http.mapper';
+import { ScrapeActivitiesUseCase } from 'garmin-activities/application/ports/input/scrape-activities.use-case';
+import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
+import { ScrapeRequestDto } from 'garmin-activities/infra/adapters/driving/http/dtos/scrape-request.dto';
+import { ActivityResponseDto } from 'garmin-activities/infra/adapters/driving/http/dtos/activity-response.dto';
+import { ActivityHttpMapper } from 'garmin-activities/infra/adapters/driving/http/mappers/activity-http.mapper';
 
 @Controller('garmin')
 export class GarminController {

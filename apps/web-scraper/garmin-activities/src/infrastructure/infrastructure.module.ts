@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ApplicationModule } from '@application/application.module';
-import { INJECTION_TOKENS } from '@shared/constants/injection-tokens';
-import { ScrapeActivitiesHandler } from '@application/use-cases/scrape-activities/scrape-activities.handler';
-import { GarminController } from '@infrastructure/adapters/driving/http/garmin.controller';
-import { PlaywrightModule } from '@infrastructure/adapters/driven/playwright/playwright.module';
-import { InMemoryActivityRepository } from '@infrastructure/adapters/driven/persistence/in-memory-activity.repository';
-import { PrismaModule } from '@infrastructure/adapters/prisma/prisma.module';
+import { ApplicationModule } from 'garmin-activities/application/application.module';
+import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
+import { ScrapeActivitiesHandler } from 'garmin-activities/application/use-cases/scrape-activities/scrape-activities.handler';
+import { GarminController } from 'garmin-activities/infra/adapters/driving/http/garmin.controller';
+import { PlaywrightModule } from 'garmin-activities/infra/adapters/driven/playwright/playwright.module';
+import { InMemoryActivityRepository } from 'garmin-activities/infra/adapters/driven/persistence/in-memory-activity.repository';
+import { PrismaModule } from 'garmin-activities/infra/adapters/prisma/prisma.module';
 
 @Module({
   imports: [ApplicationModule, PlaywrightModule, PrismaModule],

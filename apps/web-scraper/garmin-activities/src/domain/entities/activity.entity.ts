@@ -1,6 +1,6 @@
-import { ActivityId } from '@domain/value-objects/activity-id.vo';
-import { ActivityType } from '@domain/value-objects/activity-type.vo';
-import { Duration } from '@domain/value-objects/duration.vo';
+import { ActivityId } from 'garmin-activities/domain/value-objects/activity-id.vo';
+import { ActivityType } from 'garmin-activities/domain/value-objects/activity-type.vo';
+import { Duration } from 'garmin-activities/domain/value-objects/duration.vo';
 
 export class Activity {
   private readonly id: ActivityId;

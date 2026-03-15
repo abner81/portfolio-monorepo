@@ -1,7 +1,7 @@
 import {
   IActivitiesInfoOutput,
   IActivitiesScraper,
-} from '@application/ports/scrapers';
+} from 'garmin-activities/application/ports/scrapers';
 import { Injectable } from '@nestjs/common';
 import { Page } from 'playwright';
 

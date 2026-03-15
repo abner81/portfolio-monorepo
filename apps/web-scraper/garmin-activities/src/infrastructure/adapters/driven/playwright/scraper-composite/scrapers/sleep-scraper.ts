@@ -1,9 +1,12 @@
-import { ISleepInfoOutput, ISleepScraper } from '@application/ports/scrapers';
+import {
+  ISleepInfoOutput,
+  ISleepScraper,
+} from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from './base-scraper';
 import { Page } from 'playwright';
-import { SleepInfoNotFoundException } from '@domain/exceptions';
+import { SleepInfoNotFoundException } from 'garmin-activities/domain/exceptions';
 import { Injectable } from '@nestjs/common';
-import { parseSleepDurationInHours } from '@shared/utils';
+import { parseSleepDurationInHours } from 'garmin-activities/shared/utils';
 
 @Injectable()
 export class SleepScraper extends BaseScraper implements ISleepScraper {

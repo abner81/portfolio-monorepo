@@ -1,4 +1,4 @@
-import { parseSleepDurationInHours } from '@shared/utils';
+import { parseSleepDurationInHours } from 'garmin-activities/shared/utils';
 
 describe('parseSleepDurationInHours', () => {
   it('should parse sleep duration string correctly', () => {

@@ -3,6 +3,7 @@ const { join } = require('path');
 
 module.exports = (_config, ctx) => {
   const watch = Boolean(ctx?.options?.watch);
+  const workspaceRoot = ctx?.workspaceRoot || __dirname + '/../../..';
 
   return {
     output: {
@@ -12,6 +13,21 @@ module.exports = (_config, ctx) => {
       }),
     },
     watch,
+    stats: {
+      warnings: false,
+      preset: 'errors-only',
+    },
+    infrastructureLogging: {
+      level: 'error', // 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose'
+    },
+    resolve: {
+      alias: {
+        'garmin-activities/domain': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/domain'),
+        'garmin-activities/application': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/application'),
+        'garmin-activities/shared': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/shared'),
+        'garmin-activities/infra': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/infrastructure'),
+      },
+    },
     plugins: [
       new NxAppWebpackPlugin({
         target: 'node',

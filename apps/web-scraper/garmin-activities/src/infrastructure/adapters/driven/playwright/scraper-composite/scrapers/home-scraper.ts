@@ -2,7 +2,7 @@ import {
   IHomeScraperOutput,
   DisplayMode,
   IHomeScraper,
-} from '@application/ports/scrapers';
+} from 'garmin-activities/application/ports/scrapers';
 import { Page } from 'playwright';
 import { BaseScraper } from './base-scraper';
 import { Injectable } from '@nestjs/common';
