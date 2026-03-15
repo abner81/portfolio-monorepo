@@ -24,5 +24,9 @@
       "name": "🧱 GarminWebScraper - Infra",
       "path": "../apps/web-scraper/garmin-activities/src/infrastructure",
     },
+    {
+      "name": "🧪 GarminWebScraper - Test",
+      "path": "../apps/web-scraper/garmin-activities/test",
+    },
   ],
 }

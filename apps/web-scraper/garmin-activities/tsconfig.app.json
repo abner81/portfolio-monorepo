@@ -13,13 +13,6 @@
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true
-    // "baseUrl": "./",
-    // "paths": {
-    //   "garmin-activities/domain/*": ["src/domain/*"],
-    //   "garmin-activities/application/*": ["src/application/*"],
-    //   "garmin-activities/shared/*": ["src/shared/*"],
-    //   "garmin-activities/infra/*": ["src/infrastructure/*"]
-    // }
   },
   "include": ["src/**/*.ts"]
 }

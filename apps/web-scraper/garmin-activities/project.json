@@ -25,53 +25,63 @@
       "options": {
         "jestConfig": "apps/web-scraper/garmin-activities/jest.config.ts",
         "passWithNoTests": true,
-        "coverage": true
+        "coverage": true,
+        "silent": true
       },
       "configurations": {
         "ci": {
           "ci": true,
           "coverage": true
-        }
-      }
-    },
-    "build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apps/web-scraper/garmin-activities",
-        "outputFileName": "main.js",
-        "webpackConfig": "apps/web-scraper/garmin-activities/webpack.config.js"
-      },
-      "configurations": {
-        "development": {},
-        "serve": {
+        },
+        "watch": {
           "watch": true
         },
-        "production": {}
-      }
-    },
-
-    "serve": {
-      "continuous": true,
-      "executor": "@nx/js:node",
-      "defaultConfiguration": "development",
-      "dependsOn": ["build", "docker:up"],
-      "options": {
-        "buildTarget": "garmin-activities:build",
-        "inspect": false,
-        "watch": true,
-        "debounce": 300,
-        "runBuildTargetDependencies": false
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "garmin-activities:build:serve"
+        "unit": {
+          "testFilePattern": "test/unit/**/*.spec.ts"
         },
-        "production": {
-          "buildTarget": "garmin-activities:build:production"
+        "integration": {
+          "testFilePattern": "test/integration/**/*.spec.ts"
+        }
+      },
+      "build": {
+        "executor": "@nx/webpack:webpack",
+        "outputs": ["{options.outputPath}"],
+        "defaultConfiguration": "production",
+        "options": {
+          "target": "node",
+          "compiler": "tsc",
+          "outputPath": "dist/apps/web-scraper/garmin-activities",
+          "outputFileName": "main.js",
+          "webpackConfig": "apps/web-scraper/garmin-activities/webpack.config.js"
+        },
+        "configurations": {
+          "development": {},
+          "serve": {
+            "watch": true
+          },
+          "production": {}
+        }
+      },
+
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": ["build", "docker:up"],
+        "options": {
+          "buildTarget": "garmin-activities:build",
+          "inspect": false,
+          "watch": true,
+          "debounce": 300,
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "garmin-activities:build:serve"
+          },
+          "production": {
+            "buildTarget": "garmin-activities:build:production"
+          }
         }
       }
     }

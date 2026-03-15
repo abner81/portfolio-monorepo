@@ -8,7 +8,7 @@
     "@monorepo/guards": "0.0.1",
     "dotenv": "^16.4.5",
     "validator": "^13.12.0",
-    "uuid": "^11.0.2",
+    "uuid": "^9.0.0",
     "@monorepo/helpers": "0.0.1"
   },
   "type": "commonjs",

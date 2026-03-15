@@ -1,11 +1,21 @@
 import { isUUID } from 'validator';
-import { v4 as uuidv4 } from 'uuid';
 import { DomainException, ValueObject } from '@monorepo/arch/domain';
 import { Guards } from '@monorepo/guards';
+import { customAlphabet } from 'nanoid';
 
 export type EntityIdProps = {
   id: string;
 };
+
+const NANOID_RULES = {
+  size: 21,
+  alphabet: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-',
+};
+
+const nanoid = customAlphabet(NANOID_RULES.alphabet, NANOID_RULES.size);
+const NANOID_VALIDATION_PATTERN = new RegExp(
+  `^[${NANOID_RULES.alphabet}]{${NANOID_RULES.size}}$`,
+);
 
 export class EntityId extends ValueObject<EntityIdProps, string> {
   get value(): string {
@@ -16,7 +26,9 @@ export class EntityId extends ValueObject<EntityIdProps, string> {
     const { id } = props;
 
     Guards.againstNullOrUndefined(id, 'id');
-    if (!isUUID(id, 4))
+    Guards.ensureIsString(id, 'id');
+
+    if (!NANOID_VALIDATION_PATTERN.test(id))
       throw new DomainException('O valor informado não é um ID válido.');
 
     return id;
@@ -24,7 +36,7 @@ export class EntityId extends ValueObject<EntityIdProps, string> {
 
   static create() {
     return new EntityId({
-      id: uuidv4(),
+      id: nanoid(),
     });
   }
 
