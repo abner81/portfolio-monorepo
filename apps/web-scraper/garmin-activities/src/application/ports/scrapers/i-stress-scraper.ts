@@ -1,3 +1,3 @@
-export type IStressScraperOutput = {
+export type IStress = {
   level: number;
 };

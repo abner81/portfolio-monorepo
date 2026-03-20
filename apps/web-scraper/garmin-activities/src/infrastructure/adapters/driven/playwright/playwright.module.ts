@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { GarminPlaywrightScraper } from 'garmin-activities/infra/adapters/driven/playwright/garmin-playwright.scraper';
 import { GarminScraperComposite } from './scraper-composite/garmin-scraper-composite';
-import { SleepScraper } from './scraper-composite/scrapers/sleep-scraper';
+import { SleepScraper } from './scraper-composite/scrapers/sleep/sleep-scraper';
 import {
   BodyBatteryScraper,
   HomeScraper,

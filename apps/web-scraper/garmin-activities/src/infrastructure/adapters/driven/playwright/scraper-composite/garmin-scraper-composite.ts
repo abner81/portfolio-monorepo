@@ -2,11 +2,11 @@ import type { Page } from 'playwright';
 import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
-  IActivitiesScraperOutput,
+  IActivity,
   IBodyBatteryScraperOutput,
   IHomeScraperOutput,
-  IStressScraperOutput,
-  ISleepScraperOutput,
+  ISleep,
+  IStress,
 } from 'garmin-activities/application/ports/scrapers';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { BaseScraper } from './scrapers/base-scraper';
@@ -24,13 +24,13 @@ export class GarminScraperComposite {
     @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
     public readonly bodyBattery: BaseScraper<IBodyBatteryScraperOutput>,
     @Inject(INJECTION_TOKENS.SLEEP_SCRAPER)
-    public readonly sleep: BaseScraper<ISleepScraperOutput>,
+    public readonly sleep: BaseScraper<ISleep>,
     @Inject(INJECTION_TOKENS.HOME_SCRAPER)
     public readonly home: BaseScraper<IHomeScraperOutput>,
     @Inject(INJECTION_TOKENS.STRESS_SCRAPER)
-    public readonly stress: BaseScraper<IStressScraperOutput>,
+    public readonly stress: BaseScraper<IStress>,
     @Inject(INJECTION_TOKENS.ACTIVITIES_SCRAPER)
-    public readonly activities: BaseScraper<IActivitiesScraperOutput>,
+    public readonly activities: BaseScraper<IActivity[]>,
   ) {
     this.scrapers = [bodyBattery, sleep, home, stress, activities];
   }

@@ -1,5 +1,5 @@
 import { Locator, Page } from 'playwright';
-import { ActivityParser } from './activities-helper';
+import { ActivitiesHelper } from './activities-helper';
 
 export type ScrollStrategyInput = {
   lastSavedActivityId: string;
@@ -53,7 +53,8 @@ export class ScrollStopStrategy {
   }
 
   private async reachedLimitDate() {
-    const lastDate = await ActivityParser.parseDate(this.lastRow);
+    const activitiesHelper = new ActivitiesHelper();
+    const lastDate = await activitiesHelper.getDate(this.lastRow);
     return lastDate < this.limitDate;
   }
 }
