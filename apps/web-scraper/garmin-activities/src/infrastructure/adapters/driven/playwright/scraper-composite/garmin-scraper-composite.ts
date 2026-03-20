@@ -10,6 +10,7 @@ import {
 } from 'garmin-activities/application/ports/scrapers';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { BaseScraper } from './scrapers/base-scraper';
+import { RegistryPage } from './scrapers/page.decorator';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
@@ -36,6 +37,7 @@ export class GarminScraperComposite {
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
 
+  @RegistryPage
   public setPage(page: Page) {
     this.scrapers.forEach((scraper) => scraper.setPage(page));
   }

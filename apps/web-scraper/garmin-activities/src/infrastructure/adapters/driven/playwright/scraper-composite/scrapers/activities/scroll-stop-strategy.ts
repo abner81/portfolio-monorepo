@@ -1,5 +1,5 @@
 import { Locator, Page } from 'playwright';
-import { ActivityParser } from './activity-parser';
+import { ActivityParser } from './activities-helper';
 
 export type ScrollStrategyInput = {
   lastSavedActivityId: string;
