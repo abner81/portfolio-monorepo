@@ -2,13 +2,14 @@ import type { Page } from 'playwright';
 import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
-  IActivitiesScraper,
-  IBodyBatteryScraper,
-  IHomeScraper,
-  ISleepScraper,
-  IStressScraper,
+  IActivitiesScraperOutput,
+  IBodyBatteryScraperOutput,
+  IHomeScraperOutput,
+  IStressScraperOutput,
+  ISleepScraperOutput,
 } from 'garmin-activities/application/ports/scrapers';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
+import { BaseScraper } from './scrapers/base-scraper';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
@@ -16,20 +17,28 @@ export type ILoginOutput = {
 
 @Injectable()
 export class GarminScraperComposite {
+  private readonly scrapers: ReadonlyArray<BaseScraper<object>>;
+
   constructor(
     @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
-    public readonly bodyBattery: IBodyBatteryScraper,
+    public readonly bodyBattery: BaseScraper<IBodyBatteryScraperOutput>,
     @Inject(INJECTION_TOKENS.SLEEP_SCRAPER)
-    public readonly sleep: ISleepScraper,
+    public readonly sleep: BaseScraper<ISleepScraperOutput>,
     @Inject(INJECTION_TOKENS.HOME_SCRAPER)
-    public readonly home: IHomeScraper,
+    public readonly home: BaseScraper<IHomeScraperOutput>,
     @Inject(INJECTION_TOKENS.STRESS_SCRAPER)
-    public readonly stress: IStressScraper,
+    public readonly stress: BaseScraper<IStressScraperOutput>,
     @Inject(INJECTION_TOKENS.ACTIVITIES_SCRAPER)
-    public readonly activities: IActivitiesScraper,
-  ) {}
+    public readonly activities: BaseScraper<IActivitiesScraperOutput>,
+  ) {
+    this.scrapers = [bodyBattery, sleep, home, stress, activities];
+  }
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
+
+  public setPage(page: Page) {
+    this.scrapers.forEach((scraper) => scraper.setPage(page));
+  }
 
   private alreadyLoggedIn = (page: Page) =>
     !page.url().includes(this.LOGIN_URL);

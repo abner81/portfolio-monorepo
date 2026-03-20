@@ -1,24 +1,18 @@
-import { Page } from 'playwright';
-
 export type DisplayMode = 'PAST_DAYS' | 'MOST_RECENT' | 'NO_DATA';
-export type PastDaysDisplay = {
+export type PastDaysMode = {
   highLevel: number;
   lowLevel: number;
 };
 
-export type BatteryDayVariation = { charged: number; drained: number };
+export type BatteryLevelDayRange = { charged: number; drained: number };
 
-export type MostRecentDisplay = {
-  stats: BatteryDayVariation;
-  mostRecentValue: number;
-  maxValue: number;
+export type MostRecentMode = {
+  dayRange: BatteryLevelDayRange;
+  currentLevel: number;
+  highLevel: number;
 };
 
-export type BodyBatteryOutput = (PastDaysDisplay | MostRecentDisplay) & {
+export type IBodyBatteryScraperOutput = (PastDaysMode | MostRecentMode) & {
   message: string;
   displayMode: DisplayMode;
 };
-
-export interface IBodyBatteryScraper {
-  scrape(page: Page): Promise<BodyBatteryOutput>;
-}

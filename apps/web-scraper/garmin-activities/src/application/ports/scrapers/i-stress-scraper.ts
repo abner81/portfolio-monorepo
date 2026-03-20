@@ -1,8 +1,3 @@
-import { Page } from 'playwright';
-
-export type IStressInfoOutput = {
+export type IStressScraperOutput = {
   level: number;
 };
-export interface IStressScraper {
-  scrape(page: Page): Promise<IStressInfoOutput>;
-}

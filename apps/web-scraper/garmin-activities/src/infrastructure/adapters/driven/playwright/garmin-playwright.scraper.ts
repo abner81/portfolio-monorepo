@@ -24,6 +24,7 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       const context = await browser.newContext({
         storageState: this.storageStatePath,
       });
+      // TODO: implementar decorator Page  https://gemini.google.com/share/52b213776e95
       const page = await context.newPage();
 
       // const { isLoggedIn } = await this.garmin.makeLogin(page);
@@ -36,7 +37,8 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
 
       await page.waitForTimeout(1500);
       console.log('entrando no activities...');
-      await this.garmin.activities.scrape(page);
+
+      await this.garmin.activities.scrape();
       console.log('entrando no activities...');
 
       // await page.waitForTimeout(1500);

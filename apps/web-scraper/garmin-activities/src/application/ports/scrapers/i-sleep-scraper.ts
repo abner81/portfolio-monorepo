@@ -1,10 +1,5 @@
-import { Page } from 'playwright';
-
-export type ISleepInfoOutput = {
+export type ISleepScraperOutput = {
   sleepDurationInHours: number;
   sleepStartAt: string;
   wakeUpAt: string;
 };
-export interface ISleepScraper {
-  scrape(page: Page): Promise<ISleepInfoOutput>;
-}
