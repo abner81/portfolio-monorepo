@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ActivityRepositoryPort } from 'garmin-activities/application/ports/output/activity-repository.port';
+import type { ActivityRepositoryPort } from 'garmin-activities/application/ports/output/activity-repository.port';
 import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 
 @Injectable()

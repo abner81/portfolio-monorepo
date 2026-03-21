@@ -43,15 +43,6 @@
       "exclude": ["apps/portfolio-monorepo-e2e/**/*"]
     },
     {
-      "plugin": "@nx/next/plugin",
-      "options": {
-        "startTargetName": "start",
-        "buildTargetName": "build",
-        "devTargetName": "dev",
-        "serveStaticTargetName": "serve-static"
-      }
-    },
-    {
       "plugin": "@nx/cypress/plugin",
       "options": {
         "targetName": "e2e",

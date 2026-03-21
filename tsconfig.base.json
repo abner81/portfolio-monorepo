@@ -56,6 +56,15 @@
       ],
       "garmin-activities/infra/*": [
         "./apps/web-scraper/garmin-activities/src/infrastructure/*"
+      ],
+      "garmin-activities/application/ports/output/browser-scraper.port": [
+        "./apps/web-scraper/garmin-activities/src/application/ports/output/browser-scraper.port.ts"
+      ],
+      "garmin-activities/application/ports/output/activity-repository.port": [
+        "./apps/web-scraper/garmin-activities/src/application/ports/output/activity-repository.port.ts"
+      ],
+      "garmin-activities/application/ports/input/scrape-activities.use-case": [
+        "./apps/web-scraper/garmin-activities/src/application/ports/input/scrape-activities.use-case.ts"
       ]
     }
   },
