@@ -2,9 +2,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": true,
     "declaration": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,

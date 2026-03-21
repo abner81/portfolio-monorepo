@@ -67,7 +67,7 @@
         "continuous": true,
         "executor": "@nx/js:node",
         "defaultConfiguration": "development",
-        "dependsOn": ["build", "docker:up"],
+        "dependsOn": ["build"],
         "options": {
           "buildTarget": "garmin-activities:build",
           "inspect": false,

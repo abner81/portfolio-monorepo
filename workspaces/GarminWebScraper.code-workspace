@@ -9,9 +9,14 @@
       "path": "../apps/shared",
     },
     {
+      "name": "🏠 GarminWebScraper",
+      "path": "../apps/web-scraper/garmin-activities",
+    },
+    {
       "name": "🧱 GarminWebScraper - Domain",
       "path": "../apps/web-scraper/garmin-activities/src/domain",
     },
+
     {
       "name": "🏠 GarminWebScraper - Application",
       "path": "../apps/web-scraper/garmin-activities/src/application",

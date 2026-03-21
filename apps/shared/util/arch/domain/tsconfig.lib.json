@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../../dist/out-tsc",
+    "outDir": "../../../../dist/apps/shared/util/arch/domain",
     "declaration": true,
     "types": ["node"]
   },

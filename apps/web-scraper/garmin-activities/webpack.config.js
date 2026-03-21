@@ -24,9 +24,13 @@ module.exports = (_config, ctx) => {
       alias: {
         'garmin-activities/domain': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/domain'),
         'garmin-activities/application': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/application'),
+        'garmin-activities/application/ports/output/browser-scraper.port': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/application/ports/output/browser-scraper.port.ts'),
+        'garmin-activities/application/ports/output/activity-repository.port': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/application/ports/output/activity-repository.port.ts'),
+        'garmin-activities/application/ports/input/scrape-activities.use-case': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/application/ports/input/scrape-activities.use-case.ts'),
         'garmin-activities/shared': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/shared'),
         'garmin-activities/infra': join(workspaceRoot, 'apps/web-scraper/garmin-activities/src/infrastructure'),
       },
+      extensions: ['.ts', '.js', '.json'],
     },
     plugins: [
       new NxAppWebpackPlugin({
