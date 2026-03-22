@@ -68,7 +68,7 @@
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "docker:up"],
       "options": {
         "buildTarget": "garmin-activities:build",
         "runBuildTargetDependencies": false,
@@ -85,7 +85,7 @@
     },
     "serve:dev": {
       "executor": "nx:run-commands",
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "docker:up"],
       "options": {
         "command": "node dist/apps/web-scraper/garmin-activities/main.js",
         "env": { "NODE_ENV": "development" }
