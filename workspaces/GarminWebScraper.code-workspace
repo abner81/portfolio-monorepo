@@ -34,4 +34,37 @@
       "path": "../apps/web-scraper/garmin-activities/test",
     },
   ],
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🚀 Servir aplicação 🏠 GarminWebScraper API",
+        "detail": "Serve GarminWebScraper API no servidor de desenvolvimento",
+        "type": "shell",
+        "command": "pnpm exec nx run garmin-activities:serve:development",
+        "isBackground": true,
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "group": "build",
+        "problemMatcher": {
+          "owner": "typescript",
+          "source": "ts",
+          "applyTo": "closedDocuments",
+          "fileLocation": "autoDetect",
+          "pattern": [
+            {
+              "regexp": "^(.+/.tsx?)/((/d+),(/d+)/): (error|warning|warn) TS(/d{4,5}): (.+)$",
+              "severity": 4,
+              "file": 1,
+              "line": 2,
+              "column": 3,
+              "code": 5,
+              "message": 6,
+            },
+          ],
+        },
+      },
+    ],
+  },
 }

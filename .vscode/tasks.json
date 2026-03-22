@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    {
+      "id": "KILL_PORT",
+      "type": "promptString",
+      "default": "8080",
+      "description": "Número da porta que o processo está usando"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "⚡ Instalar Dependências do projeto",
+      "detail": "(Re)instala dependências do monorepo",
+      "type": "shell",
+      "command": "pnpm i",
+      "runOptions": {
+        "instanceLimit": 1,
+        "runOn": "default"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧹 Liberar uma determinada porta",
+      "detail": "Mata eventual processo ouvindo na porta informada",
+      "type": "shell",
+      "command": "netstat -ano | grep :${input:KILL_PORT} | awk '{print $5}' | xargs -I {} taskkill //F //PID {}",
+      "runOptions": {
+        "instanceLimit": 1,
+        "runOn": "default"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
