@@ -1,19 +1,28 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
+
+// Usando write para evitar interceptação de console.log
+process.stdout.write('>>> INICIO DO BOOTSTRAP <<<\n');
 
 async function bootstrap() {
-  console.log('[Bootstrap] Starting NestJS application...');
-  try {
-    const app = await NestFactory.create(AppModule);
-    console.log('[Bootstrap] NestJS application created');
-    const port = process.env.PORT ? Number(process.env.PORT) : 3000;
-    console.log(`[Bootstrap] Starting server on port ${port}...`);
-    await app.listen(port);
-    console.log(`[Bootstrap] Server running on http://localhost:${port}`);
-  } catch (error) {
-    console.error('[Bootstrap] Error starting application:', error);
-    process.exit(1);
-  }
+  const logger = new Logger('Bootstrap');
+
+  logger.log('Iniciando aplicação NestJS...');
+
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+  });
+
+  logger.log('Módulo criado com sucesso');
+
+  const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+  await app.listen(port);
+
+  logger.log(`Aplicação ouvindo na porta ${port}`);
 }
 
-void bootstrap();
+bootstrap().catch((err) => {
+  console.error('Erro ao iniciar aplicação:', err);
+});

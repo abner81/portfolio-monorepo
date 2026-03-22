@@ -42,47 +42,53 @@
         "integration": {
           "testFilePattern": "test/integration/**/*.spec.ts"
         }
-      },
-      "build": {
-        "executor": "@nx/webpack:webpack",
-        "outputs": ["{options.outputPath}"],
-        "defaultConfiguration": "production",
-        "options": {
-          "target": "node",
-          "compiler": "tsc",
-          "outputPath": "dist/apps/web-scraper/garmin-activities",
-          "outputFileName": "main.js",
-          "webpackConfig": "apps/web-scraper/garmin-activities/webpack.config.js"
-        },
-        "configurations": {
-          "development": {},
-          "serve": {
-            "watch": true
-          },
-          "production": {}
-        }
-      },
+      }
+    },
 
-      "serve": {
-        "continuous": true,
-        "executor": "@nx/js:node",
-        "defaultConfiguration": "development",
-        "dependsOn": ["build", "docker:up"],
-        "options": {
-          "buildTarget": "garmin-activities:build",
-          "inspect": true,
-          "watch": true,
-          "debounce": 300,
-          "runBuildTargetDependencies": false
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/web-scraper/garmin-activities",
+        "outputFileName": "main.js",
+        "webpackConfig": "apps/web-scraper/garmin-activities/webpack.config.js"
+      },
+      "configurations": {
+        "development": { "watch": true },
+        "serve": {
+          "watch": true
         },
-        "configurations": {
-          "development": {
-            "buildTarget": "garmin-activities:build:serve"
-          },
-          "production": {
-            "buildTarget": "garmin-activities:build:production"
-          }
+        "production": {}
+      }
+    },
+
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "garmin-activities:build",
+        "runBuildTargetDependencies": false,
+        "inspect": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "garmin-activities:build:development"
+        },
+        "production": {
+          "buildTarget": "garmin-activities:build:production"
         }
+      }
+    },
+    "serve:dev": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/apps/web-scraper/garmin-activities/main.js",
+        "env": { "NODE_ENV": "development" }
       }
     }
   }

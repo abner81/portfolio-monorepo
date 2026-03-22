@@ -18,7 +18,7 @@ module.exports = (_config, ctx) => {
       preset: 'errors-only',
     },
     infrastructureLogging: {
-      level: 'error', // 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose'
+      level: 'log', // 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose'
     },
     resolve: {
       alias: {
