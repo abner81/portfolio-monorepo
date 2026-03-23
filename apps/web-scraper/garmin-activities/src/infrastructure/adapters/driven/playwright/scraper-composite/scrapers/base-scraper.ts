@@ -8,7 +8,6 @@ export abstract class BaseScraper<IOutput extends object>
   protected page!: Page;
 
   setPage(page: Page) {
-    console.log(this.constructor.name, '- setPage');
     this.page = page;
   }
 
@@ -20,17 +19,11 @@ export abstract class BaseScraper<IOutput extends object>
   }
 
   private ensureInitialized(): asserts this is this & { page: Page } {
-    console.log('[DEBUG] ensureInitialized chamado, this.page:', this.page);
     if (this.page == null) {
-      console.log('[DEBUG] this.page é null/undefined, throwing exception');
-      console.error(
-        '[ERROR] BaseScraperIsNotInitializedException será lançado agora',
-      );
       throw new BaseScraperIsNotInitializedException(
         this.constructor.name,
         'A página não foi definida. Chame setPage() antes de executar o scrape.',
       );
     }
-    console.log('[DEBUG] page OK, continuando scrape');
   }
 }
