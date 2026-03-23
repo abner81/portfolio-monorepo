@@ -2,9 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 
-// Usando write para evitar interceptação de console.log
-process.stdout.write('>>> INICIO DO BOOTSTRAP <<<\n');
-
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
 

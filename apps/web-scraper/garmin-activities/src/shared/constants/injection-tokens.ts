@@ -7,6 +7,7 @@ export const INJECTION_TOKENS = {
   HOME_SCRAPER: Symbol.for('HOME_SCRAPER'),
   STRESS_SCRAPER: Symbol.for('STRESS_SCRAPER'),
   ACTIVITIES_SCRAPER: Symbol.for('ACTIVITIES_SCRAPER'),
+  GARMIN_SCRAPER_COMPOSITE: Symbol.for('GARMIN_SCRAPER_COMPOSITE'),
 } as const;
 
 export type InjectionToken =

@@ -39,6 +39,10 @@ export class GarminScraperComposite {
 
   @RegistryPage
   public setPage(page: Page) {
+    if (!page) {
+      throw new Error('A página não pode ser nula ou undefined');
+    }
+    console.log('registrando setPages');
     this.scrapers.forEach((scraper) => scraper.setPage(page));
   }
 

@@ -12,10 +12,13 @@ import {
 
 @Module({
   providers: [
-    GarminScraperComposite,
     GarminPlaywrightScraper,
     SleepScraper,
     BodyBatteryScraper,
+    {
+      provide: INJECTION_TOKENS.GARMIN_SCRAPER_COMPOSITE,
+      useClass: GarminScraperComposite,
+    },
     {
       provide: INJECTION_TOKENS.BROWSER_SCRAPER_PORT,
       useExisting: GarminPlaywrightScraper,
@@ -41,6 +44,6 @@ import {
       useClass: ActivitiesScraper,
     },
   ],
-  exports: [INJECTION_TOKENS.BROWSER_SCRAPER_PORT, GarminScraperComposite],
+  exports: [INJECTION_TOKENS.BROWSER_SCRAPER_PORT],
 })
 export class PlaywrightModule {}
