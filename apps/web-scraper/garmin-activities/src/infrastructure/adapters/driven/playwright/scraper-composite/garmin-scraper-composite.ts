@@ -11,14 +11,19 @@ import {
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { BaseScraper } from './scrapers/base-scraper';
 import { RegistryPage } from './scrapers/page.decorator';
+import { BaseScraperIsNotInitializedException } from 'garmin-activities/domain/exceptions/base-scraper-is-not-initialized.exception';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
 };
 
+// FIXME: MUDAR ESSE NOME PARA FACADE
+// e criar readme apontando para esse arquivo e explicando design patterns usados
+
 @Injectable()
 export class GarminScraperComposite {
   private readonly scrapers: ReadonlyArray<BaseScraper<object>>;
+  private isPageSet = false;
 
   constructor(
     @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
@@ -33,16 +38,28 @@ export class GarminScraperComposite {
     public readonly activities: BaseScraper<IActivity[]>,
   ) {
     this.scrapers = [bodyBattery, sleep, home, stress, activities];
+
+    return new Proxy(this, {
+      get(target, property, receiver) {
+        const isAllowedAlways =
+          property === 'setPage' || property === 'constructor';
+        console.log(target.isPageSet);
+
+        if (!isAllowedAlways && !target.isPageSet)
+          throw new BaseScraperIsNotInitializedException(
+            target.constructor.name + ' - Proxy',
+          );
+
+        return Reflect.get(target, property, receiver);
+      },
+    });
   }
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
 
   @RegistryPage
   public setPage(page: Page) {
-    if (!page) {
-      throw new Error('A página não pode ser nula ou undefined');
-    }
-    console.log('registrando setPages');
+    this.isPageSet = true;
     this.scrapers.forEach((scraper) => scraper.setPage(page));
   }
 
