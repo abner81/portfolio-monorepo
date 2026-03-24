@@ -1,8 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { Page } from 'playwright';
 import { GarminScraperComposite } from 'garmin-activities/infra/adapters/driven/playwright/scraper-composite/garmin-scraper-composite';
 import { BaseScraper } from 'garmin-activities/infra/adapters/driven/playwright/scraper-composite/scrapers/base-scraper';
-import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { BaseScraperIsNotInitializedException } from 'garmin-activities/domain/exceptions/base-scraper-is-not-initialized.exception';
 
 // Mock scraper implementation for testing
@@ -44,34 +42,36 @@ describe('GarminScraperComposite', () => {
   let composite: GarminScraperComposite;
   let mockPage: Page;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        {
-          provide: INJECTION_TOKENS.BODY_BATTERY_SCRAPER,
-          useValue: mockBodyBatteryScraper,
-        },
-        {
-          provide: INJECTION_TOKENS.SLEEP_SCRAPER,
-          useValue: mockSleepScraper,
-        },
-        {
-          provide: INJECTION_TOKENS.HOME_SCRAPER,
-          useValue: mockHomeScraper,
-        },
-        {
-          provide: INJECTION_TOKENS.STRESS_SCRAPER,
-          useValue: mockStressScraper,
-        },
-        {
-          provide: INJECTION_TOKENS.ACTIVITIES_SCRAPER,
-          useValue: mockActivitiesScraper,
-        },
-        GarminScraperComposite,
-      ],
-    }).compile();
+  // Create mock scrapers at module level
+  const mockBodyBatteryScraper = new MockBodyBatteryScraper();
+  const mockSleepScraper = new MockSleepScraper();
+  const mockHomeScraper = new MockHomeScraper();
+  const mockStressScraper = new MockStressScraper();
+  const mockActivitiesScraper = new MockActivitiesScraper();
 
-    composite = module.get<GarminScraperComposite>(GarminScraperComposite);
+  beforeEach(() => {
+    // Create mock page
+    mockPage = {
+      url: () => 'https://example.com',
+      goto: jest.fn().mockResolvedValue(undefined),
+      getByLabel: jest.fn().mockReturnValue({
+        fill: jest.fn().mockResolvedValue(undefined),
+      } as any),
+      getByRole: jest.fn().mockReturnValue({
+        click: jest.fn().mockResolvedValue(undefined),
+      } as any),
+      check: jest.fn().mockResolvedValue(undefined),
+      waitForURL: jest.fn().mockResolvedValue(undefined),
+    } as unknown as Page;
+
+    // Create the composite manually to bypass the NestJS DI proxy issue
+    composite = new GarminScraperComposite(
+      mockBodyBatteryScraper as any,
+      mockSleepScraper as any,
+      mockHomeScraper as any,
+      mockStressScraper as any,
+      mockActivitiesScraper as any,
+    );
 
     // Create a mock page
     mockPage = {
