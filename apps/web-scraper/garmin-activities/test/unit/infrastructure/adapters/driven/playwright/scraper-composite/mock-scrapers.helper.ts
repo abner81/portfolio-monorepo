@@ -8,6 +8,7 @@ import {
   IStress,
 } from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from 'garmin-activities/infra/adapters/driven/playwright/scraper-composite/scrapers/base-scraper';
+import type { Page } from 'playwright';
 
 class MockBodyBatteryScraper extends BaseScraper<IBodyBattery> {
   public readonly response: IBodyBattery = {
@@ -84,4 +85,21 @@ export const makeMockScrapersFactory = () => {
     stressScraper,
     activitiesScraper,
   };
+};
+
+export const mockPageFactory = (): Page => {
+  return {
+    url: () => 'https://example.com',
+    goto: jest.fn().mockResolvedValue(undefined),
+    getByLabel: jest.fn().mockReturnValue({
+      fill: jest.fn().mockResolvedValue(undefined),
+    } as any),
+    getByRole: jest.fn().mockReturnValue({
+      click: jest.fn().mockResolvedValue(undefined),
+    } as any),
+    check: jest.fn().mockResolvedValue(undefined),
+    waitForURL: jest.fn().mockResolvedValue(undefined),
+    waitForSelector: jest.fn().mockResolvedValue(undefined),
+    Locator: jest.fn().mockResolvedValue(undefined),
+  } as unknown as Page;
 };

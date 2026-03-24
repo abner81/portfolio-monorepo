@@ -48,7 +48,9 @@ export class GarminScraperComposite {
           propName === 'constructor' ||
           propName === 'then' ||
           propName.startsWith('__') ||
-          typeof prop === 'symbol';
+          typeof prop === 'symbol' ||
+          propName === 'isPageSet' ||
+          propName === 'scrapers';
 
         if (isAllowedAlways || target.isPageSet) {
           return Reflect.get(target, prop, receiver);
