@@ -1,5 +1,5 @@
 import {
-  IBodyBatteryScraperOutput,
+  IBodyBattery,
   DisplayMode,
 } from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from '../base-scraper';
@@ -8,7 +8,7 @@ import { Injectable } from '@nestjs/common';
 import { BodyBatteryHelper } from './body-battery-helper';
 
 @Injectable()
-export class BodyBatteryScraper extends BaseScraper<IBodyBatteryScraperOutput> {
+export class BodyBatteryScraper extends BaseScraper<IBodyBattery> {
   private readonly BODY_BATTERY_URL = process.env.GARMIN_BODY_BATTERY_URL!;
   private readonly helper: BodyBatteryHelper;
 
@@ -18,7 +18,7 @@ export class BodyBatteryScraper extends BaseScraper<IBodyBatteryScraperOutput> {
     this.helper = new BodyBatteryHelper(this.page);
   }
 
-  protected async doScrape(): Promise<IBodyBatteryScraperOutput> {
+  protected async doScrape(): Promise<IBodyBattery> {
     console.log('Scraping body battery...');
     await this.page.goto(this.BODY_BATTERY_URL);
     await this.page.waitForSelector('[role="tablist"]');
@@ -43,18 +43,18 @@ export class BodyBatteryScraper extends BaseScraper<IBodyBatteryScraperOutput> {
 
   private readonly scrapeStrategy: Record<
     DisplayMode,
-    () => Promise<IBodyBatteryScraperOutput>
+    () => Promise<IBodyBattery>
   > = {
     NO_DATA: this.noDataStrategy,
     MOST_RECENT: this.mostRecentStrategy,
     PAST_DAYS: this.pastDaysStrategy,
   };
 
-  private noDataStrategy(): Promise<IBodyBatteryScraperOutput> {
+  private noDataStrategy(): Promise<IBodyBattery> {
     throw new BodyBatteryInfoNotFoundException();
   }
 
-  private async mostRecentStrategy(): Promise<IBodyBatteryScraperOutput> {
+  private async mostRecentStrategy(): Promise<IBodyBattery> {
     const currentLevel =
       await this.helper.mostRecent.currentLevel.textContent();
     const highLevel = await this.helper.mostRecent.highLevel.textContent();
@@ -69,7 +69,7 @@ export class BodyBatteryScraper extends BaseScraper<IBodyBatteryScraperOutput> {
     };
   }
 
-  private async pastDaysStrategy(): Promise<IBodyBatteryScraperOutput> {
+  private async pastDaysStrategy(): Promise<IBodyBattery> {
     const highLevel = await this.helper.pastDays.highLevel.textContent();
     const lowLevel = await this.helper.pastDays.lowLevel.textContent();
 

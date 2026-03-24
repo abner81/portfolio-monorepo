@@ -12,7 +12,7 @@ export type MostRecentMode = {
   highLevel: number;
 };
 
-export type IBodyBatteryScraperOutput = (PastDaysMode | MostRecentMode) & {
+export type IBodyBattery = (PastDaysMode | MostRecentMode) & {
   message: string;
   displayMode: DisplayMode;
 };

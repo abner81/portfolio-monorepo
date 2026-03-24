@@ -25,7 +25,8 @@
       "options": {
         "jestConfig": "apps/web-scraper/garmin-activities/jest.config.ts",
         "passWithNoTests": true,
-        "coverage": true
+        "coverage": true,
+        "silent": true
       },
       "configurations": {
         "ci": {

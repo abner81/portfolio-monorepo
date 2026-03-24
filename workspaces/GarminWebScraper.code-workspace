@@ -65,6 +65,34 @@
           ],
         },
       },
+      {
+        "label": "🧪 Testar [GarminWebScraper API] -watch",
+        "detail": "Executa testes do GarminWebScraper API",
+        "type": "shell",
+        "command": "pnpm exec nx run garmin-activities:test --configuration=watch ",
+        "isBackground": true,
+        "runOptions": {
+          "instanceLimit": 1,
+        },
+        "group": "test",
+        "problemMatcher": {
+          "owner": "typescript",
+          "source": "ts",
+          "applyTo": "closedDocuments",
+          "fileLocation": "autoDetect",
+          "pattern": [
+            {
+              "regexp": "^(.+/.tsx?)/((/d+),(/d+)/): (error|warning|warn) TS(/d{4,5}): (.+)$",
+              "severity": 4,
+              "file": 1,
+              "line": 2,
+              "column": 3,
+              "code": 5,
+              "message": 6,
+            },
+          ],
+        },
+      },
     ],
   },
 }

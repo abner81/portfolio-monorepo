@@ -3,8 +3,8 @@ import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IActivity,
-  IBodyBatteryScraperOutput,
-  IHomeScraperOutput,
+  IBodyBattery,
+  IHomeScraper,
   ISleep,
   IStress,
 } from 'garmin-activities/application/ports/scrapers';
@@ -27,11 +27,11 @@ export class GarminScraperComposite {
 
   constructor(
     @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
-    public readonly bodyBattery: BaseScraper<IBodyBatteryScraperOutput>,
+    public readonly bodyBattery: BaseScraper<IBodyBattery>,
     @Inject(INJECTION_TOKENS.SLEEP_SCRAPER)
     public readonly sleep: BaseScraper<ISleep>,
     @Inject(INJECTION_TOKENS.HOME_SCRAPER)
-    public readonly home: BaseScraper<IHomeScraperOutput>,
+    public readonly home: BaseScraper<IHomeScraper>,
     @Inject(INJECTION_TOKENS.STRESS_SCRAPER)
     public readonly stress: BaseScraper<IStress>,
     @Inject(INJECTION_TOKENS.ACTIVITIES_SCRAPER)
@@ -40,17 +40,21 @@ export class GarminScraperComposite {
     this.scrapers = [bodyBattery, sleep, home, stress, activities];
 
     return new Proxy(this, {
-      get(target, property, receiver) {
+      get(target, prop, receiver) {
+        const propName = String(prop);
+
         const isAllowedAlways =
-          property === 'setPage' || property === 'constructor';
-        console.log(target.isPageSet);
+          propName === 'setPage' ||
+          propName === 'constructor' ||
+          propName === 'then' ||
+          propName.startsWith('__') ||
+          typeof prop === 'symbol';
 
-        if (!isAllowedAlways && !target.isPageSet)
-          throw new BaseScraperIsNotInitializedException(
-            target.constructor.name + ' - Proxy',
-          );
+        if (isAllowedAlways || target.isPageSet) {
+          return Reflect.get(target, prop, receiver);
+        }
 
-        return Reflect.get(target, property, receiver);
+        throw new BaseScraperIsNotInitializedException(target.constructor.name);
       },
     });
   }
