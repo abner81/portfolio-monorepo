@@ -6,6 +6,7 @@ import { ScrapeActivitiesCommand } from 'garmin-activities/application/use-cases
 import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { GarminScraperComposite } from './scraper-composite/garmin-scraper-composite';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
+import { LoginFailedException } from 'garmin-activities/domain/exceptions';
 
 chromium.use(stealthPlugin());
 
@@ -31,10 +32,11 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       const page = await context.newPage();
 
       // TODO: IMPLEMENTAR PROXY ou isPageSet em baseScraper https://gemini.google.com/share/0dd124d486b3
-      // this.garmin.setPage(page);
+      this.garmin.setPage(page);
 
       // const { isLoggedIn } = await this.garmin.makeLogin(page);
       // if (!isLoggedIn) throw new LoginFailedException();
+      await page.context().storageState({ path: this.storageStatePath });
 
       // await page.waitForTimeout(1500);
 
@@ -43,10 +45,9 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
 
       await page.waitForTimeout(1500);
       console.log('entrando no activities...');
-      console.log(this.garmin.activities);
 
-      await this.garmin.activities.scrape();
-      console.log('entrando no activities...');
+      const activities = await this.garmin.activities.scrape();
+      console.log(activities);
 
       // await page.waitForTimeout(1500);
       // console.log('sleep entrou');
@@ -57,7 +58,6 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       // await page.waitForTimeout(1000);
 
       // const home = await this.garmin.home.scrape(page);
-      await page.context().storageState({ path: this.storageStatePath });
       await page.pause();
       return [];
     } finally {

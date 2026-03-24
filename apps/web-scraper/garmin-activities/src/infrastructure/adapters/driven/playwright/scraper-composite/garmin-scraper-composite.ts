@@ -23,7 +23,14 @@ export type ILoginOutput = {
 @Injectable()
 export class GarminScraperComposite {
   private readonly scrapers: ReadonlyArray<BaseScraper<object>>;
-  private isPageSet = false;
+  private pageInitialized = false;
+  private readonly RESTRICTED_SCRAPERS: (keyof GarminScraperComposite)[] = [
+    'activities',
+    'bodyBattery',
+    'home',
+    'sleep',
+    'stress',
+  ];
 
   constructor(
     @Inject(INJECTION_TOKENS.BODY_BATTERY_SCRAPER)
@@ -40,23 +47,18 @@ export class GarminScraperComposite {
     this.scrapers = [bodyBattery, sleep, home, stress, activities];
 
     return new Proxy(this, {
-      get(target, prop, receiver) {
-        const propName = String(prop);
+      get(target, property, receiver) {
+        const propertyName = String(property) as keyof GarminScraperComposite;
+        const isRestrictedProperty =
+          target.RESTRICTED_SCRAPERS.includes(propertyName);
 
-        const isAllowedAlways =
-          propName === 'setPage' ||
-          propName === 'constructor' ||
-          propName === 'then' ||
-          propName.startsWith('__') ||
-          typeof prop === 'symbol' ||
-          propName === 'isPageSet' ||
-          propName === 'scrapers';
-
-        if (isAllowedAlways || target.isPageSet) {
-          return Reflect.get(target, prop, receiver);
+        if (isRestrictedProperty && !target.pageInitialized) {
+          throw new BaseScraperIsNotInitializedException(
+            target.constructor.name,
+          );
         }
 
-        throw new BaseScraperIsNotInitializedException(target.constructor.name);
+        return Reflect.get(target, property, receiver);
       },
     });
   }
@@ -65,7 +67,7 @@ export class GarminScraperComposite {
 
   @RegistryPage
   public setPage(page: Page) {
-    this.isPageSet = true;
+    this.pageInitialized = true;
     this.scrapers.forEach((scraper) => scraper.setPage(page));
   }
 

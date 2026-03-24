@@ -13,9 +13,12 @@ export class ActivitiesScraper extends BaseScraper<IActivity[]> {
   protected async doScrape(): Promise<IActivity[]> {
     await this.page.goto(this.ACTIVITIES_URL);
 
-    this.makeScrollHandle();
+    await this.makeScrollHandle();
+
+    console.log('scroll com sucesso');
 
     const total = await this.helper.activitiesSelector.count();
+
     const activities: IActivity[] = [];
 
     for (let i = 0; i < total; i++) {

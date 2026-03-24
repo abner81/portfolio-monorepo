@@ -117,11 +117,11 @@ describe('GarminScraperComposite', () => {
 
   describe('Private Properties', () => {
     it('should init with false value. but change value', () => {
-      expect((sut as any).isPageSet).toBeFalsy();
+      expect((sut as any).pageInitialized).toBeFalsy();
 
       sut.setPage({} as any);
 
-      expect((sut as any).isPageSet).toBeTruthy();
+      expect((sut as any).pageInitialized).toBeTruthy();
     });
 
     it('should init scrapers[] with correct values', () => {
