@@ -7,34 +7,35 @@ import { SleepInfoNotFoundException } from 'garmin-activities/domain/exceptions'
 import { Injectable } from '@nestjs/common';
 import { parseSleepDurationInHours } from 'garmin-activities/shared/utils';
 import { SleepHelper } from './sleep-helper';
+import { InjectPage } from '../page.decorator';
+import { Page } from 'playwright';
 
 @Injectable()
 export class SleepScraper extends BaseScraper<ISleep> {
   private readonly SLEEP_URL = process.env.GARMIN_SLEEP_URL!;
   private readonly EMPTY_VALUE = '--';
-  private readonly helper = new SleepHelper();
 
-  private async ensureSleepDataExistsIn(): Promise<void> {
-    const isNoDataMode = await this.helper.noDataHeading.isVisible();
+  protected page!: Page;
+
+  private async ensureSleepDataExistsIn(helper: SleepHelper): Promise<void> {
+    const isNoDataMode = await helper.noDataHeading.isVisible();
     if (isNoDataMode) throw new SleepInfoNotFoundException();
   }
 
   async doScrape(): Promise<ISleep> {
+    const helper = new SleepHelper();
     await this.page.goto(this.SLEEP_URL);
     await this.page.waitForSelector('[class*="sleepScoreTabContainer"]');
-    await this.ensureSleepDataExistsIn();
+    await this.ensureSleepDataExistsIn(helper);
 
-    const totalSleepHours = (await this.helper.totalSleepHours.innerText())!;
-    const sleepStart = (await this.helper.sleepStartAt.textContent())!;
-    const wakeUp = (await this.helper.wakeUpAt.textContent())!;
+    const totalSleepHours = (await helper.totalSleepHours.innerText())!;
+    const sleepStart = (await helper.sleepStartAt.textContent())!;
+    const wakeUp = (await helper.wakeUpAt.textContent())!;
 
-    const stagesSelector = await this.helper.getSleepStages();
+    const stagesSelector = await helper.getSleepStages();
     const stages: Record<string, number> = {};
     for (let i = 0; i < stagesSelector.count; i++) {
-      const stage = await this.helper.getStageInfoPer(
-        stagesSelector.container,
-        i,
-      );
+      const stage = await helper.getStageInfoPer(stagesSelector.container, i);
 
       const value =
         stage.value === this.EMPTY_VALUE

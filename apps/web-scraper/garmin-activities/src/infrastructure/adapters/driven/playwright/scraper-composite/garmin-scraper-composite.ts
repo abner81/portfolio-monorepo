@@ -65,7 +65,6 @@ export class GarminScraperComposite {
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
 
-  @RegistryPage
   public setPage(page: Page) {
     this.pageInitialized = true;
     this.scrapers.forEach((scraper) => scraper.setPage(page));

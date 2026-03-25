@@ -20,13 +20,9 @@ export class ScrapeActivitiesHandler implements ScrapeActivitiesUseCase {
   async execute(
     command: ScrapeActivitiesCommand,
   ): Promise<Result<ScrapeActivitiesResult, ScrapingFailedException>> {
-    try {
-      const activities = await this.browserScraper.scrapeActivities(command);
-      await this.activityRepository.saveMany(activities);
+    const activities = await this.browserScraper.scrapeActivities(command);
+    await this.activityRepository.saveMany(activities);
 
-      return ok({ activities });
-    } catch {
-      return err(new ScrapingFailedException('Scraping failed'));
-    }
+    return ok({ activities });
   }
 }

@@ -2,10 +2,14 @@ import { IHomeScraper } from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from '../base-scraper';
 import { Injectable } from '@nestjs/common';
 import { HomeHelper } from './home-helper';
+import { InjectPage } from '../page.decorator';
+import { Page } from 'playwright';
 
 @Injectable()
 export class HomeScraper extends BaseScraper<IHomeScraper> {
   private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
+
+  protected page!: Page;
 
   async doScrape(): Promise<IHomeScraper> {
     const alreadyHomeUrl = this.page.url() === this.HOME_URL;

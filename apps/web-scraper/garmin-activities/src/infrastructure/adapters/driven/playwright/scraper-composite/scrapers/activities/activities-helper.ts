@@ -1,6 +1,10 @@
 import { Locator, Page } from 'playwright';
 import { InjectPage } from '../page.decorator';
 import { ActivityType } from 'garmin-activities/application/ports/scrapers';
+import {
+  parseKeyString,
+  removeEmptySpace,
+} from 'garmin-activities/shared/utils';
 
 export class ActivitiesHelper {
   @InjectPage
@@ -21,6 +25,8 @@ export class ActivitiesHelper {
   };
 
   public get activitiesSelector() {
+    console.log(this.page, 'page');
+
     return this.page.locator('[class*="ActivityListItem_listItem"]');
   }
 
@@ -50,7 +56,7 @@ export class ActivitiesHelper {
       .locator('[class*="metricValue"]')
       .innerText();
 
-    return { label, value };
+    return { label: parseKeyString(label), value: removeEmptySpace(value) };
   }
 
   public async getType(activityRow: Locator): Promise<ActivityType> {

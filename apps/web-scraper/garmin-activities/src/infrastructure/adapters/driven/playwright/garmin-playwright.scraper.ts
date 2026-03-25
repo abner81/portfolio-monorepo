@@ -31,7 +31,6 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       });
       const page = await context.newPage();
 
-      // TODO: IMPLEMENTAR PROXY ou isPageSet em baseScraper https://gemini.google.com/share/0dd124d486b3
       this.garmin.setPage(page);
 
       // const { isLoggedIn } = await this.garmin.makeLogin(page);

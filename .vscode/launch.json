@@ -1,15 +1,15 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // ============================================
+    // DEBUG SERVIDOR NESTJS
+    // ============================================
     {
       "type": "node",
       "request": "launch",
       "name": "Debug garmin-activities with Nx",
-      "runtimeExecutable": "pnpm exec",
-      "runtimeArgs": ["nx", "serve", "garmin-activities"],
-      "env": {
-        "NODE_OPTIONS": "--inspect=9229"
-      },
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "nx", "serve", "garmin-activities", "--inspect"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"],
@@ -17,6 +17,196 @@
       "outFiles": [
         "${workspaceFolder}/dist/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
         "!**/node_modules/**"
+      ]
+    },
+    // ============================================
+    // DEBUG TESTES UNITÁRIOS
+    // ============================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Testes Unitários - garmin-activities",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "nx",
+        "test",
+        "garmin-activities",
+        "--configuration=unit",
+        "--bail"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect-brk"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "preLaunchTask": "",
+      "postDebugTask": "",
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    },
+    // ============================================
+    // DEBUG TESTES INTEGRAÇÃO
+    // ============================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Testes Integração - garmin-activities",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "nx",
+        "test",
+        "garmin-activities",
+        "--configuration=integration",
+        "--bail"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect-brk"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    },
+    // ============================================
+    // DEBUG TESTE ESPECÍFICO (usar com testPathPattern)
+    // ============================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Teste Específico - garmin-activities",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "nx",
+        "test",
+        "garmin-activities",
+        "--testPathPattern=${input:testPattern}",
+        "--bail"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect-brk"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ],
+      "inputs": [
+        {
+          "id": "testPattern",
+          "type": "promptString",
+          "description": "Caminho do arquivo de teste (ex: activities-scraper.spec.ts)"
+        }
+      ]
+    },
+    // ============================================
+    // DEBUG TESTE ESPECÍFICO - CONFIGURAÇÃO UNIT
+    // ============================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Teste Específico Unit - garmin-activities",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "nx",
+        "test",
+        "garmin-activities",
+        "--configuration=unit",
+        "--testPathPattern=${input:testPatternUnit}",
+        "--bail"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect-brk"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ],
+      "inputs": [
+        {
+          "id": "testPatternUnit",
+          "type": "promptString",
+          "description": "Caminho do arquivo de teste unitário (ex: garmin-scraper-composite.spec.ts)"
+        }
+      ]
+    },
+    // ============================================
+    // DEBUG REMOTO (attach)
+    // ============================================
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Debug Remoto - garmin-activities (port 9229)",
+      "port": 9229,
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
+    },
+    // ============================================
+    // DEBUG JEST DIRETO (sem Nx)
+    // ============================================
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Jest Direto - garmin-activities",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "exec",
+        "jest",
+        "--config",
+        "apps/web-scraper/garmin-activities/jest.config.ts",
+        "--testPathPattern=${input:jestTestPattern}",
+        "--detectOpenHandles",
+        "--forceExit"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--inspect-brk"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/web-scraper/garmin-activities/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ],
+      "inputs": [
+        {
+          "id": "jestTestPattern",
+          "type": "promptString",
+          "description": "Caminho do arquivo de teste (ex: test/unit/.../garmin-scraper-composite.spec.ts)"
+        }
+      ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Servidor + Remoto",
+      "configurations": [
+        "Debug garmin-activities with Nx",
+        "Debug Remoto - garmin-activities (port 9229)"
       ]
     }
   ]

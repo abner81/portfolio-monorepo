@@ -12,7 +12,7 @@
     },
     {
       "name": "SESSION",
-      "value": "MmFiMTVjZDgtMWU1Mi00MzhkLWJiODMtMTc2M2IzM2RiYWQy",
+      "value": "YzlhZGJiODItZGY2NS00ZWY1LWJhMTEtZWM0ODBjMGJlODM5",
       "domain": "sso.garmin.com",
       "path": "/portal",
       "expires": -1,
@@ -25,7 +25,7 @@
       "value": "1",
       "domain": ".garmin.com",
       "path": "/",
-      "expires": 1805898269.07125,
+      "expires": 1805920783.317495,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -35,7 +35,7 @@
       "value": "2d5d6632-51e0-413d-b1a5-a2620dc08fb3",
       "domain": ".garmin.com",
       "path": "/",
-      "expires": 1805898269.071347,
+      "expires": 1805920783.317828,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -45,7 +45,7 @@
       "value": "1",
       "domain": ".garmin.com",
       "path": "/",
-      "expires": 1805898269.071464,
+      "expires": 1805920783.317911,
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
@@ -71,16 +71,6 @@
       "sameSite": "Lax"
     },
     {
-      "name": "__cf_bm",
-      "value": "BAHyjAAHZiS6.7jvdsk8I0cPcDqa8Zp1.o8.vMM0vb0-1774362272-1.0.1.1-gE0D.cpKWXktFnmTTp80FaFszrhQ3kKOq4gV.BqvFdgHwubONLighuR7IC4hfiV4qEX407J4Xe15LPZUOgYKR3IQaiEBzBtDnBwoWgz5EGM",
-      "domain": ".sso.garmin.com",
-      "path": "/",
-      "expires": 1774364066.766244,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
       "name": "_cfuvid",
       "value": "l7MNn3tQS3vkWZLfeaO9UiCgqMJriCmnAo6DuhISsoI-1774362272593-0.0.1.1-604800000",
       "domain": ".sso.garmin.com",
@@ -101,48 +91,6 @@
       "sameSite": "None"
     },
     {
-      "name": "cf_clearance",
-      "value": "NSKWM39CNpXe0Ym7K.wV2XGJ7vo63CgWJQ4Xgnodn_k-1774362272-1.2.1.1-I3LSk6vmI38ek2zKFfGWMSBlaxEgX4juc6AWqTzalMSmtBzXfoAId7Lr._J7iyZtKCSedyDZyT3vxj_CzsG5ve.qoW_yg0_YmB7xRNNhlD4B7Agshm_3lA.ie55mp_4tMDNxg.QYJAkMiZicJB3VMrP6R.SH5FuPqOnc5auNnUD0OZ428e7ZpwIMey8FyyGvf3sXsUdElj2rkB9JQHnHZMfLkqSaLKHQWYtTMSM2IR8",
-      "domain": ".sso.garmin.com",
-      "path": "/",
-      "expires": 1805898267.159332,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None",
-      "partitionKey": "https://garmin.com",
-      "_crHasCrossSiteAncestor": false
-    },
-    {
-      "name": "CASTGC",
-      "value": "TGT-2202502-zM8K7vJPNRO9VkE6u4OE3MJ4NL4HJAsfZMENwFl51WTmTgD6ut-sso",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": -1,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "CASRMC",
-      "value": "TGT-2202502-zM8K7vJPNRO9VkE6u4OE3MJ4NL4HJAsfZMENwFl51WTmTgD6ut-sso",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": 1805898269.071159,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "session",
-      "value": "Fe26.2*1*f9b2c3e960c8425610d4cb217fbb9427ec5b9c4173870b7fc528d2ffed60a632*iUyov6GYf2ioauU0zwSxDQ*piNr0D4ykZU3cErL6CcdNZ3F8UKleagTN-5fY24Fgny9cjNPW1Oi-6hWkQ_Z9vi1CNafGlv2VmVaqp7wvXvFvIK-unB0lLefSz2rZoo3AaJiD9NRcj78G7nT9LNA38dmp1wu5kHNK2HdeXb13tNtwaBgbTBIyBaY_Hi1RSJ1b7fZc30F4zMKCaSJNYTUY11GXZxMQnxHHjAJc8RvgRhkxboCQKS09sh_QM0m2j6XQ_Zuj90h2oftSfHhEeCQmDukMR1sdsDse3fxajJpZzpY2pnkQvKtwr1pfz_swtiIrPwiRVpZ_ZZ5CzWu1W_Hr6F0qaPAS5MZq_KNicG2SXa7Q2TOea9Ykqdz1FXpIKvj2bMiwakwQC9jXEPVE7V3hKWckkb3SCx0OIxHPdk8Wc4gtMgjRSSEDtVJvz3Ytm10Mg5CO_jvfwqXMTlMRkMA4L-pWMiyQaQ9CX9E2D6SdgLbtl53ZATwd2P5P03-YcOLo-4BvbvkRXr1m3YHgT6ETQFOOS5EaWk5uL_sojOxGq3m8dlx2kht-0mcErIK9jAjPivZP51-6qsc3rxQYIT8aeLpEn5UUaZ6H4hqu6uwqKtRVs2_S1LyhFvWdpws9uwtc_SqRG1fv5noYU2W1aXyYGxuDPX5kGWovqGRwUUjQVmZKKiTE8-FJiE7MblItEIWtdMzYDDWJJND4Fu-vMlIZprsO-t_1q3fAd7-IOpEhRUVpDnV0FFfuwHzY88KuYx5v2TYeJdCCIUAWCq9VAn3UyFtE87PlT4BOnuRSOUDseyZXsg1Ha-OFQcbzPWXM5UShtbB6pJlt0R6vJca00y0aMrtCCvcrDpOwYBW-q_d3Nhxpj2QxoTAjIyubu5PC4z4v0dkYLpS8Pd8gYU9t9vOpjH0BPN_2xE5IfXSBMQ_KPVpB9uAKMT6K09UPo3bspSBV9tlRB383dJ-dYhp936pw1un_ipyvdI6nge2GUuB-KkXLjVxUwijUMnRl-8TWOFofsqzUKkMQ0kTuJvbzk12z8GO_cBorPim81RO1K0XxMDfJ4wUzHtkf6aEeYuxY5ZC7PkA4v2ihctn5lWDkOZQoWHc2jJYUO5XS_h-w6vAXXGUS5z-rpMv9Ru62O3DZG7L7Jcipg4ydp1hrlDBF5iIeeShUNfDLudd6bj_ihuzfFtLxJzTBKeeqhjLjwp5AYecOMTisCK1HSOThh67CjU779ZjidHquuqM5qgrxepLxghctwC8B8UdOPs1jP8H-nmllChOx1hOK-8atkQqoddd1I_wkm85SMbGvyfPv_K7rectTLY2SdfKrZnkdKZsaPjufWxabpsNMzt_JsbkaZHvtclVeLCUaVeyZcaqUHV7IhDT2-ouLqCgEzo5TmSmQw_PJqMPdBNzsdLcoSTdN5ODexraowq1tIryd78PzIhi4xEuRVKGFTGEgeVp_zDUjAfY2VtH4ecSfmKyPLgXddv_tKpeAV3tIB_2Khvd0wxCrDcSn2Flcq4hzAPa5FiXt98BPiwO-Zp7xSX-RZszXcd6nRxhZDSjwRod-Tl2H_CivCp1IM74CqWcUxtkKWWSD4urJL_OBOEpIH8yjuVTaAOvesqfnLh7Sq7FWcKXo0NsJlDf_SHoc-XST16M7ROdw7ZoIGYkFHfSli3-oUtpoBO1UyUtvaAUoBilVKIriIbg3QG5z0BpF2SCIwIWV8ZEQy3XoMaGH1O-bkL9APEk_KJRgtnOO6X5JvEPYpJgRMY0RFMCyqV6RZ13765GrjDqcLgvxQtDQOzwbua04UwvGE7XpJ1iHEXz7qjpSPfcmSLOS9xlkb96aGgl3aQWzg8-x8Bz9qP-0NGtK1dOFOswk6sEgW8ALpKavGselrobvWdi-hBRCfxVK8qTV5s_aHvazVS6d0hZVTcVA5Z7BAlN1uaeRls26FGpfc9EnB3HPRX7aGPrEnapEYCnLHPICgTG7lMnOLtw2TH1Uu8S8f46Hsi3sYLXEpimxD_ugQ5VapIbLa2m1iPZn98anIAtC5mq4yEHvS3hRpGPdDKijbcTTvCs_wsXdoJwnmHeKKLQK-deg65MKhB-FZ1djKj0nnt1Tr71A5SqqJGuPt7g41WZY1ndTra5ENDmQ4dpEl7ORNPvz90nHpVpFBE3ixkJk8b8lSUZSAFxEE632a0wl-_GegdQCombccmpYDLsamrLbD6sEGnmheyBAqEYdtEMj4t_aGWiAgK56vam5AW3zb7fKDwSNompw7f2M5Ln-ejH1Ay9pCQMkMcz5ochwOKHEdpClnrtHe-3VpEvQ88vzhLYknlrT2ctLzaRJ5Do_IJK4BqjDe993Ho7ZCosE4yDwtU7p6l9Fy0ii3zndXsqzkJWPg3HX1BQmEN3u5SZmaYC87b5VhjVAofU1ufPmcuz2yW4ir2pVNnyxjvr2gE57xJidgkSbSByKZKGneT7pv1pRZHqyzzZTrhXOSrEGOwvvufSod4n88NxZc4xXZ7f0v_GLnLWgJsVje4LE3CbDteAA8rye-rwS-tJbtrflzjI8m7L0HzMfwJwn6g1QCmkOa97RU8tUq_eZYb4_ea9SBoDetCOVYpX4SThlPunIfLNfpxPETzeNgE*1781561275725*8e0a671484e9da5d042c8940f080f1063ec4dbb07aaa508a8f490b019c48f5fe*zx14BxojYqDkgxEEG_ribZjppHeiREHLjEOE3e7U4rs~2",
-      "domain": ".connect.garmin.com",
-      "path": "/",
-      "expires": 1774369467.97422,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
       "name": "__cflb",
       "value": "02DiuJLbVZHipNWxN8yYRX3u8XkAfEE59LxDtFpgg1dwi",
       "domain": "connect.garmin.com",
@@ -153,18 +101,60 @@
       "sameSite": "None"
     },
     {
-      "name": "JWT_WEB",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyI0IiwiNyIsIjgiLCI5IiwiMjAiLCJST0xFX0dBUk1JTl9VU0VSIl0sImV4cCI6MTc3NDM2OTQ3NX0.AL68w01bFyvffVlwr3Ff8n5XS7Bo5H6U_8rIwhVBpjU",
+      "name": "cf_clearance",
+      "value": "9cVOH9OSBh9.X6CJM3hURliS.Y0ILH3rAEnGgPq5RBk-1774384787-1.2.1.1-n469dD6ngFsgkssgtGyAi1T7pUPastbF9LdzKXPO0lXaDoLrlXQ4FCzyrvAKdoYtvT1kQez0z8xuaVMiMIjKoQjlL.v1qycW5bCJJRcaHadJtAFGwLk0DTBFTbj_P6C_xQLvIclPhPlZj.x0_tzZURZsOum4o20Vqzl5dbei08N069yiqpN6j1zqGKiOz_KpXsHLtT2mGDOcSQEDR9M7s1X6ze40ZM.DcdbkrpgVb04",
+      "domain": ".sso.garmin.com",
+      "path": "/",
+      "expires": 1805920781.334057,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://garmin.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "CASTGC",
+      "value": "TGT-2264429-T4gM6qdii4XNiZQBOOcgFsKKXkEYk1XE2onbTwdtp776PbGd1t-sso",
+      "domain": "sso.garmin.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "CASRMC",
+      "value": "TGT-2264429-T4gM6qdii4XNiZQBOOcgFsKKXkEYk1XE2onbTwdtp776PbGd1t-sso",
+      "domain": "sso.garmin.com",
+      "path": "/",
+      "expires": 1805920783.317421,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "session",
+      "value": "Fe26.2*1*8b7c94ab12e646f4a432e6269966350bf97246e152e54b50be288bb378cd5398*xpFopzvMWS4TH-pLO1tLQg*PmOI1Yc9AHQXiDMeYvaI7UnqXcDG7pZbPS9B8vydk-Lb9L3dfRrx6Lcg8J2x8W002bjdFZL2oKuO0N5gt5cbtjYDvkAqR_5l-EVrj_cZZ3eCnmAy8WOOWxj0kt-lcm1as1UP-8ksGF_cmfysPyQ1yokz1gHnFwQLWJA45kDWSwdXkcfnlomgIkRDrozknreUm04rg7Ts1uQAdtRHa4-eHlMOWniRi5ZrEOVzk5LPlT1IzdqCOo95QuzDdHe0ays8v9yq69QfbJ2yldqpjZAnPEkBbtPyT3V3GDxmP9gLYk2aoHAWzSiW4j_EIzhNwlNFNqidnTaQwwpkQaCmRTjFq6xTM2FgsOYr_OUH4jelRkppBOhXjmuIWfem3MfzYx44Zec_15tj57W1238CpM4SHde75Rix-500WoNHnut5KEY5qNO-ZKlQ8F-_lBNCr4S0mSctRvR3DumsErdWCdYfD3uJR9ozPpPIk0Vn6CiD8ybLpjC_yD3t1ujKV8b1MxNqfzpHlCgaGWVsToM4aiSaaH5cpY1CT0QA85a-2b_vc9l9tjsNZCSfnbvD33uyTf2r4Z9WV21LnfGk8baZbAFl4X-Kka0OXoofi0iQqgMR1Hz46jvr-5gpCW3qDeFhaLRdOpk5AuvLXhWyNLb6FNBb9l4wYhJwT_GC9FE8PmSDbUGU23yvky-KFsdgiP78bA61FOiKnGV8kqkaI0Ut5IGSPdsBOA6xOppgTtSVAEx773tSicclcMepMt5u2kRrEc0Uewvei9xZOsg1ytgyuYrXhASyjwLcznG5u8dnmqKVsg8NzwxBWT3r9mIQqgDHd-pmLdwMOkCVV0bgpGFJwGVReEW95tzgzTndyfhyFVC2DqOeGZ9KMWY0AAi7GE-0FHxEbLCbZQw8AzQYmUUDfPQKZdeEA1IeixPgOQo7iJTvRmsvBfS_th8Cgs4-Bc0GAdflkeaHPvnlcAm2a8PpGCIV59Xs8bLsRmTEJKmZNnoZYU7yrpBU_6MbmNdOomiLMErRNqSM1WR05et4lkjwF7G0tBdrGC-VfKR939pFdZYL6JHdt4_359FdgE8et5mwi-7fHBKC6xngLKvnteMojUB_n35EeDW5a2iepVF_y0B0JShk8Ht_eAs6FoLbymS9hf9tRMFvkNuuy5BrDiKvY1eW31Me3PmWpIPo-F96nkMXjqFyf3MBNe_NM4kfrbirZJhr9hFDtlPnLQbwGuhZY2ym2jntBi58iFEeAl_5N0FWw6zFNJIeVhuzIDrPLq4ZUilYCo0zpFBLwCP4odFvTXx3QClj2U91xdoXZOzYmOdu929BWY3QImN2Z9-ige1Nln9cOMad1zgWnYobFdelNV9bhAK0APvgS3I_aag3Rq2y46SMSDQPfybV97d6oFdBdwvy078ytfqTEREyJfsNHzOjlBjgY9W5XvnXYAIkjGGbZ3BB7B4QJM2g4c2Ly-cAzLFgxJRi3Ck0iUuaCus1QASC2BukOZau8T8k3NpqIB4-rcDT2S9DuJMdi-lfEUP6BWEqVVoLI8-MGHUpHo6djoV7mIeCHI25LjBCVX7smDiY7t06BrJ1k7SvBW_Uh23GTe9MAuHWBhYNN4UQvhiEI7tO3dJOgdyGUIjRf8grpUoURh5kko4IIWBjMDMBqGLhflZ-T13nDpgP1hxMBRCES9pdDv7l_Q1bqNa8ZmBIUbWtNt9pSOAbNKqETvEKfRxZqfO9oetHeMgIl5y23YvrPkpP8uwN-gzODhRLXCHhCuMPrb3uE3tVazem-EtoH-oQDIwZzhlCfm7ytbwCoNirbtpM_xU_Dpxg40658uoJgAAeA2d1CmWnKEjg0M1c_hVCdqL_duWpMowffkxWkU_wE78bQYdlcao80IpPVIlSxxldVOQ4KLkYZ3WHO9B3lx0awETq6V8yAuCIq3nEKZ0-lZVe4a8sSak9Jkzop-ZcVvuU6olIbHg4lV_VQZWjOmvpUhnhkmKEPOi0mmcZvfdMboafaWYp01pJPveicueD8RdB8QJZGiuSFS3iTxLHDqyDq_gA6HtFZt0rheLVqgJqN1sRloteg5yft2voeEpTrn7r8Qb85ABnOXqQil1ZUdXBEGMqNNuRouZX6AOE3fA0as5CnvlUqSwespJE8c8pyLI5kVT4kX7EMT1wTbHBZIo80VxuafiIsgUUb94qcYtT5Df8agDT9Ga1-dgjjCMLNv9Tuy5OOBEN5UZ29S6r7nA8Vbm0cu1KzAdjHADUHW5Os_mvxi8eHAtJhPI7UjlyXFcYGfpig6iCR_r_OZTazXjeFRcqrWbTK_N9OxfvLWP3GC5ADYXzV0-Faky1J8MpmM6LsVyUSxE5VhN1EnS_nT-oG0JSJmT_4zeXACnsjlNgxn1D1yaIqEItl1WAfmRLd_VPsoNIF6KfTToIf5w084FoWyT2bN3kUnmbxzkPQQznQtscGE6PjUR2r3vGlHfN9FDqrkM3BkFOVXwC93xuD_Ly406E_RVb79Bdqr42IyGFR7VsP-Vd4mZHPof_7p6wwmYSUj8d0spOPHHxUIynqBA_QU0-hJvUQdMeyAoI9euEOnxTC0zzdlftLr7HmvjRAIos35I*1781583790284*c84ef692794a249e8cebf3342e6d419c85303ae8a3b40af35010392ad669ebbe*feiUGiAKp-kjaI9cmhbPq80wYcZI8IqAHNyzLLToFQ0~2",
       "domain": ".connect.garmin.com",
       "path": "/",
-      "expires": 1774369468.219729,
+      "expires": 1774391982.620868,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "JWT_WEB",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyI0IiwiNyIsIjgiLCI5IiwiMjAiLCJST0xFX0dBUk1JTl9VU0VSIl0sImV4cCI6MTc3NDM5MTk5MH0.e8aCFm4vqcpKiIlJbTM8a0I7BZp3AMW3yntVdUiAwD0",
+      "domain": ".connect.garmin.com",
+      "path": "/",
+      "expires": 1774391983.864988,
       "httpOnly": true,
       "secure": false,
       "sameSite": "Lax"
     },
     {
       "name": "SESSIONID",
-      "value": "YzZkMzcyNzItMWFkMi00NDU0LTllMWEtYzZkMWJmODY3MTYw",
+      "value": "NWFkYjViMmItOGVlMS00YzkyLWE2MDktYjY2OGI5ZDcxM2Vk",
       "domain": "connect.garmin.com",
       "path": "/",
       "expires": -1,
@@ -177,10 +167,6 @@
     {
       "origin": "https://connect.garmin.com",
       "localStorage": [
-        {
-          "name": "browser-tabs-lock-key-fetchJetLagToken",
-          "value": "{\"id\":\"1774362271116zF60W6rfp9Mzdkh\",\"iat\":\"1774362271638KTG8\",\"timeoutKey\":\"1774362271116zF60W6rfp9Mzdkh-fetchJetLagToken-1774362271638KTG8\",\"timeAcquired\":1774362271767,\"timeRefreshed\":1774362271767}"
-        },
         {
           "name": "HereToken",
           "value": "{\"access_token\":\"eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJycEZhb2cwQ255OGtOQ0dWVW1vRSIsImlhdCI6MTc3NDM2MjI3NywiZXhwIjoxNzc0NDQ4Njc3LCJraWQiOiJqMSJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJRMEpETFVoVE5URXlJbjAuLkNVU2JleUR5OXR6blFQMFBjUXVjVFEucFZZQThPdDEtUHFBV1pQUmdWbDlNNGs3dDBhQkpFaTVITW5hNWhGRXVCa3R4QkJKUGV1bGRCZi15czNraFlJVjVxYk05WHdoT0dvaXhzTjctR1FCaHhpeURxeEt3bW55RlNTUThEbTlUbjE0OUpYa09IQzVDNUducWpKZmVBZ0x1Vk1iQmhzNFloNHUtbjRGVENDRFR3LmtxNmFtSW0wUS04dFV0M0EtN1BjWlU4RGhGX3RoZUZ0c1YtcFVENEE2Uzg.LHyRsbONo2ekvBRitJRlGSbF0NysQGzFUwAVb6o9y0AS8PYJAxr9vZPqEFN81q1cyFDOXlMI5X2DyuuOV38om_VAXJsgn0GdK8X906896WDJvdCH4Qm9BvGJqbOyiimscT7BwvBVy8lMnVM4EoCZRFzCOUa9jfqbtY_1V1SYjq_Qbb_M-J8rcKeKbytI-5k0nxQvt2BK2bMU9DoYJwz0CnHSFVRPnuSA61UJRKyyN2ZPKbdbflVzdG4B0O6AZgUwh_xg94SMbaMtrrjXzv8rSs-9EhhPRWuO_o3P2BtLXPvrladrm9GUNtXs3glnsBxHmSF4MfYpPyWz9gSZ2j9rCA\",\"token_type\":\"bearer\",\"expires_in\":86399,\"expires\":1774448610638}"

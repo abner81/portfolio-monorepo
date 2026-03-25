@@ -3,44 +3,33 @@ import { Injectable } from '@nestjs/common';
 import { ScrollStopStrategy } from './scroll-stop-strategy';
 import { BaseScraper } from '../base-scraper';
 import { ActivitiesHelper } from './activities-helper';
+import { Locator, Page } from 'playwright';
 
 @Injectable()
 export class ActivitiesScraper extends BaseScraper<IActivity[]> {
   private readonly ACTIVITIES_URL = process.env.GARMIN_ACTIVITIES_URL!;
   private readonly LAST_SAVED_ID = 'ksdcfkdskf';
   private readonly helper = new ActivitiesHelper();
+  private metrics: Record<string, string> = {};
+
+  protected page!: Page;
 
   protected async doScrape(): Promise<IActivity[]> {
     await this.page.goto(this.ACTIVITIES_URL);
-
     await this.makeScrollHandle();
 
-    console.log('scroll com sucesso');
-
     const total = await this.helper.activitiesSelector.count();
-
     const activities: IActivity[] = [];
 
     for (let i = 0; i < total; i++) {
       const activityRow = this.helper.activitiesSelector.nth(i);
       const linkInfo = await this.helper.getLinkInfo(activityRow);
-
-      const metricsSelector = await this.helper.getMetrics(activityRow);
-      const metricsCount = metricsSelector.count;
-      const metrics: Record<string, string> = {};
-
-      for (let index = 0; index < metricsCount; index++) {
-        const { label, value } = await this.helper.getMetricInfo(
-          metricsSelector.container,
-          index,
-        );
-        metrics[label] = value;
-      }
+      await this.getAllActivityMetrics(activityRow);
 
       activities.push({
         ...linkInfo,
         type: await this.helper.getType(activityRow),
-        metrics,
+        metrics: this.metrics,
         date: await this.helper.getDate(activityRow),
       });
     }
@@ -66,7 +55,7 @@ export class ActivitiesScraper extends BaseScraper<IActivity[]> {
         page: this.page,
         scrollContainerId,
         lastSavedActivityId: this.LAST_SAVED_ID,
-        lastRow: this.helper.activitiesSelector.last(),
+        lastRow: await this.helper.activitiesSelector.last(),
       });
 
       if (await scrollStopStrategy.shouldStop()) break;
@@ -83,6 +72,19 @@ export class ActivitiesScraper extends BaseScraper<IActivity[]> {
         console.log('Fim da lista total do site alcançado.');
         break;
       }
+    }
+  }
+
+  private async getAllActivityMetrics(activityRow: Locator) {
+    const metricsSelector = await this.helper.getMetrics(activityRow);
+    const metricsCount = metricsSelector.count;
+
+    for (let index = 0; index < metricsCount; index++) {
+      const { label, value } = await this.helper.getMetricInfo(
+        metricsSelector.container,
+        index,
+      );
+      this.metrics[label] = value;
     }
   }
 }

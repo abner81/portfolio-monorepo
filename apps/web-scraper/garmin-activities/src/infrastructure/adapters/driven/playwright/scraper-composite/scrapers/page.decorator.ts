@@ -8,6 +8,7 @@ const pageStorage = new AsyncLocalStorage<Page>();
 /**
  * Decorator de MÉTODO para o Maestro.
  * Ele cria o escopo onde a página será registrada.
+ * Usa a página armazenada em this.page (via setPage)
  */
 export function RegistryPage(
   target: any,
@@ -17,11 +18,13 @@ export function RegistryPage(
   const originalMethod = descriptor.value;
 
   descriptor.value = function (...args: any[]) {
-    const page = args[0] as Page; // Assume que Page é o primeiro argumento
-    if (!page)
+    // Obtém a página do contexto interno (this.page)
+    const page = (this as any).page as Page;
+    if (!page) {
       throw new Error(
-        'A Page deve ser o primeiro argumento do método @RegistryPage',
+        'A Page deve estar disponível em this.page. Chame setPage() antes de executar o método decorado.',
       );
+    }
 
     // Executa o método dentro do contexto da página fornecida
     return pageStorage.run(page, () => {

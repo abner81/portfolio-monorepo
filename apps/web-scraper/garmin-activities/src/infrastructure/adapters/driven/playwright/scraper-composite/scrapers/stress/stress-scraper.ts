@@ -5,10 +5,14 @@ import {
   StressInsufficientRecordsException,
 } from 'garmin-activities/domain/exceptions';
 import { Injectable } from '@nestjs/common';
+import { InjectPage } from '../page.decorator';
+import { Page } from 'playwright';
 
 @Injectable()
 export class StressScraper extends BaseScraper<IStress> {
   private readonly STRESS_URL = process.env.GARMIN_STRESS_URL!;
+
+  protected page!: Page;
 
   private async ensureStressDataExistsIn(): Promise<void> {
     const noDataHeading = this.page.getByRole('heading', {

@@ -1,6 +1,7 @@
 import { IBaseScraper } from 'garmin-activities/application/ports/scrapers';
 import { BaseScraperIsNotInitializedException } from 'garmin-activities/domain/exceptions/base-scraper-is-not-initialized.exception';
 import { Page } from 'playwright';
+import { RegistryPage, InjectPage } from './page.decorator';
 
 export abstract class BaseScraper<IOutput extends object>
   implements IBaseScraper<IOutput>
@@ -13,6 +14,7 @@ export abstract class BaseScraper<IOutput extends object>
 
   protected abstract doScrape(): Promise<IOutput>;
 
+  @RegistryPage
   public async scrape(): Promise<IOutput> {
     this.ensureInitialized();
     return this.doScrape();
