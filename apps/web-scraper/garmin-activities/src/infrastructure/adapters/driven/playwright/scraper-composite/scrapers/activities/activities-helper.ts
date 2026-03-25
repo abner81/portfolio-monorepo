@@ -25,8 +25,6 @@ export class ActivitiesHelper {
   };
 
   public get activitiesSelector() {
-    console.log(this.page, 'page');
-
     return this.page.locator('[class*="ActivityListItem_listItem"]');
   }
 

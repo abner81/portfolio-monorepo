@@ -33,8 +33,8 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
 
       this.garmin.setPage(page);
 
-      // const { isLoggedIn } = await this.garmin.makeLogin(page);
-      // if (!isLoggedIn) throw new LoginFailedException();
+      const { isLoggedIn } = await this.garmin.makeLogin(page);
+      if (!isLoggedIn) throw new LoginFailedException();
       await page.context().storageState({ path: this.storageStatePath });
 
       // await page.waitForTimeout(1500);
