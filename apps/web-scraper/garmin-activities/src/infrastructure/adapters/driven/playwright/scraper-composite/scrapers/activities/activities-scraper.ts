@@ -12,8 +12,6 @@ export class ActivitiesScraper extends BaseScraper<IActivity[]> {
   private readonly helper = new ActivitiesHelper();
   private metrics: Record<string, string> = {};
 
-  protected page!: Page;
-
   protected async doScrape(): Promise<IActivity[]> {
     await this.page.goto(this.ACTIVITIES_URL);
     await this.makeScrollHandle();

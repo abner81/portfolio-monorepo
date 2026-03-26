@@ -13,8 +13,6 @@ import { Page } from 'playwright';
 export class BodyBatteryScraper extends BaseScraper<IBodyBattery> {
   private readonly BODY_BATTERY_URL = process.env.GARMIN_BODY_BATTERY_URL!;
 
-  protected page!: Page;
-
   constructor() {
     super();
   }

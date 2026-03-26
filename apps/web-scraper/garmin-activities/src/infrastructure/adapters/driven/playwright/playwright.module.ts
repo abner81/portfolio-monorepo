@@ -9,6 +9,7 @@ import {
   StressScraper,
   ActivitiesScraper,
 } from './scraper-composite/scrapers';
+import { ActivityReportScraper } from './scraper-composite/scrapers/activity-report/activity-report-scraper';
 
 @Module({
   providers: [
@@ -42,6 +43,10 @@ import {
     {
       provide: INJECTION_TOKENS.ACTIVITIES_SCRAPER,
       useClass: ActivitiesScraper,
+    },
+    {
+      provide: INJECTION_TOKENS.ACTIVITY_REPORT_SCRAPER,
+      useClass: ActivityReportScraper,
     },
   ],
   exports: [INJECTION_TOKENS.BROWSER_SCRAPER_PORT],

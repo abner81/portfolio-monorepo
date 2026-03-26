@@ -12,8 +12,6 @@ import { Page } from 'playwright';
 export class StressScraper extends BaseScraper<IStress> {
   private readonly STRESS_URL = process.env.GARMIN_STRESS_URL!;
 
-  protected page!: Page;
-
   private async ensureStressDataExistsIn(): Promise<void> {
     const noDataHeading = this.page.getByRole('heading', {
       name: /Não há dados de estresse/i,

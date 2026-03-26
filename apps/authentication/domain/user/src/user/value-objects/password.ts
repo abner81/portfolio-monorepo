@@ -29,7 +29,7 @@ export class Password extends ValueObject<PasswordProps, string> {
   private againstAppropriateLength(password: string) {
     if (!(password.length >= Password.minLength))
       throw new DomainException(
-        'Password isnt contains a min length [8 chars min].'
+        'Password isnt contains a min length [8 chars min].',
       );
   }
 

@@ -20,6 +20,7 @@ describe('GarminScraperComposite', () => {
     'home',
     'stress',
     'activities',
+    'activityReport',
   ];
 
   beforeEach(async () => {
@@ -48,6 +49,10 @@ describe('GarminScraperComposite', () => {
           provide: INJECTION_TOKENS.ACTIVITIES_SCRAPER,
           useValue: mock.activitiesScraper,
         },
+        {
+          provide: INJECTION_TOKENS.ACTIVITY_REPORT_SCRAPER,
+          useValue: mock.activityReportScraper,
+        },
       ],
     }).compile();
 
@@ -64,6 +69,10 @@ describe('GarminScraperComposite', () => {
         mock.activitiesScraper,
         'setPage',
       );
+      const activityReportScraper = jest.spyOn(
+        mock.activityReportScraper,
+        'setPage',
+      );
 
       sut.setPage(mockPage);
 
@@ -72,6 +81,7 @@ describe('GarminScraperComposite', () => {
       expect(setPagehomeScraperSpy).toHaveBeenCalledWith(mockPage);
       expect(stressScraperSpy).toHaveBeenCalledWith(mockPage);
       expect(activitiesScraperSpy).toHaveBeenCalledWith(mockPage);
+      expect(activityReportScraper).toHaveBeenCalledWith(mockPage);
     });
 
     it('should delegate to individual scrapers after setPage() is called', async () => {
@@ -82,12 +92,14 @@ describe('GarminScraperComposite', () => {
       const homeResult = await sut.home.scrape();
       const stressResult = await sut.stress.scrape();
       const activitiesResult = await sut.activities.scrape();
+      const activityReport = await sut.activityReport.scrape();
 
       expect(bodyBatteryResult).toEqual(mock.bodyBatteryScraper.response);
       expect(sleepResult).toEqual(mock.sleepScraper.response);
       expect(homeResult).toEqual(mock.homeScraper.response);
       expect(stressResult).toEqual(mock.stressScraper.response);
       expect(activitiesResult).toEqual(mock.activitiesScraper.response);
+      expect(activityReport).toEqual(mock.activityReportScraper.response);
     });
   });
 
@@ -131,6 +143,7 @@ describe('GarminScraperComposite', () => {
         mock.homeScraper,
         mock.stressScraper,
         mock.activitiesScraper,
+        mock.activityReportScraper,
       ]);
     });
   });

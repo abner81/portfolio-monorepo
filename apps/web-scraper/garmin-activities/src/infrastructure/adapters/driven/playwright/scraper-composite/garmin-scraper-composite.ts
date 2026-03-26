@@ -3,6 +3,7 @@ import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import {
   IActivity,
+  IActivityReport,
   IBodyBattery,
   IHomeScraper,
   ISleep,
@@ -10,8 +11,8 @@ import {
 } from 'garmin-activities/application/ports/scrapers';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { BaseScraper } from './scrapers/base-scraper';
-import { RegistryPage } from './scrapers/page.decorator';
 import { BaseScraperIsNotInitializedException } from 'garmin-activities/domain/exceptions/base-scraper-is-not-initialized.exception';
+import { LoginFailedException } from 'garmin-activities/domain/exceptions';
 
 export type ILoginOutput = {
   isLoggedIn: boolean;
@@ -30,6 +31,7 @@ export class GarminScraperComposite {
     'home',
     'sleep',
     'stress',
+    'activityReport',
   ];
 
   constructor(
@@ -43,8 +45,17 @@ export class GarminScraperComposite {
     public readonly stress: BaseScraper<IStress>,
     @Inject(INJECTION_TOKENS.ACTIVITIES_SCRAPER)
     public readonly activities: BaseScraper<IActivity[]>,
+    @Inject(INJECTION_TOKENS.ACTIVITY_REPORT_SCRAPER)
+    public readonly activityReport: BaseScraper<IActivityReport[]>,
   ) {
-    this.scrapers = [bodyBattery, sleep, home, stress, activities];
+    this.scrapers = [
+      bodyBattery,
+      sleep,
+      home,
+      stress,
+      activities,
+      activityReport,
+    ];
 
     return new Proxy(this, {
       get(target, property, receiver) {
@@ -64,6 +75,7 @@ export class GarminScraperComposite {
   }
 
   private readonly LOGIN_URL = process.env.GARMIN_LOGIN_URL!;
+  private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
 
   public setPage(page: Page) {
     this.pageInitialized = true;
@@ -74,7 +86,8 @@ export class GarminScraperComposite {
     !page.url().includes(this.LOGIN_URL);
 
   async makeLogin(page: Page): Promise<ILoginOutput> {
-    await page.goto(this.LOGIN_URL, { waitUntil: 'networkidle' });
+    await page.goto(this.LOGIN_URL);
+    await page.waitForTimeout(2500);
 
     if (this.alreadyLoggedIn(page)) return { isLoggedIn: true };
 
@@ -90,8 +103,7 @@ export class GarminScraperComposite {
       name: /sign in/i,
     });
     await submitButton.click({ force: true });
-
-    await page.waitForURL(process.env.GARMIN_HOME_URL!);
+    await page.waitForURL((url) => url.toString().includes(this.HOME_URL));
 
     return { isLoggedIn: this.alreadyLoggedIn(page) };
   }

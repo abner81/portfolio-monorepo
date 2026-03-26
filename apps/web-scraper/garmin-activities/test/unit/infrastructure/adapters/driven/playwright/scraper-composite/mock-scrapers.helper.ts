@@ -2,6 +2,7 @@ import { EntityId } from '@monorepo/value-objects';
 import {
   ActivityType,
   IActivity,
+  IActivityReport,
   IBodyBattery,
   IHomeScraper,
   ISleep,
@@ -70,6 +71,24 @@ class MockActivitiesScraper extends BaseScraper<IActivity[]> {
     return this.response;
   }
 }
+class MockActivityReportScraper extends BaseScraper<IActivityReport[]> {
+  public readonly response: IActivityReport[] = [
+    {
+      date: new Date(),
+      activitiesCount: 12,
+      averagePace: '06:38/km',
+      calories: 2323,
+      distance: { average: '12km', max: '7km', total: '25km' },
+      duration: { average: '1:03:34', max: '40:20', total: '2:04:23' },
+      heartRate: { average: '120bpm', max: '180bpm' },
+      run: { averageCadence: '190 ppm' },
+    },
+  ];
+
+  protected async doScrape(): Promise<IActivityReport[]> {
+    return this.response;
+  }
+}
 
 export const makeMockScrapersFactory = () => {
   const bodyBatteryScraper = new MockBodyBatteryScraper();
@@ -77,6 +96,7 @@ export const makeMockScrapersFactory = () => {
   const homeScraper = new MockHomeScraper();
   const stressScraper = new MockStressScraper();
   const activitiesScraper = new MockActivitiesScraper();
+  const activityReportScraper = new MockActivityReportScraper();
 
   return {
     bodyBatteryScraper,
@@ -84,6 +104,7 @@ export const makeMockScrapersFactory = () => {
     homeScraper,
     stressScraper,
     activitiesScraper,
+    activityReportScraper,
   };
 };
 

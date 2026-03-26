@@ -9,8 +9,6 @@ import { Page } from 'playwright';
 export class HomeScraper extends BaseScraper<IHomeScraper> {
   private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
 
-  protected page!: Page;
-
   async doScrape(): Promise<IHomeScraper> {
     const alreadyHomeUrl = this.page.url() === this.HOME_URL;
     if (!alreadyHomeUrl) await this.page.goto(this.HOME_URL);

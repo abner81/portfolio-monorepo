@@ -15,8 +15,6 @@ export class SleepScraper extends BaseScraper<ISleep> {
   private readonly SLEEP_URL = process.env.GARMIN_SLEEP_URL!;
   private readonly EMPTY_VALUE = '--';
 
-  protected page!: Page;
-
   private async ensureSleepDataExistsIn(helper: SleepHelper): Promise<void> {
     const isNoDataMode = await helper.noDataHeading.isVisible();
     if (isNoDataMode) throw new SleepInfoNotFoundException();

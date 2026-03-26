@@ -4,3 +4,4 @@ export * from './i-stress-scraper';
 export * from './i-home-scraper';
 export * from './i-activities-scraper';
 export * from './i-base-scraper';
+export * from './i-activity-report-scraper';
