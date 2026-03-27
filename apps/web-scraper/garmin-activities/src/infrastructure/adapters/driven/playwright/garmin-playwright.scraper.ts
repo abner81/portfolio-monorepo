@@ -12,6 +12,8 @@ chromium.use(stealthPlugin());
 
 @Injectable()
 export class GarminPlaywrightScraper implements BrowserScraperPort {
+  private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
+
   constructor(
     @Inject(INJECTION_TOKENS.GARMIN_SCRAPER_COMPOSITE)
     private readonly garmin: GarminScraperComposite,
@@ -30,19 +32,22 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
         storageState: this.storageStatePath,
       });
       const page = await context.newPage();
-
       this.garmin.setPage(page);
 
       await this.garmin.makeLogin(page);
-
       await page.context().storageState({ path: this.storageStatePath });
 
       // console.log('bodyBattery entrou');
       // const bodyBaterry = await this.garmin.bodyBattery.scrape(page);
 
-      await this.garmin.activityReport.scrape();
+      await page.waitForURL(this.HOME_URL);
 
-      // const activities = await this.garmin.activities.scrape();
+      const reports = await this.garmin.activityDetails.scrape({
+        activityId: '22301384302',
+      });
+      // const reports = await this.garmin.activityReport.scrape({});
+
+      // const activities = await this.garmin.activities.scrape({});
 
       // await page.waitForTimeout(1500);
       // console.log('sleep entrou');

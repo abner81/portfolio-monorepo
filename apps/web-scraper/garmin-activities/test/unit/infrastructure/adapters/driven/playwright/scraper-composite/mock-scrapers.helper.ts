@@ -7,6 +7,7 @@ import {
   IHomeScraper,
   ISleep,
   IStress,
+  RunIntervalsStats,
 } from 'garmin-activities/application/ports/scrapers';
 import { BaseScraper } from 'garmin-activities/infra/adapters/driven/playwright/scraper-composite/scrapers/base-scraper';
 import type { Page } from 'playwright';
@@ -90,6 +91,18 @@ class MockActivityReportScraper extends BaseScraper<IActivityReport[]> {
   }
 }
 
+class MockActivityDetailsScraper extends BaseScraper<RunIntervalsStats> {
+  public readonly response: RunIntervalsStats = {
+    distance: '5 km',
+    duration: '9:30',
+    pace: '4:45 /km',
+  };
+
+  protected async doScrape(): Promise<RunIntervalsStats> {
+    return this.response;
+  }
+}
+
 export const makeMockScrapersFactory = () => {
   const bodyBatteryScraper = new MockBodyBatteryScraper();
   const sleepScraper = new MockSleepScraper();
@@ -97,6 +110,7 @@ export const makeMockScrapersFactory = () => {
   const stressScraper = new MockStressScraper();
   const activitiesScraper = new MockActivitiesScraper();
   const activityReportScraper = new MockActivityReportScraper();
+  const activityDetailsScraper = new MockActivityDetailsScraper();
 
   return {
     bodyBatteryScraper,
@@ -105,6 +119,7 @@ export const makeMockScrapersFactory = () => {
     stressScraper,
     activitiesScraper,
     activityReportScraper,
+    activityDetailsScraper,
   };
 };
 

@@ -14,6 +14,7 @@ describe('GarminScraperComposite', () => {
   let mockPage: Page;
 
   const mock = makeMockScrapersFactory();
+  const activityId = 'jibnasdf77';
   const sutClassProperties: (keyof GarminScraperComposite)[] = [
     'bodyBattery',
     'sleep',
@@ -21,6 +22,7 @@ describe('GarminScraperComposite', () => {
     'stress',
     'activities',
     'activityReport',
+    'activityDetails',
   ];
 
   beforeEach(async () => {
@@ -53,6 +55,10 @@ describe('GarminScraperComposite', () => {
           provide: INJECTION_TOKENS.ACTIVITY_REPORT_SCRAPER,
           useValue: mock.activityReportScraper,
         },
+        {
+          provide: INJECTION_TOKENS.ACTIVITY_DETAILS_SCRAPER,
+          useValue: mock.activityDetailsScraper,
+        },
       ],
     }).compile();
 
@@ -69,8 +75,12 @@ describe('GarminScraperComposite', () => {
         mock.activitiesScraper,
         'setPage',
       );
-      const activityReportScraper = jest.spyOn(
+      const activityReportScraperSpy = jest.spyOn(
         mock.activityReportScraper,
+        'setPage',
+      );
+      const activityDetailsScraperSpy = jest.spyOn(
+        mock.activityDetailsScraper,
         'setPage',
       );
 
@@ -81,18 +91,20 @@ describe('GarminScraperComposite', () => {
       expect(setPagehomeScraperSpy).toHaveBeenCalledWith(mockPage);
       expect(stressScraperSpy).toHaveBeenCalledWith(mockPage);
       expect(activitiesScraperSpy).toHaveBeenCalledWith(mockPage);
-      expect(activityReportScraper).toHaveBeenCalledWith(mockPage);
+      expect(activityReportScraperSpy).toHaveBeenCalledWith(mockPage);
+      expect(activityDetailsScraperSpy).toHaveBeenCalledWith(mockPage);
     });
 
     it('should delegate to individual scrapers after setPage() is called', async () => {
       sut.setPage(mockPage);
 
-      const bodyBatteryResult = await sut.bodyBattery.scrape();
-      const sleepResult = await sut.sleep.scrape();
-      const homeResult = await sut.home.scrape();
-      const stressResult = await sut.stress.scrape();
-      const activitiesResult = await sut.activities.scrape();
-      const activityReport = await sut.activityReport.scrape();
+      const bodyBatteryResult = await sut.bodyBattery.scrape({});
+      const sleepResult = await sut.sleep.scrape({});
+      const homeResult = await sut.home.scrape({});
+      const stressResult = await sut.stress.scrape({});
+      const activitiesResult = await sut.activities.scrape({});
+      const activityReport = await sut.activityReport.scrape({});
+      const activityDetails = await sut.activityDetails.scrape({ activityId });
 
       expect(bodyBatteryResult).toEqual(mock.bodyBatteryScraper.response);
       expect(sleepResult).toEqual(mock.sleepScraper.response);
@@ -100,6 +112,7 @@ describe('GarminScraperComposite', () => {
       expect(stressResult).toEqual(mock.stressScraper.response);
       expect(activitiesResult).toEqual(mock.activitiesScraper.response);
       expect(activityReport).toEqual(mock.activityReportScraper.response);
+      expect(activityDetails).toEqual(mock.activityDetailsScraper.response);
     });
   });
 
@@ -107,7 +120,7 @@ describe('GarminScraperComposite', () => {
     it('should throw an error when calling scrape() without setPage()', () => {
       sutClassProperties.forEach((property) => {
         expect(() => {
-          (sut[property] as BaseScraper<object>).scrape();
+          (sut[property] as BaseScraper<object>).scrape({});
         }).toThrow(BaseScraperIsNotInitializedException);
       });
     });
@@ -144,6 +157,7 @@ describe('GarminScraperComposite', () => {
         mock.stressScraper,
         mock.activitiesScraper,
         mock.activityReportScraper,
+        mock.activityDetailsScraper,
       ]);
     });
   });

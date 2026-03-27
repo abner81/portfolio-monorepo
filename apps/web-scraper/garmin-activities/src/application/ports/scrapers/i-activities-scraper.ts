@@ -7,6 +7,12 @@ export enum ActivityType {
   'CARDIOVASVULAR' = 'CARDIOVASVULAR',
 }
 
+export type RunIntervalsStats = {
+  duration: string;
+  distance: string;
+  pace: string;
+};
+
 export type IActivity = {
   type: ActivityType;
   id: string;
@@ -14,4 +20,5 @@ export type IActivity = {
   url: string;
   metrics: Record<string, string>;
   date: Date;
+  runIntervalsStats?: RunIntervalsStats;
 };

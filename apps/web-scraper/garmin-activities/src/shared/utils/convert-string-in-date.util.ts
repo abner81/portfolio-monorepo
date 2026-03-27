@@ -6,6 +6,12 @@ const ensureValidDate = (date: string) => {
   }
 };
 
+/**
+ * Converte uma string no formato 'dd/mm/yyyy' em um new Date() object.
+ * @param dataString - dd_mm_yyyy
+ * @example
+ * convertStringInDate('25/12/2024') -> new Date(2024, 11, 25)
+ */
 export const convertStringInDate = (dd_mm_yyyy: string) => {
   ensureValidDate(dd_mm_yyyy);
 

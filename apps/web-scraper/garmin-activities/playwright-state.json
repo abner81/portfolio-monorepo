@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "__VCAP_ID__",
-      "value": "ce5f3548-711d-4012-635a-6ad6",
+      "value": "6904543e-cb4d-427e-7d6b-11c9",
       "domain": "sso.garmin.com",
       "path": "/portal",
       "expires": -1,
@@ -12,7 +12,7 @@
     },
     {
       "name": "SESSION",
-      "value": "ZGU3MWI2MWMtMjI0OC00ODgzLTllNmUtOGE2MmUyZjU0Njky",
+      "value": "YzE4NTcyY2MtNWNlZC00YjcwLTkxZmEtODUwZWU1ODdmOGY1",
       "domain": "sso.garmin.com",
       "path": "/portal",
       "expires": -1,
@@ -81,38 +81,6 @@
       "sameSite": "None"
     },
     {
-      "name": "__cflb",
-      "value": "02DiuEofTPbaQ2tyBEToNCFEzdTQa8nZMnHzGyiB61b2t",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": 1774541237.128409,
-      "httpOnly": true,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "cf_clearance",
-      "value": "myHTKl0B08uyXP2DaaoI6qmwYqbLCYB1alG169Y75KI-1774495746-1.2.1.1-Wpx_DJbEVQ7mNHmKOz8zmiG20VBv3rqOHQfKmOdiKjx0g4OiFOlB75nNzZ8uKUaSIcoB44roEwysRubUGNB_NtsHeAGG0oJ8be1TMrYrG39lHPizuZjAj7XFx4FKF4Itkhztue_PW7njmjDMKt.PR8Z0QVA2S5hScbqpbyU5IPneqjwmqra531HSgXtUciqHe3MrrgxUg0nwnyspc.kM1v1IM31z5Nvo1HAX27t2EjY",
-      "domain": ".sso.garmin.com",
-      "path": "/",
-      "expires": 1806031746.732968,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None",
-      "partitionKey": "https://garmin.com",
-      "_crHasCrossSiteAncestor": false
-    },
-    {
-      "name": "CASTGC",
-      "value": "TGT-2462335-aofjTqnMmmWrUJtlw9aLElsIq9O9Z0nPdGKwG8jA8vEXkNamtO-sso",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": -1,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
       "name": "CASRMC",
       "value": "TGT-2462335-aofjTqnMmmWrUJtlw9aLElsIq9O9Z0nPdGKwG8jA8vEXkNamtO-sso",
       "domain": "sso.garmin.com",
@@ -120,76 +88,6 @@
       "expires": 1806031748.5135,
       "httpOnly": true,
       "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "TAsessionID",
-      "value": "ed1d4f0e-e642-44aa-91cc-b5503f72bbf3|NEW",
-      "domain": ".connect.garmin.com",
-      "path": "/",
-      "expires": 1774498128,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "ADRUM_BTa",
-      "value": "R:0|g:58c33b58-da7e-4629-8c7e-e8aba4996b0a|n:garmin_869629ee-d273-481d-b5a4-f4b0a8c4d5a3",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": 1774496740.722053,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "SameSite",
-      "value": "None",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": 1774496740.722106,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "ADRUM_BT1",
-      "value": "R:0|i:2270380|e:193|t:1774496710410",
-      "domain": "sso.garmin.com",
-      "path": "/",
-      "expires": 1774496740.722202,
-      "httpOnly": false,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "__cf_bm",
-      "value": ".52IaohTa0w5f3.rG6rl2u.wCtQHrGkbpTRkztYASK8-1774496710-1.0.1.1-xnGqD0gviwZ2LOC7pv_7qpKAFTxqbjEnYL4Q5L1aftAEfMEgbG_I5whkBNQP9wuMsHrICh5GW2tWf82ktkZ5iEqps_cHW8p4DfUPv7ZXmEA",
-      "domain": ".sso.garmin.com",
-      "path": "/",
-      "expires": 1774498510.722436,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
-    },
-    {
-      "name": "session",
-      "value": "Fe26.2*1*d358d35b6d6f94a3ea0a8aa18808ce2edc2fad1ccc2b944f80bbac96715739a1*L62zM_mjsZ-CxMdigqVfcw*6-e5fk0L8CjBdC8klD61a39fuad_pF4Vqxus9x6xyulyb1KjAO83jDOvf_rKT3sgrcpbl9RzBz6F3cs0dvc5Eaao6sgOgByJYTQ_7uyPJ6Nav22wa5ffnsmsWfvUERPyg-oAmY85tan61YjKeQxEiDFotfCDFnfVv_lvL9LysCGx9GFJDtQ3tmooikOwfUa7urnTHpdiN0gsw7aI1yvN5BVWWQVXguoStMDE3eoRb-Jnt0PBbXOJeSieupOdndtFnULrPLZaXWUEvb428R_ev1lGXW3Rnr1RdvmNE5BT-u6qbVdEsysuqMg5qWGc9rgJI8oINeXhkMenU19AVlrsgGbJo_XeDfFiTMrmLQxTwjA9JL-RtEmOiLvlOnG2-M53Vuhu9_kujJS6uhdyX_sMfpz94MCOTufCUDMIGYAVq7IU6NhzMEoDSWdQq3tbDpdYkaGZYhESQ0JtGBxE92CRu9r01XeLfhOg05z9FXxXEnVFegp4rYZuXNL4uESVvKpJfuWDN63amBL64x8wXAnKXmiETLhPNgXOQPV4o-azoZsnhMm_4Sk4uNMSen_UpAHIPhqk1vAEvBDyZaVum0SdYp58oBejU6xKHmyZZzEEGhf_4NJ40KHYtvwnf8BUXKDZCG0BLGTK6EP4z9oSEN3cVlopw8fgFzsDvoEKJi6SglvqKRFDTyNjCDDlv5mn7aE8S0GXmwc9ynp3E6iWKp3feL32vcttR0wWdFiby1C2Fecm1TDmP39owzHFivcIlfQ5xxTY-58k94JXK0z4Ri2HG0_q_yenMDg5xwTjS65UMPSN8l4UlbN8RhhFQhhj5NsaRjU04Ezo6UjZu7eNMCohDUIUGnacdWQ4I9SZ-U6qZsDZjwrMSmBjLTAImbVmReNM7kfeX_y9d-5GlexedF-vWcQcbRTMGZMHBwaXL1eMEWBQ2Iy9OKxzsW3A_Qviv2GuCep79miBetZTNWD50vmuwCgw3jI9IkudrvprHcYNasgGSFfJ8HrB_ejnH01LSO0CaV9C8-teGO_FKAWwnnKzFnQ67A4jHYlovvv5vD1PdKuljjuDERjaecJGlgLW495b5Bfb2BUZpH5DIRTn_m3OpI-_2YSdOa5tMlbIf8Lt7XYVNKjyQadVwYs5YdjkAusXqArhH3hm3JUklxfOa8QmKraxHYSjd4FNeYGRHUQeKmRxP6BqAmblQm3ycoJ-AM8RA8Hgu4XvUrSRY_FAmtW3sr8u-WTgCQ-LAzvH3nYIKu_cWmmal7hzve827gf9ED3ocR0fsQtJDtykzSCpIWqREolsJ_aYYfBxgZ4r8LCXUVM1L2fKXmTmuSQQBJo8F30cBHvfsZdgF-JcJsojZXTk11vgvE5Oo6cWWCJgE3Vwk6t_7GTfvIekdBh8CSN58oPqThTyibmPkrRq0WQ5SVM_2KOMwFJS7aAbusa055mK2G74c-u8ffmvZ6ojoqb-qsn-ozQEHzzFMiG-HTGViAZGPPohXtz-eO68rFTRX8ea9vnZ4K6cHgmpIJ_e2WNvaQfDK-98cIPTBp2r6BlcueFCAVh0YLWtSKHpe_PYasgI4trtlHMoT3SXoYRbjpsO_ZaL6UAG6qUEIe6CgDSSkLjK68DIGWkBHEBl2LpR8og3wRK0Kg_0LlFsfjef_Zhfmb-mlDVL2tGR20Kkm6FSeEugtHeWrAPXTC6zTb5Y1MUbmkfLlOY_53DjiLJ0vsjrOVwws8qyu_KPnUYvcwJ69XlcUM93HOC2VJX4L5nh9QMsKPJKhyuwSgpo8Cc3_MRNSwvLXByszHnttXNu-FIDe5-uN4MBCoFMuuuqZk5cEi7xMqu2c7Mi8hx7qZKmvy9oCmtvHqLgBis2ge9ya5RQcxSNNU9wlMw0YDX1gsHtxruuuyGzZRiq-yF4kuKIpqRNsU0-cuxYZBhPbAr9dEKKmtE-7RVDJDQfhtc2KZlFEFgSJTUKwRJdefeiWf580vm8MSWpOJgws0ifvQCpx46yurQp2EkiSFuVBQ7GYpoLHqqTDmkEyBBwgtOEWFV9wm4i9sKzA_pY1efsYRbZnR-YgcO22VoPbSkBFWm66rsmPtG5xTgOVQ2SP3Fz14lxhP61CFCsWzqcrHZ4ol22Uew4qXyLu-yAcE6YzReYgIa_-JqXD0ewChT5Jio_-pjr_-ttZOvhQxjnsYkQcTppLhGqo6ikRXRd2BGBDw1QO4xbP5UWVn5BSls-N9zYdnk6vcMOoNtmUGWdW3wTNHsqubfqUslbaGB-sfNvHVJJzHhCUTHvecfPwX6zP8rsqJ8wUI37QahID0sQEYuIavHL2QDTtl-QXF5_D7L3YCIJQmNfzzN2XLH4upoRp1M2CywjpF598sdBn2yCiYMvrxub9EzC0g9gsH0GfmX7kMtqfIWe3k9WJ4MYknqCtljzTw5XaEnNRA1ojLvDmiR6R_rIU7Fq7qm2IWM4bOwwBhrYoG0vukRzj0udhcKdxpVyJSrEI5UHZNeot0zEKEeR6WEY0yI_EeL2uAg--i6hyuaz3HjEw26-kdd0R34Bbi_g3jSv-gf0KkEtCcfBqXIeN25WfDzqlj_-QAwkTMhRp2CGfxPV_SOhqhc*1781695711664*1af2081527fbb44febfaade40d7d76fdd7e08bbe936e7ee2a5a4610ce8010465*DmFWZvh7ky4KVFZdWKFrgQfI1-pnK4XMLfgEuvUZX2E~2",
-      "domain": ".connect.garmin.com",
-      "path": "/",
-      "expires": 1774503909.719048,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "JWT_WEB",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyI0IiwiNyIsIjgiLCI5IiwiMjAiLCJST0xFX0dBUk1JTl9VU0VSIl0sImV4cCI6MTc3NDUwMzkxMX0.CYUAkVEwZVETVaNMww8f877PFteiYAsEQ8CjtEoNYa4",
-      "domain": ".connect.garmin.com",
-      "path": "/",
-      "expires": 1774503910.96626,
-      "httpOnly": true,
-      "secure": false,
       "sameSite": "Lax"
     },
     {
@@ -203,33 +101,65 @@
       "sameSite": "Lax"
     },
     {
-      "name": "ADRUM_BTa",
-      "value": "R:0|g:3711484d-8033-42ec-bdc0-0f5b1896f9d4|n:garmin_869629ee-d273-481d-b5a4-f4b0a8c4d5a3",
-      "domain": "connect.garmin.com",
+      "name": "__cflb",
+      "value": "02DiuEofTPbaQ2tyBEToNCFEzdTQa8nZN7cetwqnFh6Tn",
+      "domain": "sso.garmin.com",
       "path": "/",
-      "expires": 1774496745.292716,
-      "httpOnly": false,
+      "expires": 1774645197.882274,
+      "httpOnly": true,
       "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "SameSite",
+      "value": "None",
+      "domain": "sso.garmin.com",
+      "path": "/",
+      "expires": 1774590454.205827,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "wUaGrAHv7r_.zN_bDMFE8a9u.IG37j4iZhj0aZR3xCQ-1774590423-1.0.1.1-xeZjmkKqL9IVrXZw_uIxFQrdxKVklnSGyqy53XkjtqO_AJsUI60kYFjrP.1TQj_HvgCghwFdmG6w8bRlxonoXX7pux77OjP1vtQLU5_EgxE",
+      "domain": ".sso.garmin.com",
+      "path": "/",
+      "expires": 1774592223.66308,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cf_clearance",
+      "value": "aRQPd.AahXE9h.2z1ZzOOL6sJDmKYN.ZLKfMNuTMNCY-1774590424-1.2.1.1-AhhREhqdhpeBDU50l5bvvdKmWjgsJydFgV7xllHOV91wKzs8jqUupiVUc6efBS2YgOEGSqhKiu1zo3wM2s5JLcfcJdrUkp3i3N92GUz8yj4nYkw4QFyo6IIqo76fM4qOU8NK5Z0GCLHUBtUJ8GnMIm056P0Y6EtuAikryESIW0A8jA8ZPPtAxKdMiZ5drqYhTT4ysOQF8yh90x3DDlGi7vxI7kt5PPNq2yj4VkqFh9U",
+      "domain": ".sso.garmin.com",
+      "path": "/",
+      "expires": 1806126424.168303,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://garmin.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "ADRUM_BTa",
+      "value": "R:110|g:19ada356-6123-4874-842d-f6d83b02db5e|n:garmin_869629ee-d273-481d-b5a4-f4b0a8c4d5a3",
+      "domain": "sso.garmin.com",
+      "path": "/",
+      "expires": 1774590454.205775,
+      "httpOnly": false,
+      "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "ADRUM_BT1",
-      "value": "R:0|i:1292379|e:2|t:1774496715235",
-      "domain": "connect.garmin.com",
+      "value": "R:110|i:2270614|e:2|t:1774590424030",
+      "domain": "sso.garmin.com",
       "path": "/",
-      "expires": 1774496745.292926,
+      "expires": 1774590454.205954,
       "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "__cflb",
-      "value": "02DiuJLbVZHipNWxN8wwnxZhF2QbAv3GZLvmRt5CFx2gt",
-      "domain": "connect.garmin.com",
-      "path": "/",
-      "expires": 1774579515.90466,
-      "httpOnly": true,
-      "secure": false,
+      "secure": true,
       "sameSite": "Lax"
     }
   ],
