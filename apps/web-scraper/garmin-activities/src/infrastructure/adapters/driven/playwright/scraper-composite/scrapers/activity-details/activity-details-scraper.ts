@@ -19,6 +19,7 @@ export class ActivityDetailsScraper extends BaseScraper<
   protected async doScrape({
     activityId,
   }: ActivityDetailsScraperInput): Promise<RunIntervalsStats> {
+    await this.page.waitForLoadState('networkidle');
     await this.page.goto(`${this.URL}/${activityId}`);
     const container = this.page.locator('#workoutIntervalsStatsPlaceholder');
 
