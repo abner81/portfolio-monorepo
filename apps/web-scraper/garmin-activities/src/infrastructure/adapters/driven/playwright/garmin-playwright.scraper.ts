@@ -7,12 +7,20 @@ import { Activity } from 'garmin-activities/domain/entities/activity.entity';
 import { GarminScraperComposite } from './scraper-composite/garmin-scraper-composite';
 import { INJECTION_TOKENS } from 'garmin-activities/shared/constants/injection-tokens';
 import { LoginFailedException } from 'garmin-activities/domain/exceptions';
+import { IActivity } from 'garmin-activities/application/ports/scrapers';
 
 chromium.use(stealthPlugin());
 
 @Injectable()
 export class GarminPlaywrightScraper implements BrowserScraperPort {
   private readonly HOME_URL = process.env.GARMIN_HOME_URL!;
+  private readonly wordsForGetDetails = [
+    'intervalado',
+    'tiro',
+    'limiar',
+    'progressivo',
+    'intervala',
+  ];
 
   constructor(
     @Inject(INJECTION_TOKENS.GARMIN_SCRAPER_COMPOSITE)
@@ -42,12 +50,19 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
 
       await page.waitForURL(this.HOME_URL);
 
-      const reports = await this.garmin.activityDetails.scrape({
-        activityId: '22301384302',
-      });
       // const reports = await this.garmin.activityReport.scrape({});
 
-      // const activities = await this.garmin.activities.scrape({});
+      const activities = await this.garmin.activities.scrape({});
+      console.log('qtd activities: ', activities.length);
+
+      for (const activity of activities) {
+        if (this.canGetDetailsOfThe(activity)) {
+          const details = await this.garmin.activityDetails.scrape({
+            activityId: activity.id,
+          });
+          console.log(details);
+        }
+      }
 
       // await page.waitForTimeout(1500);
       // console.log('sleep entrou');
@@ -64,4 +79,10 @@ export class GarminPlaywrightScraper implements BrowserScraperPort {
       await browser.close();
     }
   }
+
+  private canGetDetailsOfThe = (activity: IActivity) => {
+    return this.wordsForGetDetails.some((words) =>
+      activity.name.includes(words),
+    );
+  };
 }

@@ -24,7 +24,7 @@ export class ActivityDetailsScraper extends BaseScraper<
     const container = this.page.locator('#workoutIntervalsStatsPlaceholder');
 
     try {
-      await container.waitFor({ timeout: 10000 });
+      await container.waitFor({ timeout: 5000 });
     } catch (error) {
       throw new Error(
         `Container do resumo dos invervalos da atividade id: ${activityId} não foi encontrado`,
@@ -43,8 +43,6 @@ export class ActivityDetailsScraper extends BaseScraper<
 
       runIntervalsStats[this.propriertiesMap[key!]] = value;
     }
-
-    console.log(runIntervalsStats);
 
     return runIntervalsStats;
   }

@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ScrollStopStrategy } from './scroll-stop-strategy';
 import { BaseScraper } from '../base-scraper';
 import { ActivitiesHelper } from './activities-helper';
-import { Locator, Page } from 'playwright';
+import { Locator } from 'playwright';
 
 @Injectable()
 export class ActivitiesScraper extends BaseScraper<IActivity[]> {
@@ -13,6 +13,7 @@ export class ActivitiesScraper extends BaseScraper<IActivity[]> {
   private metrics: Record<string, string> = {};
 
   protected async doScrape(): Promise<IActivity[]> {
+    await this.page.waitForLoadState('networkidle');
     await this.page.goto(this.ACTIVITIES_URL);
     await this.makeScrollHandle();
 
