@@ -1,0 +1,20 @@
+{
+  "name": "shared/util/arch/core",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared/util/arch/core/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "watch": true,
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shared/util/arch/core",
+        "main": "apps/shared/util/arch/core/src/index.ts",
+        "tsConfig": "apps/shared/util/arch/core/tsconfig.lib.json",
+        "assets": ["apps/shared/util/arch/core/*.md"]
+      }
+    }
+  }
+}

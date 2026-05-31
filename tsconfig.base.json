@@ -21,6 +21,7 @@
       "@monorepo/arch/controller": [
         "apps/shared/util/arch/controller/src/index.ts"
       ],
+      "@monorepo/arch/core": ["apps/shared/util/arch/core/src/index.ts"],
       "@monorepo/arch/domain": ["apps/shared/util/arch/domain/src/index.ts"],
       "@monorepo/arch/service": ["apps/shared/util/arch/service/src/index.ts"],
       "@monorepo/events": ["apps/shared/util/events/src/index.ts"],
