@@ -9,21 +9,21 @@ describe('Result', () => {
       expect(Result.ok().getValue()).toBeNull();
     });
     it('should work in success cases with no Inputs', () => {
-      const result = Result.ok()
-      expect(result).toEqual({error: null, value: null, isSuccess: true});
+      const result = Result.ok();
+      expect(result).toEqual({ error: null, value: null, isSuccess: true });
     });
-  })
+  });
 
-  describe('Fail methods', ()=> {
+  describe('Fail methods', () => {
     it('should work in failure cases', () => {
       const error = new Error('test');
-      const result = Result.fail(error)
+      const result = Result.fail(error);
       expect(result.getError()).toStrictEqual(error);
-      expect(result).toEqual({error: error, value: null, isSuccess: false});
+      expect(result).toEqual({ error: error, value: null, isSuccess: false });
     });
-  })
+  });
 
-  describe('call incorrectly get methods', ()=> {
+  describe('call incorrectly get methods', () => {
     it('should throw an error when calling getValue on a failed result', () => {
       const result = Result.fail(new Error());
       expect(() => result.getValue()).toThrow();
@@ -32,7 +32,7 @@ describe('Result', () => {
       const result = Result.ok();
       expect(() => result.getError()).toThrow();
     });
-  })
+  });
 
   describe('isOk method', () => {
     it('should return true for a successful result', () => {
@@ -66,11 +66,7 @@ describe('Result', () => {
 
   describe('combine method', () => {
     it('should return success when all results are successful', () => {
-      const results = [
-        Result.ok('a'),
-        Result.ok('b'),
-        Result.ok('c'),
-      ];
+      const results = [Result.ok('a'), Result.ok('b'), Result.ok('c')];
       const combined = Result.combine(results);
       expect(combined.isOk()).toBeTruthy();
       expect(combined.getValue()).toBeNull();
@@ -83,11 +79,7 @@ describe('Result', () => {
 
     it('should return failure when only one result fails', () => {
       const error = new Error('only failure');
-      const results = [
-        Result.ok('a'),
-        Result.ok('b'),
-        Result.fail(error),
-      ];
+      const results = [Result.ok('a'), Result.ok('b'), Result.fail(error)];
       const combined = Result.combine(results);
       expect(combined.isFail()).toBeTruthy();
       expect(combined.isOk()).toBeFalsy();
@@ -96,17 +88,11 @@ describe('Result', () => {
 
     it('should return failure when first result fails', () => {
       const error = new Error('first failure');
-      const results = [
-        Result.fail(error),
-        Result.ok('b'),
-        Result.ok('c'),
-      ];
+      const results = [Result.fail(error), Result.ok('b'), Result.ok('c')];
       const combined = Result.combine(results);
       expect(combined.isFail()).toBeTruthy();
       expect(combined.isOk()).toBeFalsy();
       expect(combined.getError()).toStrictEqual(error);
     });
-
   });
 });
-
